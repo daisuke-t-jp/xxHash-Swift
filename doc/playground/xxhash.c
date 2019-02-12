@@ -133,7 +133,7 @@ typedef enum { XXH_bigEndian=0, XXH_littleEndian=1 } XXH_endianess;
 
 typedef enum { XXH_aligned, XXH_unaligned } XXH_alignment;
 
- U32 XXH_readLE32_align(const void* ptr, XXH_endianess endian, XXH_alignment align)
+U32 XXH_readLE32(const void* ptr, XXH_endianess endian, XXH_alignment align)
 {
 	if (align==XXH_unaligned) {
 		if(endian == XXH_littleEndian) {
@@ -152,21 +152,6 @@ typedef enum { XXH_aligned, XXH_unaligned } XXH_alignment;
 			// Big endian
 			return XXH_swap32(*(const U32*)ptr);
 		}
-	}
-}
-
-U32 XXH_readLE32(const void* ptr, XXH_endianess endian)
-{
-    return XXH_readLE32_align(ptr, endian, XXH_unaligned);
-}
-
-static U32 XXH_readBE32(const void* ptr)
-{
-	if(XXH_isLittleEndian()) {
-		return XXH_swap32(XXH_read32(ptr));
-	}
-	else {
-		return XXH_read32(ptr);
 	}
 }
 
@@ -219,7 +204,7 @@ XXH32_finalize(U32 h32, const void* ptr, size_t len,
     h32 = XXH_rotl32(h32, 11) * PRIME32_1 ;
 
 #define PROCESS4                         \
-    h32 += XXH_readLE32_align(p, endian, align) * PRIME32_3; \
+    h32 += XXH_readLE32(p, endian, align) * PRIME32_3; \
     p+=4;                                \
     h32  = XXH_rotl32(h32, 17) * PRIME32_4 ;
 
@@ -284,10 +269,10 @@ XXH32_endian_align(const void* input, size_t len, U32 seed,
         U32 v4 = seed - PRIME32_1;
 
         do {
-            v1 = XXH32_round(v1, XXH_readLE32_align(p, endian, align)); p+=4;
-            v2 = XXH32_round(v2, XXH_readLE32_align(p, endian, align)); p+=4;
-            v3 = XXH32_round(v3, XXH_readLE32_align(p, endian, align)); p+=4;
-            v4 = XXH32_round(v4, XXH_readLE32_align(p, endian, align)); p+=4;
+            v1 = XXH32_round(v1, XXH_readLE32(p, endian, align)); p+=4;
+            v2 = XXH32_round(v2, XXH_readLE32(p, endian, align)); p+=4;
+            v3 = XXH32_round(v3, XXH_readLE32(p, endian, align)); p+=4;
+            v4 = XXH32_round(v4, XXH_readLE32(p, endian, align)); p+=4;
         } while (p < limit);
 
         h32 = XXH_rotl32(v1, 1)  + XXH_rotl32(v2, 7)
@@ -358,10 +343,10 @@ void XXH32_update_endian(XXH32_state_t* state, const void* input, size_t len, XX
         if (state->memsize) {   /* some data left from previous update */
             memcpy((BYTE*)(state->mem32) + state->memsize, input, 16-state->memsize);
             {   const U32* p32 = state->mem32;
-                state->v1 = XXH32_round(state->v1, XXH_readLE32(p32, endian)); p32++;
-                state->v2 = XXH32_round(state->v2, XXH_readLE32(p32, endian)); p32++;
-                state->v3 = XXH32_round(state->v3, XXH_readLE32(p32, endian)); p32++;
-                state->v4 = XXH32_round(state->v4, XXH_readLE32(p32, endian));
+                state->v1 = XXH32_round(state->v1, XXH_readLE32(p32, endian, XXH_unaligned)); p32++;
+                state->v2 = XXH32_round(state->v2, XXH_readLE32(p32, endian, XXH_unaligned)); p32++;
+                state->v3 = XXH32_round(state->v3, XXH_readLE32(p32, endian, XXH_unaligned)); p32++;
+                state->v4 = XXH32_round(state->v4, XXH_readLE32(p32, endian, XXH_unaligned));
             }
             p += 16-state->memsize;
             state->memsize = 0;
@@ -375,10 +360,10 @@ void XXH32_update_endian(XXH32_state_t* state, const void* input, size_t len, XX
             U32 v4 = state->v4;
 
             do {
-                v1 = XXH32_round(v1, XXH_readLE32(p, endian)); p+=4;
-                v2 = XXH32_round(v2, XXH_readLE32(p, endian)); p+=4;
-                v3 = XXH32_round(v3, XXH_readLE32(p, endian)); p+=4;
-                v4 = XXH32_round(v4, XXH_readLE32(p, endian)); p+=4;
+                v1 = XXH32_round(v1, XXH_readLE32(p, endian, XXH_unaligned)); p+=4;
+                v2 = XXH32_round(v2, XXH_readLE32(p, endian, XXH_unaligned)); p+=4;
+                v3 = XXH32_round(v3, XXH_readLE32(p, endian, XXH_unaligned)); p+=4;
+                v4 = XXH32_round(v4, XXH_readLE32(p, endian, XXH_unaligned)); p+=4;
             } while (p<=limit);
 
             state->v1 = v1;
@@ -450,7 +435,12 @@ XXH_PUBLIC_API void XXH32_canonicalFromHash(XXH32_canonical_t* dst, XXH32_hash_t
 
 XXH_PUBLIC_API XXH32_hash_t XXH32_hashFromCanonical(const XXH32_canonical_t* src)
 {
-    return XXH_readBE32(src);
+	if(XXH_isLittleEndian()) {
+		return XXH_swap32(XXH_read32(src));
+	}
+	else {
+		return XXH_read32(src);
+	}
 }
 
 
@@ -569,7 +559,7 @@ XXH64_finalize(U64 h64, const void* ptr, size_t len,
     h64 = XXH_rotl64(h64, 11) * PRIME64_1;
 
 #define PROCESS4_64          \
-    h64 ^= (U64)(XXH_readLE32_align(p, endian, align)) * PRIME64_1; \
+    h64 ^= (U64)(XXH_readLE32(p, endian, align)) * PRIME64_1; \
     p+=4;                    \
     h64 = XXH_rotl64(h64, 23) * PRIME64_2 + PRIME64_3;
 
