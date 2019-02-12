@@ -9,19 +9,21 @@
 import Foundation
 
 
-// TODO: gitignore
 // TODO: base class
-// TODO: travis
-// TODO: podspec
-// TODO: readme
-// TODO: cocoapods
-// TODO: unittest
-// TODO: test
+// TODO: hash32
+// TODO: hash64
 // TODO: iOS scheme
 // TODO: tvOS scheme
 // TODO: demo
-// TODO: hash32
-// TODO: hash64
+
+// TODO: unittest
+// TODO: travis
+
+// TODO: podspec
+// TODO: cocoapods
+
+// TODO: readme
+// TODO: header image
 
 public class xxHash32 {
 

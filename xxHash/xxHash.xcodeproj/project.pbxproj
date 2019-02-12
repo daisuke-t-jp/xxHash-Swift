@@ -73,8 +73,8 @@
 		0288D894221283E2009D61FC /* xxHash */ = {
 			isa = PBXGroup;
 			children = (
-				0288D895221283E3009D61FC /* xxHash.h */,
 				0288D896221283E3009D61FC /* Info.plist */,
+				0288D895221283E3009D61FC /* xxHash.h */,
 				0288D8AC22128443009D61FC /* xxHash32.swift */,
 			);
 			path = xxHash;
