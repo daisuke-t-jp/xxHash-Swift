@@ -65,6 +65,17 @@ public class xxHash32 : xxHash {
 		return res
 	}
 
+	static private func swap(_ x: [UInt8]) -> [UInt8] {
+		var res = [UInt8](repeating: 0, count: 4)
+		
+		res[0] = x[3]
+		res[1] = x[2]
+		res[2] = x[1]
+		res[3] = x[0]
+
+		return res
+	}
+
 	static private func round(_ seed: UInt32, input: UInt32) -> UInt32 {
 
 		var seed2 = seed
@@ -112,6 +123,32 @@ public class xxHash32 : xxHash {
 		return block
 	}
 
+	
+	static private func UInt32ToUInt8Array(_ block: UInt32) -> [UInt8] {
+		var array = [UInt8](repeating: 0, count: 4)
+
+		array[0] = UInt8((block & 0x000000ff) >> 0)
+		array[1] = UInt8((block & 0x0000ff00) >> 8)
+		array[2] = UInt8((block & 0x00ff0000) >> 16)
+		array[3] = UInt8((block & 0xff000000) >> 24)
+
+		return array
+	}
+	
+	static private func UInt32ToUInt8Array(_ block: UInt32, endian: Endian) -> [UInt8] {
+		var array = UInt32ToUInt8Array(block)
+		
+		if(endian == Endian.Little) {
+			return array
+		}
+		
+		
+		// Big Endian
+		array = swap(array)
+		
+		return array
+	}
+	
 	
 	
 	// MARK: - Private
@@ -263,7 +300,7 @@ public class xxHash32 : xxHash {
 	// MARK: - Streaming
 	public func reset() {
 		state = State()
-		
+
 		state.v1 = seed &+ xxHash32.prime1 &+ xxHash32.prime2
 		state.v2 = seed &+ xxHash32.prime2
 		state.v3 = seed + 0
@@ -375,24 +412,10 @@ public class xxHash32 : xxHash {
 	
 	// MARK: - Canonical
 	static public func canonicalFromHash(_ hash: UInt32, endian: Endian = endian()) -> [UInt8] {
-		
-		var hash2 = hash
-
-		if endian == Endian.Little {
-			hash2 = swap(hash)
-		}
-
-		var canonical = [UInt8](repeating: 0, count: 4)
-		canonical[0] |= UInt8((hash2 & 0xff000000) >> 24)
-		canonical[1] |= UInt8((hash2 & 0x00ff0000) >> 16)
-		canonical[2] |= UInt8((hash2 & 0x0000ff00) >> 8)
-		canonical[3] |= UInt8((hash2 & 0x000000ff) >> 0)
-		
-		return canonical
+		return UInt32ToUInt8Array(hash, endian: endian)
 	}
 	
 	static public func hashFromCanonical(_ canonical: [UInt8], endian: Endian = endian()) -> UInt32 {
-		
 		return UInt8ArrayToUInt32(canonical, index: 0, endian: endian)
 	}
 	
