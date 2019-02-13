@@ -29,8 +29,8 @@ public class xxHash32 : xxHash {
 		var memsize: Int = 0
 		var reserved: UInt32 = 0	// never read nor write, might be removed in a future version
 	}
-	
 
+	
 	
 	// MARK: - Member
 	private var state = State()
@@ -68,9 +68,9 @@ public class xxHash32 : xxHash {
 	static private func round(_ seed: UInt32, input: UInt32) -> UInt32 {
 
 		var seed2 = seed
-		seed2 += input * prime2
+		seed2 &+= input &* prime2
 		seed2 = rotl(seed2, r: 13)
-		seed2 *= prime1
+		seed2 &*= prime1
 
 		return seed2
 	}
@@ -79,9 +79,9 @@ public class xxHash32 : xxHash {
 
 		var h2 = h
 		h2 ^= h2 >> 15
-		h2 *= prime2
+		h2 &*= prime2
 		h2 ^= h2 >> 13
-		h2 *= prime3
+		h2 &*= prime3
 		h2 ^= h2 >> 16
 
 		return h2
@@ -111,7 +111,7 @@ public class xxHash32 : xxHash {
 		
 		return block
 	}
-	
+
 	
 	
 	// MARK: - Private
@@ -121,15 +121,15 @@ public class xxHash32 : xxHash {
 		var h2 = h
 
 		func process1() {
-			h2 += UInt32(array[index]) * prime5
+			h2 &+= UInt32(array[index]) &* prime5
 			index += 1
-			h2 = rotl(h2, r: 11) * prime1
+			h2 = rotl(h2, r: 11) &* prime1
 		}
 
 		func process4() {
-			h2 += UInt8ArrayToUInt32(array, index: index, endian: endian) * prime3
+			h2 &+= UInt8ArrayToUInt32(array, index: index, endian: endian) &* prime3
 			index += 1
-			h2 = rotl(h2, r: 17) * prime4
+			h2 = rotl(h2, r: 17) &* prime4
 		}
 
 		
@@ -207,25 +207,25 @@ public class xxHash32 : xxHash {
 			break
 		}
 
-		return h2	// reaching this point is deemed impossible.
+		return h2	// reaching this point is deemed impossible
 	}
 
 	
 	
-	// MARK: - One-Shot
+	// MARK: - Oneshot
 	static public func hash(_ array: [UInt8], seed: UInt32 = 0, endian: Endian = endian()) -> UInt32 {
 
 		let len = array.count
-		var index = 0
 		var h = UInt32(0)
 
 		if len >= 16 {
 			let limit = len - 15
-			var v1 = seed + prime1 + prime2
-			var v2 = seed + prime2
+			var v1 = seed &+ prime1 &+ prime2
+			var v2 = seed &+ prime2
 			var v3 = seed + 0
 			var v4 = seed - prime1
-			
+			var index = 0
+
 			repeat {
 
 				v1 = round(v1, input: UInt8ArrayToUInt32(array, index: index))
@@ -264,8 +264,8 @@ public class xxHash32 : xxHash {
 	public func reset() {
 		state = State()
 		
-		state.v1 = seed + xxHash32.prime1 + xxHash32.prime2
-		state.v2 = seed + xxHash32.prime2
+		state.v1 = seed &+ xxHash32.prime1 &+ xxHash32.prime2
+		state.v2 = seed &+ xxHash32.prime2
 		state.v3 = seed + 0
 		state.v4 = seed - xxHash32.prime1
 	}
@@ -370,4 +370,30 @@ public class xxHash32 : xxHash {
 		
 		return h
 	}
+	
+	
+	
+	// MARK: - Canonical
+	static public func canonicalFromHash(_ hash: UInt32, endian: Endian = endian()) -> [UInt8] {
+		
+		var hash2 = hash
+
+		if endian == Endian.Little {
+			hash2 = swap(hash)
+		}
+
+		var canonical = [UInt8](repeating: 0, count: 4)
+		canonical[0] |= UInt8((hash2 & 0xff000000) >> 24)
+		canonical[1] |= UInt8((hash2 & 0x00ff0000) >> 16)
+		canonical[2] |= UInt8((hash2 & 0x0000ff00) >> 8)
+		canonical[3] |= UInt8((hash2 & 0x000000ff) >> 0)
+		
+		return canonical
+	}
+	
+	static public func hashFromCanonical(_ canonical: [UInt8], endian: Endian = endian()) -> UInt32 {
+		
+		return UInt8ArrayToUInt32(canonical, index: 0, endian: endian)
+	}
+	
 }
