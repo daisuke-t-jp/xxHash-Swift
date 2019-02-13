@@ -56,10 +56,10 @@ public class xxHash32 : xxHash {
 	static private func swap(_ x: UInt32) -> UInt32 {
 		var res = UInt32(0)
 
-		res |= (x << 24) & 0xff000000
-		res |= (x << 8)  & 0x00ff0000
-		res |= (x >> 8)  & 0x0000ff00
-		res |= (x >> 24) & 0x000000ff
+		res |= (x & 0x000000ff) << 24
+		res |= (x & 0x0000ff00) << 8
+		res |= (x & 0x00ff0000) >> 8
+		res |= (x & 0xff000000) >> 24
 
 		return res
 	}
