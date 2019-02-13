@@ -20,8 +20,7 @@ class xxHashTests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+		XCTAssertEqual(xxHash32.hash(Array("test".utf8)), 0x3e2023cf)
     }
 
     func testPerformanceExample() {
