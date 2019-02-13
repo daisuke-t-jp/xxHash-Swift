@@ -34,7 +34,6 @@ public class xxHash32 : xxHash {
 	
 	// MARK: - Member
 	private var state = State()
-	private var endian = xxHash.endian()
 
 	public var seed = UInt32(0) {
 		didSet {

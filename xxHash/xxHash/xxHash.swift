@@ -33,6 +33,11 @@ public class xxHash {
 
 
 	
+	// MARK: - Member
+	public private(set) var endian = xxHash.endian()
+
+	
+	
 	// MARK: - Utility
 	static internal func rotl<T: FixedWidthInteger>(_ x: T, r: Int) -> T {
 		return (x << r) | (x >> (T.bitWidth - r))
