@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0270EC0B22139597004F89E9 /* xxHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270EC0A22139597004F89E9 /* xxHash.swift */; };
 		0288D89C221283E3009D61FC /* xxHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0288D892221283E2009D61FC /* xxHash.framework */; };
 		0288D8A1221283E3009D61FC /* xxHashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8A0221283E3009D61FC /* xxHashTests.swift */; };
 		0288D8A3221283E3009D61FC /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0270EC0A22139597004F89E9 /* xxHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHash.swift; sourceTree = "<group>"; };
 		0288D892221283E2009D61FC /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0288D895221283E3009D61FC /* xxHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxHash.h; sourceTree = "<group>"; };
 		0288D896221283E3009D61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			children = (
 				0288D896221283E3009D61FC /* Info.plist */,
 				0288D895221283E3009D61FC /* xxHash.h */,
+				0270EC0A22139597004F89E9 /* xxHash.swift */,
 				0288D8AC22128443009D61FC /* xxHash32.swift */,
 			);
 			path = xxHash;
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0288D8AD22128443009D61FC /* xxHash32.swift in Sources */,
+				0270EC0B22139597004F89E9 /* xxHash.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
