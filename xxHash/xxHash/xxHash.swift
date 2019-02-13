@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO: base class
-// TODO: hash32
 // TODO: hash64
 // TODO: overload func(string, data)
 // TODO: iOS scheme
