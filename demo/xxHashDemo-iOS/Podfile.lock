@@ -1,0 +1,16 @@
+PODS:
+  - xxHash-Swift (1.0.0)
+
+DEPENDENCIES:
+  - xxHash-Swift (from `../../`)
+
+EXTERNAL SOURCES:
+  xxHash-Swift:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  xxHash-Swift: fe4c70acfb7fb60964ed02d5f0b8c1dc4e80b265
+
+PODFILE CHECKSUM: 8df8bf681787e44d7014453beb4c4d55aeab245a
+
+COCOAPODS: 1.6.0
