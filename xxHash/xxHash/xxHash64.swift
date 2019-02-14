@@ -20,8 +20,8 @@ public class xxHash64 {
 
 	
 	// MARK: - Member
-	private let endian = xxHash.endian()
-	private var state = xxHash.State<UInt64>()
+	private let endian = Common.endian()
+	private var state = Common.State<UInt64>()
 	public var seed = UInt64(0) {
 		didSet {
 			// reset()
@@ -45,7 +45,7 @@ public extension xxHash64 {
 	static private func round(_ acc: UInt64, input: UInt64) -> UInt64 {
 		var acc2 = acc
 		acc2 &+= input &* prime2
-		acc2 = xxHash.rotl(acc2, r: 31)
+		acc2 = Common.rotl(acc2, r: 31)
 		acc2 &*= prime1
 
 		return acc2
@@ -76,27 +76,27 @@ public extension xxHash64 {
 // MARK: - Private
 public extension xxHash64 {
 	
-	static private func finalize(_ h: UInt64, array: [UInt8], len: Int, endian: xxHash.Endian) -> UInt64 {
+	static private func finalize(_ h: UInt64, array: [UInt8], len: Int, endian: Common.Endian) -> UInt64 {
 		var index = 0
 		var h2 = h
 		
 		func process1() {
 			h2 ^= UInt64(array[index]) &* prime5
 			index += 1
-			h2 = xxHash.rotl(h2, r: 11) &* prime1
+			h2 = Common.rotl(h2, r: 11) &* prime1
 		}
 		
 		func process4() {
-			h2 ^= UInt64(xxHash.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian)) &* prime1
+			h2 ^= UInt64(Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian)) &* prime1
 			index += 1
-			h2 = xxHash.rotl(h2, r: 23) &* prime2 &+ prime3
+			h2 = Common.rotl(h2, r: 23) &* prime2 &+ prime3
 		}
 
 		func process8() {
-			let k1 = round(0, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+			let k1 = round(0, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 			index += 2
 			h2 ^= k1
-			h2 = xxHash.rotl(h2, r: 27) &* prime1 &+ prime4
+			h2 = Common.rotl(h2, r: 27) &* prime1 &+ prime4
 		}
 		
 		
@@ -259,7 +259,7 @@ public extension xxHash64 {
 // MARK: - Hashing(Oneshot)
 public extension xxHash64 {
 	
-	static private func hash(_ array: [UInt8], seed: UInt64, endian: xxHash.Endian) -> UInt64 {
+	static private func hash(_ array: [UInt8], seed: UInt64, endian: Common.Endian) -> UInt64 {
 		
 		let len = array.count
 		var h = UInt64(0)
@@ -274,24 +274,24 @@ public extension xxHash64 {
 			
 			repeat {
 				
-				v1 = round(v1, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				v1 = round(v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
 				index += 8
 				
-				v2 = round(v2, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				v2 = round(v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
 				index += 8
 				
-				v3 = round(v3, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				v3 = round(v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
 				index += 8
 				
-				v4 = round(v4, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				v4 = round(v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
 				index += 8
 				
 			} while(index < limit)
 			
-			h = xxHash.rotl(v1, r: 1)  +
-				xxHash.rotl(v2, r: 7)  +
-				xxHash.rotl(v3, r: 12) +
-				xxHash.rotl(v4, r: 18)
+			h = Common.rotl(v1, r: 1)  +
+				Common.rotl(v2, r: 7)  +
+				Common.rotl(v3, r: 12) +
+				Common.rotl(v4, r: 18)
 
 			h = mergeRound(h, val: v1)
 			h = mergeRound(h, val: v2)
@@ -310,15 +310,15 @@ public extension xxHash64 {
 	}
 	
 	static public func hash(_ array: [UInt8], seed: UInt64 = 0) -> UInt64 {
-		return hash(array, seed: seed, endian: xxHash.endian())
+		return hash(array, seed: seed, endian: Common.endian())
 	}
 
 	static public func hash(_ string: String, seed: UInt64 = 0) -> UInt64 {
-		return hash(Array(string.utf8), seed: seed, endian: xxHash.endian())
+		return hash(Array(string.utf8), seed: seed, endian: Common.endian())
 	}
 	
 	static public func hash(_ data: Data, seed: UInt64 = 0) -> UInt64 {
-		return hash([UInt8](data), seed: seed, endian: xxHash.endian())
+		return hash([UInt8](data), seed: seed, endian: Common.endian())
 	}
 }
 
@@ -328,7 +328,7 @@ public extension xxHash64 {
 public extension xxHash64 {
 	
 	public func reset() {
-		state = xxHash.State()
+		state = Common.State()
 		
 		state.v1 = seed &+ xxHash64.prime1 &+ xxHash64.prime2
 		state.v2 = seed &+ xxHash64.prime2
@@ -364,10 +364,10 @@ public extension xxHash64 {
 				state.mem[index] = array[i]
 			}
 			
-			state.v1 = xxHash64.round(state.v1, input: xxHash.UInt8ArrayToUInt(state.mem, index: 0, type: UInt64(0), endian: endian))
-			state.v2 = xxHash64.round(state.v2, input: xxHash.UInt8ArrayToUInt(state.mem, index: 8, type: UInt64(0), endian: endian))
-			state.v3 = xxHash64.round(state.v3, input: xxHash.UInt8ArrayToUInt(state.mem, index: 16, type: UInt64(0), endian: endian))
-			state.v4 = xxHash64.round(state.v4, input: xxHash.UInt8ArrayToUInt(state.mem, index: 24, type: UInt64(0), endian: endian))
+			state.v1 = xxHash64.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, type: UInt64(0), endian: endian))
+			state.v2 = xxHash64.round(state.v2, input: Common.UInt8ArrayToUInt(state.mem, index: 8, type: UInt64(0), endian: endian))
+			state.v3 = xxHash64.round(state.v3, input: Common.UInt8ArrayToUInt(state.mem, index: 16, type: UInt64(0), endian: endian))
+			state.v4 = xxHash64.round(state.v4, input: Common.UInt8ArrayToUInt(state.mem, index: 24, type: UInt64(0), endian: endian))
 			
 			index += 32 - state.memsize
 			state.memsize = 0
@@ -383,16 +383,16 @@ public extension xxHash64 {
 			
 			repeat {
 				
-				v1 = xxHash64.round(state.v1, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v1 = xxHash64.round(state.v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
-				v2 = xxHash64.round(state.v2, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v2 = xxHash64.round(state.v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
-				v3 = xxHash64.round(state.v3, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v3 = xxHash64.round(state.v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
-				v4 = xxHash64.round(state.v4, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v4 = xxHash64.round(state.v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
 			} while (index <= limit)
@@ -428,10 +428,10 @@ public extension xxHash64 {
 		var h = UInt64(0)
 		
 		if state.totalLen >= 32 {
-			h = xxHash.rotl(state.v1, r: 1) +
-				xxHash.rotl(state.v2, r: 7) +
-				xxHash.rotl(state.v3, r: 12) +
-				xxHash.rotl(state.v4, r: 18)
+			h = Common.rotl(state.v1, r: 1) +
+				Common.rotl(state.v2, r: 7) +
+				Common.rotl(state.v3, r: 12) +
+				Common.rotl(state.v4, r: 18)
 
 			h = xxHash64.mergeRound(h, val: state.v1)
 			h = xxHash64.mergeRound(h, val: state.v2)
@@ -457,21 +457,21 @@ public extension xxHash64 {
 // MARK: - Canonical
 public extension xxHash64 {
 	
-	static private func canonicalFromHash(_ hash: UInt64, endian: xxHash.Endian) -> [UInt8] {
-		return xxHash.UIntToUInt8Array(hash, endian: endian)
+	static private func canonicalFromHash(_ hash: UInt64, endian: Common.Endian) -> [UInt8] {
+		return Common.UIntToUInt8Array(hash, endian: endian)
 	}
 	
 	static public func canonicalFromHash(_ hash: UInt64) -> [UInt8] {
-		return canonicalFromHash(hash, endian: xxHash.endian())
+		return canonicalFromHash(hash, endian: Common.endian())
 	}
 	
 	
-	static private func hashFromCanonical(_ canonical: [UInt8], endian: xxHash.Endian) -> UInt64 {
-		return xxHash.UInt8ArrayToUInt(canonical, index: 0, type: UInt64(0), endian: endian)
+	static private func hashFromCanonical(_ canonical: [UInt8], endian: Common.Endian) -> UInt64 {
+		return Common.UInt8ArrayToUInt(canonical, index: 0, type: UInt64(0), endian: endian)
 	}
 	
 	static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt64 {
-		return hashFromCanonical(canonical, endian: xxHash.endian())
+		return hashFromCanonical(canonical, endian: Common.endian())
 	}
 	
 }

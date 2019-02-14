@@ -1,5 +1,5 @@
 //
-//  xxHash.swift
+//  Common.swift
 //  xxHash
 //
 //  Created by Daisuke T on 2019/02/13.
@@ -14,7 +14,7 @@ import Foundation
 
 
 
-class xxHash {
+class Common {
 
 	// MARK: - Enum, Const
 	enum Endian {
@@ -22,7 +22,7 @@ class xxHash {
 		case Big
 	}
 
-	
+
 	struct State<T: FixedWidthInteger> {
 		var totalLen: T = 0
 		var largeLen: Bool = false
@@ -40,7 +40,7 @@ class xxHash {
 
 
 // MARK: - Utility
-extension xxHash {
+extension Common {
 
 	static func endian() -> Endian {
 		if CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) {
@@ -55,6 +55,12 @@ extension xxHash {
 		return (x << r) | (x >> (T.bitWidth - r))
 	}
 
+}
+
+
+
+// MARK: - Utility(Swap)
+extension Common {
 
 	static func swap<T: FixedWidthInteger>(_ x: T) -> T {
 		var res = T(0)
@@ -88,7 +94,13 @@ extension xxHash {
 		return res
 	}
 
+}
 
+
+
+// MARK: - Utility(Convert)
+extension Common {
+	
 	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T) -> T {
 		var block = T(0)
 		var index2 = 0
@@ -101,10 +113,10 @@ extension xxHash {
 		return block
 	}
 	
-	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T, endian: xxHash.Endian) -> T {
+	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T, endian: Common.Endian) -> T {
 		var block = UInt8ArrayToUInt(array, index: index, type: type)
 		
-		if(endian == xxHash.Endian.Little) {
+		if(endian == Common.Endian.Little) {
 			return block
 		}
 		
@@ -128,10 +140,10 @@ extension xxHash {
 		return array
 	}
 	
-	static func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: xxHash.Endian) -> [UInt8] {
+	static func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: Common.Endian) -> [UInt8] {
 		var array = UIntToUInt8Array(block)
 		
-		if(endian == xxHash.Endian.Little) {
+		if(endian == Common.Endian.Little) {
 			return array
 		}
 		
