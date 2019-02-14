@@ -315,3 +315,146 @@ public extension xxHash64 {
 	
 }
 
+
+
+// MARK: - Hashing(Streaming)
+public extension xxHash64 {
+	
+	public func reset() {
+		state = xxHash.State()
+		
+		state.v1 = seed &+ xxHash64.prime1 &+ xxHash64.prime2
+		state.v2 = seed &+ xxHash64.prime2
+		state.v3 = seed + 0
+		state.v4 = seed - xxHash64.prime1
+	}
+
+	public func update(_ array: [UInt8]) {
+		let len = array.count
+		var index = 0
+		
+		state.totalLen += UInt64(len)
+		
+		if state.memsize + len < 32 {
+			
+			// fill in tmp buffer
+			for i in 0..<len {
+				let index = state.memsize + i
+				state.mem[index] = array[i]
+			}
+			
+			state.memsize += len
+			
+			return
+		}
+		
+		
+		if state.memsize > 0 {
+			// some data left from previous update
+			for i in 0..<32 - state.memsize {
+				let index = state.memsize + i
+				state.mem[index] = array[i]
+			}
+			
+			state.v1 = xxHash64.round(state.v1, input: xxHash.UInt8ArrayToUInt(state.mem, index: 0, type: UInt64(0), endian: endian))
+			state.v2 = xxHash64.round(state.v2, input: xxHash.UInt8ArrayToUInt(state.mem, index: 8, type: UInt64(0), endian: endian))
+			state.v3 = xxHash64.round(state.v3, input: xxHash.UInt8ArrayToUInt(state.mem, index: 16, type: UInt64(0), endian: endian))
+			state.v4 = xxHash64.round(state.v4, input: xxHash.UInt8ArrayToUInt(state.mem, index: 24, type: UInt64(0), endian: endian))
+			
+			index += 32 - state.memsize
+			state.memsize = 0
+		}
+
+		if index + 32 <= len {
+			
+			let limit = len - 32
+			var v1 = state.v1
+			var v2 = state.v2
+			var v3 = state.v3
+			var v4 = state.v4
+			
+			repeat {
+				
+				v1 = xxHash64.round(state.v1, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				index += 8
+				
+				v2 = xxHash64.round(state.v2, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				index += 8
+				
+				v3 = xxHash64.round(state.v3, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				index += 8
+				
+				v4 = xxHash64.round(state.v4, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				index += 8
+				
+			} while (index <= limit)
+			
+			state.v1 = v1
+			state.v2 = v2
+			state.v3 = v3
+			state.v4 = v4
+			
+		}
+		
+		
+		if index < len {
+			for i in 0..<len - index {
+				state.mem[i] = array[i]
+			}
+			
+			state.memsize = len - index
+		}
+		
+	}
+	
+	public func digest() -> UInt64 {
+		var h = UInt64(0)
+		
+		if state.totalLen >= 32 {
+			h = xxHash.rotl(state.v1, r: 1) +
+				xxHash.rotl(state.v2, r: 7) +
+				xxHash.rotl(state.v3, r: 12) +
+				xxHash.rotl(state.v4, r: 18)
+
+			h = xxHash64.mergeRound(h, val: state.v1)
+			h = xxHash64.mergeRound(h, val: state.v2)
+			h = xxHash64.mergeRound(h, val: state.v3)
+			h = xxHash64.mergeRound(h, val: state.v4)
+
+		}
+		else {
+			h = state.v3 /* == seed */ &+ xxHash64.prime5
+		}
+		
+		h += state.totalLen
+		
+		h = xxHash64.finalize(h, array: state.mem, len: state.memsize, endian: endian)
+		
+		return h
+	}
+	
+}
+
+
+
+// MARK: - Canonical
+public extension xxHash64 {
+	
+	static private func canonicalFromHash(_ hash: UInt64, endian: xxHash.Endian) -> [UInt8] {
+		return xxHash.UIntToUInt8Array(hash, endian: endian)
+	}
+	
+	static public func canonicalFromHash(_ hash: UInt64) -> [UInt8] {
+		return canonicalFromHash(hash, endian: xxHash.endian())
+	}
+	
+	
+	static private func hashFromCanonical(_ canonical: [UInt8], endian: xxHash.Endian) -> UInt64 {
+		return xxHash.UInt8ArrayToUInt(canonical, index: 0, type: UInt64(0), endian: endian)
+	}
+	
+	static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt64 {
+		return hashFromCanonical(canonical, endian: xxHash.endian())
+	}
+	
+}
