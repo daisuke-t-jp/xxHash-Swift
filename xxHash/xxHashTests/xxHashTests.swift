@@ -23,7 +23,7 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxHash32.hash(Array("test".utf8)), 0x3e2023cf)
     }
 
-    func testPerformanceExample() {
+    func testPerformance() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
