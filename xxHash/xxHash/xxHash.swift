@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO: iOS scheme
-// TODO: tvOS scheme
 // TODO: demo
 
 // TODO: unittest
