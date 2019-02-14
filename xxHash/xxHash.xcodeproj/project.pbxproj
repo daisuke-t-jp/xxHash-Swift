@@ -30,7 +30,7 @@
 		0288D892221283E2009D61FC /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0288D895221283E3009D61FC /* xxHash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xxHash.h; sourceTree = "<group>"; };
 		0288D896221283E3009D61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0288D89B221283E3009D61FC /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0288D89B221283E3009D61FC /* xxHashTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xxHashTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0288D8A0221283E3009D61FC /* xxHashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHashTests.swift; sourceTree = "<group>"; };
 		0288D8A2221283E3009D61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0288D8AC22128443009D61FC /* xxHash32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHash32.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				0288D892221283E2009D61FC /* xxHash.framework */,
-				0288D89B221283E3009D61FC /* xxHashTests.xctest */,
+				0288D89B221283E3009D61FC /* xxHashTests-macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,9 +109,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0288D891221283E2009D61FC /* xxHash */ = {
+		0288D891221283E2009D61FC /* xxHash-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0288D8A6221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHash" */;
+			buildConfigurationList = 0288D8A6221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHash-macOS" */;
 			buildPhases = (
 				0288D88D221283E2009D61FC /* Headers */,
 				0288D88E221283E2009D61FC /* Sources */,
@@ -122,14 +122,14 @@
 			);
 			dependencies = (
 			);
-			name = xxHash;
+			name = "xxHash-macOS";
 			productName = xxHash;
 			productReference = 0288D892221283E2009D61FC /* xxHash.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0288D89A221283E3009D61FC /* xxHashTests */ = {
+		0288D89A221283E3009D61FC /* xxHashTests-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0288D8A9221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHashTests" */;
+			buildConfigurationList = 0288D8A9221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHashTests-macOS" */;
 			buildPhases = (
 				0288D897221283E3009D61FC /* Sources */,
 				0288D898221283E3009D61FC /* Frameworks */,
@@ -140,9 +140,9 @@
 			dependencies = (
 				0288D89E221283E3009D61FC /* PBXTargetDependency */,
 			);
-			name = xxHashTests;
+			name = "xxHashTests-macOS";
 			productName = xxHashTests;
-			productReference = 0288D89B221283E3009D61FC /* xxHashTests.xctest */;
+			productReference = 0288D89B221283E3009D61FC /* xxHashTests-macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -176,8 +176,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0288D891221283E2009D61FC /* xxHash */,
-				0288D89A221283E3009D61FC /* xxHashTests */,
+				0288D891221283E2009D61FC /* xxHash-macOS */,
+				0288D89A221283E3009D61FC /* xxHashTests-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -223,7 +223,7 @@
 /* Begin PBXTargetDependency section */
 		0288D89E221283E3009D61FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0288D891221283E2009D61FC /* xxHash */;
+			target = 0288D891221283E2009D61FC /* xxHash-macOS */;
 			targetProxy = 0288D89D221283E3009D61FC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -370,7 +370,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHash;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = xxHash;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -397,7 +397,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHash;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = xxHash;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 			};
@@ -451,7 +451,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0288D8A6221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHash" */ = {
+		0288D8A6221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHash-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0288D8A7221283E3009D61FC /* Debug */,
@@ -460,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0288D8A9221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHashTests" */ = {
+		0288D8A9221283E3009D61FC /* Build configuration list for PBXNativeTarget "xxHashTests-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0288D8AA221283E3009D61FC /* Debug */,
