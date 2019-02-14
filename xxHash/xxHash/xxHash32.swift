@@ -219,6 +219,14 @@ public extension xxHash32 {
 		return hash(array, seed: seed, endian: xxHash.endian())
 	}
 
+	static public func hash(_ string: String, seed: UInt32 = 0) -> UInt32 {
+		return hash(Array(string.utf8), seed: seed, endian: xxHash.endian())
+	}
+	
+	static public func hash(_ data: Data, seed: UInt32 = 0) -> UInt32 {
+		return hash([UInt8](data), seed: seed, endian: xxHash.endian())
+	}
+
 }
 
 
@@ -234,7 +242,8 @@ public extension xxHash32 {
 		state.v3 = seed + 0
 		state.v4 = seed - xxHash32.prime1
 	}
-	
+
+
 	public func update(_ array: [UInt8]) {
 		let len = array.count
 		var index = 0
@@ -314,6 +323,15 @@ public extension xxHash32 {
 
 	}
 
+	public func update(_ string: String) {
+		return update(Array(string.utf8))
+	}
+
+	public func update(_ data: Data) {
+		return update([UInt8](data))
+	}
+
+	
 	public func digest() -> UInt32 {
 		var h = UInt32(0)
 
