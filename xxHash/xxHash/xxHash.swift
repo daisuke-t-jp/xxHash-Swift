@@ -9,12 +9,8 @@
 import Foundation
 
 // TODO: demo
-
 // TODO: unittest
-// TODO: travis
-
 // TODO: cocoapods
-
 // TODO: readme
 
 
