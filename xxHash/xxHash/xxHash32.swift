@@ -49,10 +49,14 @@ public class xxHash32 : xxHash {
 
 		self.seed = seed
 	}
-	
-	
 
-	// MARK: - Utility
+}
+
+
+
+// MARK: - Utility
+public extension xxHash32 {
+
 	static private func swap(_ x: UInt32) -> UInt32 {
 		var res = UInt32(0)
 
@@ -147,10 +151,13 @@ public class xxHash32 : xxHash {
 		
 		return array
 	}
+}
 	
-	
-	
-	// MARK: - Private
+
+
+// MARK: - Private
+public extension xxHash32 {
+
 	static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: Endian) -> UInt32 {
 
 		var index = 0
@@ -246,9 +253,13 @@ public class xxHash32 : xxHash {
 		return h2	// reaching this point is deemed impossible
 	}
 
-	
-	
-	// MARK: - Oneshot
+}
+
+
+
+// MARK: - Hashing(Oneshot)
+public extension xxHash32 {
+
 	static public func hash(_ array: [UInt8], seed: UInt32 = 0, endian: Endian = endian()) -> UInt32 {
 
 		let len = array.count
@@ -294,9 +305,13 @@ public class xxHash32 : xxHash {
 		return h
 	}
 
-	
-	
-	// MARK: - Streaming
+}
+
+
+
+// MARK: - Hashing(Streaming)
+public extension xxHash32 {
+
 	public func reset() {
 		state = State()
 
@@ -406,10 +421,14 @@ public class xxHash32 : xxHash {
 		
 		return h
 	}
-	
-	
-	
-	// MARK: - Canonical
+
+}
+
+
+
+ // MARK: - Canonical
+public extension xxHash32 {
+
 	static public func canonicalFromHash(_ hash: UInt32, endian: Endian = endian()) -> [UInt8] {
 		return UInt32ToUInt8Array(hash, endian: endian)
 	}
