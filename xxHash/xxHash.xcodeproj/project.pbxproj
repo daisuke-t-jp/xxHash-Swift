@@ -12,6 +12,7 @@
 		0288D8A1221283E3009D61FC /* xxHashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8A0221283E3009D61FC /* xxHashTests.swift */; };
 		0288D8A3221283E3009D61FC /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0288D8AD22128443009D61FC /* xxHash32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* xxHash32.swift */; };
+		02F191BD22151D2A0090D5EB /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		0288D8A0221283E3009D61FC /* xxHashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHashTests.swift; sourceTree = "<group>"; };
 		0288D8A2221283E3009D61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0288D8AC22128443009D61FC /* xxHash32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHash32.swift; sourceTree = "<group>"; };
+		02F191BC22151D2A0090D5EB /* xxHash64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xxHash64.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				0288D895221283E3009D61FC /* xxHash.h */,
 				0270EC0A22139597004F89E9 /* xxHash.swift */,
 				0288D8AC22128443009D61FC /* xxHash32.swift */,
+				02F191BC22151D2A0090D5EB /* xxHash64.swift */,
 			);
 			path = xxHash;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			files = (
 				0288D8AD22128443009D61FC /* xxHash32.swift in Sources */,
 				0270EC0B22139597004F89E9 /* xxHash.swift in Sources */,
+				02F191BD22151D2A0090D5EB /* xxHash64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
