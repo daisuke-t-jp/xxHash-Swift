@@ -253,3 +253,65 @@ public extension xxHash64 {
 	}
 	
 }
+
+
+
+// MARK: - Hashing(Oneshot)
+public extension xxHash64 {
+	
+	static private func hash(_ array: [UInt8], seed: UInt64, endian: xxHash.Endian) -> UInt64 {
+		
+		let len = array.count
+		var h = UInt64(0)
+		
+		if len >= 32 {
+			let limit = len - 32
+			var v1 = seed &+ prime1 &+ prime2
+			var v2 = seed &+ prime2
+			var v3 = seed + 0
+			var v4 = seed - prime1
+			var index = 0
+			
+			repeat {
+				
+				v1 = round(v1, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				index += 8
+				
+				v2 = round(v2, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				index += 8
+				
+				v3 = round(v3, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				index += 8
+				
+				v4 = round(v4, input: xxHash.UInt8ArrayToUInt(array, index: index, type: UInt64(0)))
+				index += 8
+				
+			} while(index < limit)
+			
+			h = xxHash.rotl(v1, r: 1)  +
+				xxHash.rotl(v2, r: 7)  +
+				xxHash.rotl(v3, r: 12) +
+				xxHash.rotl(v4, r: 18)
+
+			h = mergeRound(h, val: v1)
+			h = mergeRound(h, val: v2)
+			h = mergeRound(h, val: v3)
+			h = mergeRound(h, val: v4)
+		}
+		else {
+			h = seed + prime5
+		}
+		
+		h += UInt64(len)
+		
+		h = finalize(h, array: array, len: len, endian: endian)
+		
+		return h
+	}
+	
+	static public func hash(_ array: [UInt8], seed: UInt64 = 0) -> UInt64 {
+		return hash(array, seed: seed, endian: xxHash.endian())
+	}
+	
+}
+
