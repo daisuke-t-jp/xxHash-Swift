@@ -234,9 +234,9 @@
 			productReference = 02F191DD22153F970090D5EB /* xxHash.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		02F191E422153F980090D5EB /* xxHash-iOSTests */ = {
+		02F191E422153F980090D5EB /* xxHashTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02F191F322153F980090D5EB /* Build configuration list for PBXNativeTarget "xxHash-iOSTests" */;
+			buildConfigurationList = 02F191F322153F980090D5EB /* Build configuration list for PBXNativeTarget "xxHashTests-iOS" */;
 			buildPhases = (
 				02F191E122153F980090D5EB /* Sources */,
 				02F191E222153F980090D5EB /* Frameworks */,
@@ -247,7 +247,7 @@
 			dependencies = (
 				02F191E822153F980090D5EB /* PBXTargetDependency */,
 			);
-			name = "xxHash-iOSTests";
+			name = "xxHashTests-iOS";
 			productName = "xxHash-iOSTests";
 			productReference = 02F191E522153F980090D5EB /* xxHashTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -270,9 +270,9 @@
 			productReference = 02F191FC221547330090D5EB /* xxHash.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		02F19203221547340090D5EB /* xxHash-tvOSTests */ = {
+		02F19203221547340090D5EB /* xxHashTests-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02F19212221547340090D5EB /* Build configuration list for PBXNativeTarget "xxHash-tvOSTests" */;
+			buildConfigurationList = 02F19212221547340090D5EB /* Build configuration list for PBXNativeTarget "xxHashTests-tvOS" */;
 			buildPhases = (
 				02F19200221547340090D5EB /* Sources */,
 				02F19201221547340090D5EB /* Frameworks */,
@@ -283,7 +283,7 @@
 			dependencies = (
 				02F19207221547340090D5EB /* PBXTargetDependency */,
 			);
-			name = "xxHash-tvOSTests";
+			name = "xxHashTests-tvOS";
 			productName = "xxHash-tvOSTests";
 			productReference = 02F19204221547340090D5EB /* xxHashTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -334,9 +334,9 @@
 				0288D891221283E2009D61FC /* xxHash-macOS */,
 				0288D89A221283E3009D61FC /* xxHashTests-macOS */,
 				02F191DC22153F970090D5EB /* xxHash-iOS */,
-				02F191E422153F980090D5EB /* xxHash-iOSTests */,
+				02F191E422153F980090D5EB /* xxHashTests-iOS */,
 				02F191FB221547330090D5EB /* xxHash-tvOS */,
-				02F19203221547340090D5EB /* xxHash-tvOSTests */,
+				02F19203221547340090D5EB /* xxHashTests-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -896,7 +896,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02F191F322153F980090D5EB /* Build configuration list for PBXNativeTarget "xxHash-iOSTests" */ = {
+		02F191F322153F980090D5EB /* Build configuration list for PBXNativeTarget "xxHashTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02F191F022153F980090D5EB /* Debug */,
@@ -914,7 +914,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02F19212221547340090D5EB /* Build configuration list for PBXNativeTarget "xxHash-tvOSTests" */ = {
+		02F19212221547340090D5EB /* Build configuration list for PBXNativeTarget "xxHashTests-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02F1920F221547340090D5EB /* Debug */,

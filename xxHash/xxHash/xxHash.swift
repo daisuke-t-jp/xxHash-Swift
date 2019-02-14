@@ -13,7 +13,6 @@ import Foundation
 // TODO: unittest
 // TODO: travis
 
-// TODO: podspec
 // TODO: cocoapods
 
 // TODO: readme
