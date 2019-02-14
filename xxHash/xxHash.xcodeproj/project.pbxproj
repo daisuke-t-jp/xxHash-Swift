@@ -18,6 +18,11 @@
 		02F191F52215400C0090D5EB /* xxHash32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* xxHash32.swift */; };
 		02F191F62215400F0090D5EB /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
 		02F19205221547340090D5EB /* xxHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F191FC221547330090D5EB /* xxHash.framework */; };
+		7E43B82B22159A4B005EDFB4 /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E43B82C22159A61005EDFB4 /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E43B82D22159A75005EDFB4 /* xxHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270EC0A22139597004F89E9 /* xxHash.swift */; };
+		7E43B82E22159A78005EDFB4 /* xxHash32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* xxHash32.swift */; };
+		7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +172,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E43B82B22159A4B005EDFB4 /* xxHash.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +180,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E43B82C22159A61005EDFB4 /* xxHash.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +433,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E43B82D22159A75005EDFB4 /* xxHash.swift in Sources */,
+				7E43B82E22159A78005EDFB4 /* xxHash32.swift in Sources */,
+				7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +831,7 @@
 		02F1920F221547340090D5EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = xxHashTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -840,6 +851,7 @@
 		02F19210221547340090D5EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = xxHashTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
