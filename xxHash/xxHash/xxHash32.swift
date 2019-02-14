@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class xxHash32 : xxHash {
+public class xxHash32 {
 
 	// MARK: - Enum, Const
 	static let prime1: UInt32 = 2654435761	// 0b10011110001101110111100110110001
@@ -33,8 +33,8 @@ public class xxHash32 : xxHash {
 	
 	
 	// MARK: - Member
+	private let endian = xxHash.endian()
 	private var state = State()
-
 	public var seed = UInt32(0) {
 		didSet {
 			reset()
@@ -44,9 +44,7 @@ public class xxHash32 : xxHash {
 
 
 	// MARK: - Life cycle
-	init(_ seed: UInt32, endian: Endian) {
-		super.init()
-
+	init(_ seed: UInt32 = 0) {
 		self.seed = seed
 	}
 
@@ -93,7 +91,7 @@ public extension xxHash32 {
 
 		var seed2 = seed
 		seed2 &+= input &* prime2
-		seed2 = rotl(seed2, r: 13)
+		seed2 = xxHash.rotl(seed2, r: 13)
 		seed2 &*= prime1
 
 		return seed2
@@ -124,10 +122,10 @@ public extension xxHash32 {
 		return block
 	}
 	
-	static private func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T, endian: Endian) -> T {
+	static private func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T, endian: xxHash.Endian) -> T {
 		var block = UInt8ArrayToUInt(array, index: index, type: type)
 		
-		if(endian == Endian.Little) {
+		if(endian == xxHash.Endian.Little) {
 			return block
 		}
 		
@@ -151,10 +149,10 @@ public extension xxHash32 {
 		return array
 	}
 	
-	static private func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: Endian) -> [UInt8] {
+	static private func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: xxHash.Endian) -> [UInt8] {
 		var array = UIntToUInt8Array(block)
 		
-		if(endian == Endian.Little) {
+		if(endian == xxHash.Endian.Little) {
 			return array
 		}
 		
@@ -172,7 +170,7 @@ public extension xxHash32 {
 // MARK: - Private
 public extension xxHash32 {
 
-	static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: Endian) -> UInt32 {
+	static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: xxHash.Endian) -> UInt32 {
 
 		var index = 0
 		var h2 = h
@@ -180,13 +178,13 @@ public extension xxHash32 {
 		func process1() {
 			h2 &+= UInt32(array[index]) &* prime5
 			index += 1
-			h2 = rotl(h2, r: 11) &* prime1
+			h2 = xxHash.rotl(h2, r: 11) &* prime1
 		}
 
 		func process4() {
 			h2 &+= UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian) &* prime3
 			index += 1
-			h2 = rotl(h2, r: 17) &* prime4
+			h2 = xxHash.rotl(h2, r: 17) &* prime4
 		}
 
 		
@@ -274,7 +272,7 @@ public extension xxHash32 {
 // MARK: - Hashing(Oneshot)
 public extension xxHash32 {
 
-	static public func hash(_ array: [UInt8], seed: UInt32 = 0, endian: Endian = endian()) -> UInt32 {
+	static private func hash(_ array: [UInt8], seed: UInt32, endian: xxHash.Endian) -> UInt32 {
 
 		let len = array.count
 		var h = UInt32(0)
@@ -303,10 +301,10 @@ public extension xxHash32 {
 
 			} while(index < limit)
 			
-			h = rotl(v1, r: 1)  +
-				rotl(v2, r: 7)  +
-				rotl(v3, r: 12) +
-				rotl(v4, r: 18)
+			h = xxHash.rotl(v1, r: 1)  +
+				xxHash.rotl(v2, r: 7)  +
+				xxHash.rotl(v3, r: 12) +
+				xxHash.rotl(v4, r: 18)
 		}
 		else {
 			h = seed + prime5
@@ -317,6 +315,10 @@ public extension xxHash32 {
 		h = finalize(h, array: array, len: len & 15, endian: endian)
 
 		return h
+	}
+
+	static public func hash(_ array: [UInt8], seed: UInt32 = 0) -> UInt32 {
+		return hash(array, seed: seed, endian: xxHash.endian())
 	}
 
 }
@@ -443,12 +445,21 @@ public extension xxHash32 {
  // MARK: - Canonical
 public extension xxHash32 {
 
-	static public func canonicalFromHash(_ hash: UInt32, endian: Endian = endian()) -> [UInt8] {
+	static private func canonicalFromHash(_ hash: UInt32, endian: xxHash.Endian) -> [UInt8] {
 		return UIntToUInt8Array(hash, endian: endian)
 	}
-	
-	static public func hashFromCanonical(_ canonical: [UInt8], endian: Endian = endian()) -> UInt32 {
+
+	static public func canonicalFromHash(_ hash: UInt32) -> [UInt8] {
+		return canonicalFromHash(hash, endian: xxHash.endian())
+	}
+
+
+	static private func hashFromCanonical(_ canonical: [UInt8], endian: xxHash.Endian) -> UInt32 {
 		return UInt8ArrayToUInt(canonical, index: 0, type: UInt32(0), endian: endian)
+	}
+
+	static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt32 {
+		return hashFromCanonical(canonical, endian: xxHash.endian())
 	}
 	
 }

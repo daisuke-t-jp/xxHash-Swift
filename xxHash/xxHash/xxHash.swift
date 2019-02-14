@@ -23,31 +23,25 @@ import Foundation
 // TODO: readme
 // TODO: header image
 
-public class xxHash {
+class xxHash {
 
 	// MARK: - Enum, Const
-	public enum Endian {
+	enum Endian {
 		case Little
 		case Big
 	}
 
-
-	
-	// MARK: - Member
-	public private(set) var endian = xxHash.endian()
-
-	
 	
 	// MARK: - Utility
-	static internal func rotl<T: FixedWidthInteger>(_ x: T, r: Int) -> T {
+	static func rotl<T: FixedWidthInteger>(_ x: T, r: Int) -> T {
 		return (x << r) | (x >> (T.bitWidth - r))
 	}
 
-	static public func endian() -> Endian {
+	static func endian() -> Endian {
 		if CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) {
 			return Endian.Little
 		}
-		
+
 		return Endian.Big
 	}
 }
