@@ -325,7 +325,7 @@ public extension xxHash32 {
 
 		}
 		else {
-			h = state.v3 /* == seed */ + xxHash32.prime5
+			h = state.v3 /* == seed */ &+ xxHash32.prime5
 		}
 		
 		h += state.totalLen
@@ -339,7 +339,7 @@ public extension xxHash32 {
 
 
 
- // MARK: - Canonical
+// MARK: - Canonical
 public extension xxHash32 {
 
 	static private func canonicalFromHash(_ hash: UInt32, endian: xxHash.Endian) -> [UInt8] {
