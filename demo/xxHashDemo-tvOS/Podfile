@@ -1,0 +1,8 @@
+platform :tvos, '12.0'
+use_frameworks!
+
+target 'xxHashDemo-tvOS' do
+pod 'xxHash-Swift', :path => "../../"
+end
+
+
