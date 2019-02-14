@@ -8,7 +8,6 @@
 
 import Foundation
 
-// TODO: hash64
 // TODO: overload func(string, data)
 // TODO: iOS scheme
 // TODO: tvOS scheme
@@ -147,7 +146,7 @@ extension xxHash {
 		
 		// Big Endian
 		array = swap(array)
-		
+
 		return array
 	}
 
