@@ -19,11 +19,15 @@ class xxHashTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func test32() {
 		XCTAssertEqual(xxHash32.hash(Array("test".utf8)), 0x3e2023cf)
     }
 
-    func testPerformance() {
+	func test64() {
+		XCTAssertEqual(xxHash64.hash(Array("test".utf8)), 0x4fdcca5ddb678139)
+	}
+
+	func testPerformance() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
