@@ -8,7 +8,6 @@
 
 import Foundation
 
-// TODO: overload func(string, data)
 // TODO: iOS scheme
 // TODO: tvOS scheme
 // TODO: demo
@@ -20,7 +19,8 @@ import Foundation
 // TODO: cocoapods
 
 // TODO: readme
-// TODO: header image
+
+
 
 class xxHash {
 
