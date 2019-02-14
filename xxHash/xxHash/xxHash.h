@@ -6,7 +6,7 @@
 //  Copyright © 2019 xxHash. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for xxHash.
 FOUNDATION_EXPORT double xxHashVersionNumber;

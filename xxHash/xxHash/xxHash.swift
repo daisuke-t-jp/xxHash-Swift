@@ -8,7 +8,6 @@
 
 import Foundation
 
-// TODO: demo
 // TODO: unittest
 // TODO: cocoapods
 // TODO: readme
