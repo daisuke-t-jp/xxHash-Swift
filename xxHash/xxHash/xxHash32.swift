@@ -293,16 +293,16 @@ public extension xxHash32 {
 
 			repeat {
 
-				v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v1 = xxHash32.round(v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
 				index += 4
 
-				v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v2 = xxHash32.round(v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
 				index += 4
 
-				v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v3 = xxHash32.round(v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
 				index += 4
 
-				v4 = xxHash32.round(state.v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v4 = xxHash32.round(v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
 				index += 4
 
 			} while (index <= limit)
@@ -317,7 +317,7 @@ public extension xxHash32 {
 		
 		if index < len {
 			for i in 0..<len - index {
-				state.mem[i] = array[i]
+				state.mem[i] = array[index + i]
 			}
 
 			state.memsize = len - index
