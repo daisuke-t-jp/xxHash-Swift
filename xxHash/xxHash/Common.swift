@@ -70,14 +70,14 @@ extension Common {
 		bit = (MemoryLayout<T>.size - 1) * 8
 		for _ in 0..<MemoryLayout<T>.size / 2 {
 			res |= (x & mask) << bit
-			mask = mask << 2
+			mask = mask << 8
 			bit -= 16
 		}
 		
 		bit = 8
 		for _ in 0..<MemoryLayout<T>.size / 2 {
 			res |= (x & mask) >> bit
-			mask = mask << 2
+			mask = mask << 8
 			bit += 16
 		}
 		
@@ -132,7 +132,7 @@ extension Common {
 		
 		for i in 0..<MemoryLayout<T>.size {
 			array[i] = UInt8((block & mask) >> (i * 8))
-			mask = mask << 2
+			mask = mask << 8
 		}
 		
 		return array
