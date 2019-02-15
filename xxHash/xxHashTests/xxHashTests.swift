@@ -33,11 +33,23 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxHash64.hash("Hello World!", seed: 0x7fffffff), 0xe64398b4046131bb)
 	}
 
+	func test32Overload() {
+		XCTAssertEqual(xxHash32.hash("Hello World!"), xxHash32.hash(Array("Hello World!".utf8)))
+		XCTAssertEqual(xxHash32.hash("Hello World!"), xxHash32.hash("Hello World!".data(using: .utf8)!))
+	}
+	
+	func test64Overload() {
+		XCTAssertEqual(xxHash64.hash("Hello World!"), xxHash64.hash(Array("Hello World!".utf8)))
+		XCTAssertEqual(xxHash64.hash("Hello World!"), xxHash64.hash("Hello World!".data(using: .utf8)!))
+	}
+
+	/*
 	func testPerformance() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
+	*/
 
 }
