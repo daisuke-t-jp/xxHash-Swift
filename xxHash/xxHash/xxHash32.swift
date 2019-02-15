@@ -257,8 +257,7 @@ public extension xxHash32 {
 
 			// fill in tmp buffer
 			for i in 0..<len {
-				let index = state.memsize + i
-				state.mem[index] = array[i]
+				state.mem[state.memsize + i] = array[i]
 			}
 			
 			state.memsize += len
@@ -270,8 +269,7 @@ public extension xxHash32 {
 		if state.memsize > 0 {
 			// some data left from previous update
 			for i in 0..<16 - state.memsize {
-				let index = state.memsize + i
-				state.mem[index] = array[i]
+				state.mem[state.memsize + i] = array[i]
 			}
 
 			state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, type: UInt32(0), endian: endian))
