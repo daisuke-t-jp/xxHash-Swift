@@ -385,16 +385,16 @@ public extension xxHash64 {
 			
 			repeat {
 				
-				v1 = xxHash64.round(state.v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v1 = xxHash64.round(v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
-				v2 = xxHash64.round(state.v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v2 = xxHash64.round(v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
-				v3 = xxHash64.round(state.v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v3 = xxHash64.round(v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
-				v4 = xxHash64.round(state.v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
+				v4 = xxHash64.round(v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
 				index += 8
 				
 			} while (index <= limit)
