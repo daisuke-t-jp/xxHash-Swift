@@ -256,7 +256,7 @@ public extension xxHash64 {
 
 
 
-// MARK: - Hashing(Oneshot)
+// MARK: - Hashing(One-shot)
 public extension xxHash64 {
 	
 	static private func hash(_ array: [UInt8], seed: UInt64, endian: Common.Endian) -> UInt64 {

@@ -167,7 +167,7 @@ public extension xxHash32 {
 
 
 
-// MARK: - Hashing(Oneshot)
+// MARK: - Hashing(One-shot)
 public extension xxHash32 {
 
 	static private func hash(_ array: [UInt8], seed: UInt32, endian: Common.Endian) -> UInt32 {

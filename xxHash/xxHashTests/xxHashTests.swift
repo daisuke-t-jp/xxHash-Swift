@@ -20,6 +20,7 @@ class xxHashTests: XCTestCase {
     }
 
     func test32OneShot() {
+		// 0x7fffffff == 2147483647
 		XCTAssertEqual(xxHash32.hash("Hello World!"), 0x0bd69788)
 		XCTAssertEqual(xxHash32.hash("Hello World!", seed: 0), 0x0bd69788)
 		XCTAssertEqual(xxHash32.hash("Hello World!", seed: 1), 0x83e18820)

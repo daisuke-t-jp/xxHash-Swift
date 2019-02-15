@@ -100,17 +100,17 @@ extension Common {
 
 // MARK: - Utility(Convert)
 extension Common {
-
+	
 	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T) -> T {
 		var block = T(0)
-		
+
 		for i in 0..<MemoryLayout<T>.size {
 			block |= T(array[index + i]) << (i * 8)
 		}
 		
 		return block
 	}
-
+	
 	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T, endian: Common.Endian) -> T {
 		var block = UInt8ArrayToUInt(array, index: index, type: type)
 		
