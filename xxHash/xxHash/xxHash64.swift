@@ -409,7 +409,7 @@ public extension xxHash64 {
 		
 		if index < len {
 			for i in 0..<len - index {
-				state.mem[i] = array[i]
+				state.mem[i] = array[index + i]
 			}
 			
 			state.memsize = len - index
