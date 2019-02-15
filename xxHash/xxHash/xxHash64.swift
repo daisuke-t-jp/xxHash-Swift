@@ -73,7 +73,7 @@ public extension xxHash64 {
 
 
 
-// MARK: - Private
+// MARK: - Finalize
 public extension xxHash64 {
 	
 	static private func finalize(_ h: UInt64, array: [UInt8], len: Int, endian: Common.Endian) -> UInt64 {

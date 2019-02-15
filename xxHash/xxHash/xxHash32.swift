@@ -66,7 +66,7 @@ public extension xxHash32 {
 	
 
 
-// MARK: - Private
+// MARK: - Finalize
 public extension xxHash32 {
 
 	static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: Common.Endian) -> UInt32 {
