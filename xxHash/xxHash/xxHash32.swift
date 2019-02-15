@@ -168,10 +168,10 @@ public extension xxHash32 {
 
 
 
-// MARK: - Hashing(One-shot)
+// MARK: - Digest(One-shot)
 public extension xxHash32 {
 
-	static private func hash(_ array: [UInt8], seed: UInt32, endian: Common.Endian) -> UInt32 {
+	static private func digest(_ array: [UInt8], seed: UInt32, endian: Common.Endian) -> UInt32 {
 
 		let len = array.count
 		var h = UInt32(0)
@@ -217,23 +217,23 @@ public extension xxHash32 {
 		return h
 	}
 
-	static public func hash(_ array: [UInt8], seed: UInt32 = 0) -> UInt32 {
-		return hash(array, seed: seed, endian: Common.endian())
+	static public func digest(_ array: [UInt8], seed: UInt32 = 0) -> UInt32 {
+		return digest(array, seed: seed, endian: Common.endian())
 	}
 
-	static public func hash(_ string: String, seed: UInt32 = 0) -> UInt32 {
-		return hash(Array(string.utf8), seed: seed, endian: Common.endian())
+	static public func digest(_ string: String, seed: UInt32 = 0) -> UInt32 {
+		return digest(Array(string.utf8), seed: seed, endian: Common.endian())
 	}
 	
-	static public func hash(_ data: Data, seed: UInt32 = 0) -> UInt32 {
-		return hash([UInt8](data), seed: seed, endian: Common.endian())
+	static public func digest(_ data: Data, seed: UInt32 = 0) -> UInt32 {
+		return digest([UInt8](data), seed: seed, endian: Common.endian())
 	}
 
 }
 
 
 
-// MARK: - Hashing(Streaming)
+// MARK: - Digest(Streaming)
 public extension xxHash32 {
 
 	public func reset() {
