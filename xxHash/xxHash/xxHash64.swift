@@ -88,13 +88,13 @@ public extension xxHash64 {
 		
 		func process4() {
 			h2 ^= UInt64(Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian)) &* prime1
-			index += 1
+			index += 4
 			h2 = Common.rotl(h2, r: 23) &* prime2 &+ prime3
 		}
 
 		func process8() {
 			let k1 = round(0, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt64(0), endian: endian))
-			index += 2
+			index += 8
 			h2 ^= k1
 			h2 = Common.rotl(h2, r: 27) &* prime1 &+ prime4
 		}
@@ -263,14 +263,14 @@ public extension xxHash64 {
 		
 		let len = array.count
 		var h = UInt64(0)
-		
+		var index = 0
+
 		if len >= 32 {
 			let limit = len - 32
 			var v1 = seed &+ prime1 &+ prime2
 			var v2 = seed &+ prime2
 			var v3 = seed + 0
 			var v4 = seed &- prime1
-			var index = 0
 			
 			repeat {
 				
@@ -304,7 +304,8 @@ public extension xxHash64 {
 		
 		h &+= UInt64(len)
 		
-		h = finalize(h, array: array, len: len, endian: endian)
+		let array2 = Array(array[index...])
+		h = finalize(h, array: array2, len: len, endian: endian)
 		
 		return h
 	}
