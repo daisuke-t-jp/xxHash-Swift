@@ -460,7 +460,12 @@ public extension xxHash64 {
 public extension xxHash64 {
 	
 	static private func canonicalFromHash(_ hash: UInt64, endian: Common.Endian) -> [UInt8] {
-		return Common.UIntToUInt8Array(hash, endian: endian)
+		var hash2 = hash
+		if endian == Common.Endian.Little {
+			hash2 = Common.swap(hash2)
+		}
+
+		return Common.UIntToUInt8Array(hash2, endian: endian)
 	}
 	
 	static public func canonicalFromHash(_ hash: UInt64) -> [UInt8] {
@@ -469,7 +474,12 @@ public extension xxHash64 {
 	
 	
 	static private func hashFromCanonical(_ canonical: [UInt8], endian: Common.Endian) -> UInt64 {
-		return Common.UInt8ArrayToUInt(canonical, index: 0, type: UInt64(0), endian: endian)
+		var hash = Common.UInt8ArrayToUInt(canonical, index: 0, type: UInt64(0), endian: endian)
+		if endian == Common.Endian.Little {
+			hash = Common.swap(hash)
+		}
+		
+		return hash
 	}
 	
 	static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt64 {
