@@ -15,9 +15,8 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		print(xxHash32.hash("test"))
+		print(xxHash32.digest("test"))
+		print(xxHash64.digest("test"))
 	}
-
-
 }
 
