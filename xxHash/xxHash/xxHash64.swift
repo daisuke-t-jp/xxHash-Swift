@@ -24,7 +24,7 @@ public class xxHash64 {
 	private var state = Common.State<UInt64>()
 	public var seed = UInt64(0) {
 		didSet {
-			// reset()
+			reset()
 		}
 	}
 
@@ -33,6 +33,7 @@ public class xxHash64 {
 	// MARK: - Life cycle
 	init(_ seed: UInt64 = 0) {
 		self.seed = seed
+		reset()
 	}
 
 }
