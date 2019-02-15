@@ -75,7 +75,7 @@ public extension xxHash32 {
 
 		func process1() {
 			h2 &+= UInt32(array[index]) &* prime5
-			index += 4
+			index += 1
 			h2 = Common.rotl(h2, r: 11) &* prime1
 		}
 
