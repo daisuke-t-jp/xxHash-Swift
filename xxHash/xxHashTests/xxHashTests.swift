@@ -228,6 +228,30 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxh.digest(), xxHash32(0x7fffffff).digest())
 	}
 
+	func test32Copy() {
+		do {
+			let xxh = xxHash32()
+			let xxh2 = xxh
+			
+			xxh.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+			
+			xxh2.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+		}
+
+		do {
+			let xxh = xxHash32(0x7fffffff)
+			let xxh2 = xxh
+			
+			xxh.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+			
+			xxh2.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+		}
+	}
+
 	/*
 	func testPerformance() {
         // This is an example of a performance test case.
