@@ -252,6 +252,74 @@ class xxHashTests: XCTestCase {
 		}
 	}
 
+	func test32File() {
+		do {
+			let xxh = xxHash32()
+
+			let bundle = Bundle(for: type(of: self))
+			let path = bundle.path(forResource: "alice29", ofType: "txt")!
+			let data = NSData(contentsOfFile: path)
+			let array = [UInt8](data! as Data)
+
+			let bufSize = 1024
+			var index = 0
+			var flag = true
+			
+			
+			repeat {
+				var buf = [UInt8]()
+				for _ in 0..<bufSize {
+					buf.append(array[index])
+					index += 1
+					if index >= array.count {
+						flag = false
+						break
+					}
+					
+				}
+				
+				xxh.update(buf)
+				
+			} while(flag)
+			
+			XCTAssertEqual(xxh.digest(), 0xafc8e0c2)
+		}
+	}
+
+	func test32FileWithSeed() {
+		do {
+			let xxh = xxHash32(0x7fffffff)
+			
+			let bundle = Bundle(for: type(of: self))
+			let path = bundle.path(forResource: "alice29", ofType: "txt")!
+			let data = NSData(contentsOfFile: path)
+			let array = [UInt8](data! as Data)
+			
+			let bufSize = 1024
+			var index = 0
+			var flag = true
+			
+			
+			repeat {
+				var buf = [UInt8]()
+				for _ in 0..<bufSize {
+					buf.append(array[index])
+					index += 1
+					if index >= array.count {
+						flag = false
+						break
+					}
+					
+				}
+				
+				xxh.update(buf)
+				
+			} while(flag)
+			
+			XCTAssertEqual(xxh.digest(), 0x7d7e2195)
+		}
+	}
+	
 	/*
 	func testPerformance() {
         // This is an example of a performance test case.
