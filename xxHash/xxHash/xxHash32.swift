@@ -75,13 +75,13 @@ public extension xxHash32 {
 
 		func process1() {
 			h2 &+= UInt32(array[index]) &* prime5
-			index += 1
+			index += 4
 			h2 = Common.rotl(h2, r: 11) &* prime1
 		}
 
 		func process4() {
 			h2 &+= Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian) &* prime3
-			index += 1
+			index += 4
 			h2 = Common.rotl(h2, r: 17) &* prime4
 		}
 
@@ -174,14 +174,14 @@ public extension xxHash32 {
 
 		let len = array.count
 		var h = UInt32(0)
+		var index = 0
 
 		if len >= 16 {
 			let limit = len - 15
 			var v1 = seed &+ prime1 &+ prime2
 			var v2 = seed &+ prime2
 			var v3 = seed + 0
-			var v4 = seed - prime1
-			var index = 0
+			var v4 = seed &- prime1
 
 			repeat {
 
@@ -199,18 +199,19 @@ public extension xxHash32 {
 
 			} while(index < limit)
 			
-			h = Common.rotl(v1, r: 1)  +
-				Common.rotl(v2, r: 7)  +
-				Common.rotl(v3, r: 12) +
+			h = Common.rotl(v1, r: 1)  &+
+				Common.rotl(v2, r: 7)  &+
+				Common.rotl(v3, r: 12) &+
 				Common.rotl(v4, r: 18)
 		}
 		else {
-			h = seed + prime5
+			h = seed &+ prime5
 		}
 		
-		h += UInt32(len)
+		h &+= UInt32(len)
 
-		h = finalize(h, array: array, len: len & 15, endian: endian)
+		let array2 = Array(array[index...])
+		h = finalize(h, array: array2, len: len & 15, endian: endian)
 
 		return h
 	}
@@ -240,7 +241,7 @@ public extension xxHash32 {
 		state.v1 = seed &+ xxHash32.prime1 &+ xxHash32.prime2
 		state.v2 = seed &+ xxHash32.prime2
 		state.v3 = seed + 0
-		state.v4 = seed - xxHash32.prime1
+		state.v4 = seed &- xxHash32.prime1
 	}
 
 
@@ -304,7 +305,7 @@ public extension xxHash32 {
 				index += 4
 
 			} while (index <= limit)
-			
+
 			state.v1 = v1
 			state.v2 = v2
 			state.v3 = v3
@@ -336,9 +337,9 @@ public extension xxHash32 {
 		var h = UInt32(0)
 
 		if state.largeLen {
-			h = Common.rotl(state.v1, r: 1) +
-				Common.rotl(state.v2, r: 7) +
-				Common.rotl(state.v3, r: 12) +
+			h = Common.rotl(state.v1, r: 1)  &+
+				Common.rotl(state.v2, r: 7)  &+
+				Common.rotl(state.v3, r: 12) &+
 				Common.rotl(state.v4, r: 18)
 
 		}
@@ -346,7 +347,7 @@ public extension xxHash32 {
 			h = state.v3 /* == seed */ &+ xxHash32.prime5
 		}
 		
-		h += state.totalLen
+		h &+= state.totalLen
 
 		h = xxHash32.finalize(h, array: state.mem, len: state.memsize, endian: endian)
 		
