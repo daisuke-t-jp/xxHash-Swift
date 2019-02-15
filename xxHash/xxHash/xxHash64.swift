@@ -54,7 +54,7 @@ public extension xxHash64 {
 	static private func mergeRound(_ acc: UInt64, val: UInt64) -> UInt64 {
 		let val2 = round(0, input: val)
 		var acc2 = acc ^ val2
-		acc2 = acc2 &* prime1 + prime4
+		acc2 = acc2 &* prime1 &+ prime4
 
 		return acc2
 	}
@@ -269,7 +269,7 @@ public extension xxHash64 {
 			var v1 = seed &+ prime1 &+ prime2
 			var v2 = seed &+ prime2
 			var v3 = seed + 0
-			var v4 = seed - prime1
+			var v4 = seed &- prime1
 			var index = 0
 			
 			repeat {
@@ -288,9 +288,9 @@ public extension xxHash64 {
 				
 			} while(index < limit)
 			
-			h = Common.rotl(v1, r: 1)  +
-				Common.rotl(v2, r: 7)  +
-				Common.rotl(v3, r: 12) +
+			h = Common.rotl(v1, r: 1)  &+
+				Common.rotl(v2, r: 7)  &+
+				Common.rotl(v3, r: 12) &+
 				Common.rotl(v4, r: 18)
 
 			h = mergeRound(h, val: v1)
@@ -299,10 +299,10 @@ public extension xxHash64 {
 			h = mergeRound(h, val: v4)
 		}
 		else {
-			h = seed + prime5
+			h = seed &+ prime5
 		}
 		
-		h += UInt64(len)
+		h &+= UInt64(len)
 		
 		h = finalize(h, array: array, len: len, endian: endian)
 		
@@ -333,7 +333,7 @@ public extension xxHash64 {
 		state.v1 = seed &+ xxHash64.prime1 &+ xxHash64.prime2
 		state.v2 = seed &+ xxHash64.prime2
 		state.v3 = seed + 0
-		state.v4 = seed - xxHash64.prime1
+		state.v4 = seed &- xxHash64.prime1
 	}
 
 	
@@ -428,9 +428,9 @@ public extension xxHash64 {
 		var h = UInt64(0)
 		
 		if state.totalLen >= 32 {
-			h = Common.rotl(state.v1, r: 1) +
-				Common.rotl(state.v2, r: 7) +
-				Common.rotl(state.v3, r: 12) +
+			h = Common.rotl(state.v1, r: 1)  &+
+				Common.rotl(state.v2, r: 7)  &+
+				Common.rotl(state.v3, r: 12) &+
 				Common.rotl(state.v4, r: 18)
 
 			h = xxHash64.mergeRound(h, val: state.v1)
@@ -443,7 +443,7 @@ public extension xxHash64 {
 			h = state.v3 /* == seed */ &+ xxHash64.prime5
 		}
 		
-		h += state.totalLen
+		h &+= state.totalLen
 		
 		h = xxHash64.finalize(h, array: state.mem, len: state.memsize, endian: endian)
 		
