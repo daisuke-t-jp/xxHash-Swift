@@ -102,6 +102,56 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxHash32.hash("Hello World!"), xxHash32.hash("Hello World!".data(using: .utf8)!))
 	}
 
+	func test32Update() {
+		let xxh = xxHash32()
+
+		XCTAssertEqual(xxHash32.hash(""), xxh.digest())
+		xxh.update("1")
+		XCTAssertEqual(xxHash32.hash("1"), xxh.digest())
+		xxh.update("2")
+		XCTAssertEqual(xxHash32.hash("12"), xxh.digest())
+		xxh.update("3")
+		XCTAssertEqual(xxHash32.hash("123"), xxh.digest())
+		xxh.update("4")
+		XCTAssertEqual(xxHash32.hash("1234"), xxh.digest())
+		xxh.update("5")
+		XCTAssertEqual(xxHash32.hash("12345"), xxh.digest())
+		xxh.update("6")
+		XCTAssertEqual(xxHash32.hash("123456"), xxh.digest())
+		xxh.update("7")
+		XCTAssertEqual(xxHash32.hash("1234567"), xxh.digest())
+		xxh.update("8")
+		XCTAssertEqual(xxHash32.hash("12345678"), xxh.digest())
+		xxh.update("9")
+		XCTAssertEqual(xxHash32.hash("123456789"), xxh.digest())
+		xxh.update("A")
+		XCTAssertEqual(xxHash32.hash("123456789A"), xxh.digest())
+		xxh.update("B")
+		XCTAssertEqual(xxHash32.hash("123456789AB"), xxh.digest())
+		xxh.update("C")
+		XCTAssertEqual(xxHash32.hash("123456789ABC"), xxh.digest())
+		xxh.update("D")
+		XCTAssertEqual(xxHash32.hash("123456789ABCD"), xxh.digest())
+		xxh.update("E")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDE"), xxh.digest())
+		xxh.update("F")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDEF"), xxh.digest())
+		xxh.update("1")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDEF1"), xxh.digest())
+		xxh.update("2")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDEF12"), xxh.digest())
+		xxh.update("123456789ABCDEF12")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDEF12123456789ABCDEF12"), xxh.digest())
+
+		let xxh2 = xxHash32()
+		xxh2.update("123456789ABCDEF12")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDEF12"), xxh2.digest())
+
+		let xxh3 = xxHash32()
+		xxh3.update("123456789ABCDEF123456789ABCDEF12")
+		XCTAssertEqual(xxHash32.hash("123456789ABCDEF123456789ABCDEF12"), xxh3.digest())
+	}
+
 	/*
 	func testPerformance() {
         // This is an example of a performance test case.
