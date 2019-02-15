@@ -33,6 +33,7 @@ public class xxHash32 {
 	// MARK: - Life cycle
 	init(_ seed: UInt32 = 0) {
 		self.seed = seed
+		reset()
 	}
 
 }
