@@ -215,7 +215,19 @@ class xxHashTests: XCTestCase {
 			XCTAssertEqual(xxHash32.hash("123456789ABCDEF123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
 		}
 	}
-	
+
+	func test32Reset() {
+		let xxh = xxHash32()
+
+		xxh.update("123456789ABCDEF")
+		xxh.reset()
+		XCTAssertEqual(xxh.digest(), xxHash32().digest())
+		
+		xxh.update("123456789ABCDEF")
+		xxh.seed = 0x7fffffff	// Reset when setting seed.
+		XCTAssertEqual(xxh.digest(), xxHash32(0x7fffffff).digest())
+	}
+
 	/*
 	func testPerformance() {
         // This is an example of a performance test case.
