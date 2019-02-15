@@ -19,12 +19,18 @@ class xxHashTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test32() {
-		XCTAssertEqual(xxHash32.hash(Array("test".utf8)), 0x3e2023cf)
+    func test32OneShot() {
+		XCTAssertEqual(xxHash32.hash("Hello World!"), 0x0bd69788)
+		XCTAssertEqual(xxHash32.hash("Hello World!", seed: 0), 0x0bd69788)
+		XCTAssertEqual(xxHash32.hash("Hello World!", seed: 1), 0x83e18820)
+		XCTAssertEqual(xxHash32.hash("Hello World!", seed: 0x7fffffff), 0xe1d7fd5e)
     }
 
-	func test64() {
-		XCTAssertEqual(xxHash64.hash(Array("test".utf8)), 0x4fdcca5ddb678139)
+	func test64OneShot() {
+		XCTAssertEqual(xxHash64.hash("Hello World!"), 0xa52b286a3e7f4d91)
+		XCTAssertEqual(xxHash64.hash("Hello World!", seed: 0), 0xa52b286a3e7f4d91)
+		XCTAssertEqual(xxHash64.hash("Hello World!", seed: 1), 0x44589be0a101d2ed)
+		XCTAssertEqual(xxHash64.hash("Hello World!", seed: 0x7fffffff), 0xe64398b4046131bb)
 	}
 
 	func testPerformance() {
