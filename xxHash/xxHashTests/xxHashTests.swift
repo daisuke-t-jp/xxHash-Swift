@@ -444,6 +444,10 @@ class xxHashTests: XCTestCase {
 		xxh.seed = 0x7fffffff	// Reset when setting seed.
 		XCTAssertEqual(xxh.digest(), xxHash64(0x7fffffff).digest())
 	}
+
+
+
+	// MARK: - Copy
 	func test32Copy() {
 		do {
 			let xxh = xxHash32()
@@ -467,6 +471,32 @@ class xxHashTests: XCTestCase {
 			XCTAssertEqual(xxh.digest(), xxh2.digest())
 		}
 	}
+
+	func test64Copy() {
+		do {
+			let xxh = xxHash64()
+			let xxh2 = xxh
+			
+			xxh.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+			
+			xxh2.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+		}
+		
+		do {
+			let xxh = xxHash64(0x7fffffff)
+			let xxh2 = xxh
+			
+			xxh.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+			
+			xxh2.update("123456789ABCDEF")
+			XCTAssertEqual(xxh.digest(), xxh2.digest())
+		}
+	}
+
+
 
 	func test32File() {
 		do {
