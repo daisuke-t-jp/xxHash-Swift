@@ -16,3 +16,18 @@ Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   
 Reference:
 - [xxHash](https://cyan4973.github.io/xxHash/)
+
+
+
+# Install
+### Carthage
+`github "daisuke-t-jp/xxHash-Swift"`
+
+### CocoaPods
+```
+use_frameworks!
+
+target 'target' do
+pod 'xxHash-Swift'
+end
+```
