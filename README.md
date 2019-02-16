@@ -61,3 +61,41 @@ let hash = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
 // hash -> 0xe8d84202a16e482f
 ```
 
+
+## Generate Hash(Streaming)
+### 32bit Version
+```swift
+// Create xxHash instance
+let xxh = xxHash32() // if using seed, e.g. "xxHash(0x7fffffff)"
+
+// Get data from file
+let bundle = Bundle(for: type(of: self))
+let path = bundle.path(forResource: "alice29", ofType: "txt")!
+let data = NSData(contentsOfFile: path)
+let array = [UInt8](data! as Data)
+
+let bufSize = 1024
+var index = 0
+var flag = true
+
+
+repeat {
+    // Prepare buffer
+    var buf = [UInt8]()
+    for _ in 0..<bufSize {
+        buf.append(array[index])
+        index += 1
+        if index >= array.count {
+            flag = false
+            break
+        }   
+    }
+ 
+    // xxHash update
+    xxh.update(buf)
+
+} while(flag)
+
+let hash = xxh.digest()
+// hash -> 0xafc8e0c2
+```
