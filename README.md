@@ -14,7 +14,6 @@ Framework include xxHash 32/64 bit functions.
   
 Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   
-  
 Reference:
 - [cyan4973.github.io/xxHash](https://cyan4973.github.io/xxHash/)
 
@@ -99,4 +98,41 @@ repeat {
 
 let hash = xxh.digest()
 // hash -> 0xafc8e0c2
+```
+
+### 64bit Version
+```swift
+// Create xxHash instance
+let xxh = xxHash64() // if using seed, e.g. "xxHash(0x0000007fffffff)"
+
+// Get data from file
+let bundle = Bundle(for: type(of: self))
+let path = bundle.path(forResource: "alice29", ofType: "txt")!
+let data = NSData(contentsOfFile: path)
+let array = [UInt8](data! as Data)
+
+let bufSize = 1024
+var index = 0
+var flag = true
+
+
+repeat {
+    // Prepare buffer
+    var buf = [UInt8]()
+    for _ in 0..<bufSize {
+        buf.append(array[index])
+        index += 1
+        if index >= array.count {
+            flag = false
+            break
+        }   
+    }
+ 
+    // xxHash update
+    xxh.update(buf)
+
+} while(flag)
+
+let hash = xxh.digest()
+// hash -> 0x843c2c4ccfbfb749
 ```
