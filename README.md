@@ -43,16 +43,21 @@ import xxHash_Swift
 ## Generate Hash(One-shot)
 ### 32bit Version
 ```swift
-let hash = xxHash32.digest("Hello World!")
+let hash = xxHash32.digest("123456789ABCDEF")
+// hash -> 0x576e3cf9
 
 // Using seed.
-let hash = xxHash32.digest("Hello World!", seed: 0x7fffffff)
+let hash = xxHash32.digest("123456789ABCDEF", seed: 0x7fffffff)
+// hash -> 0xa7f06f9d
 ```
 
 ### 64bit Version
 ```swift
-let hash = xxHash64.digest("Hello World!")
+let hash = xxHash64.digest("123456789ABCDEF")
+// hash -> 0xa66df83f00e9202d
 
 // Using seed.
-let hash = xxHash64.digest("Hello World!", seed: 0x000000007fffffff)
+let hash = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
+// hash -> 0xe8d84202a16e482f
 ```
+
