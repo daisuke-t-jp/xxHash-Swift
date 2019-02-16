@@ -34,6 +34,7 @@ class xxHashTests: XCTestCase {
 
 	
 	
+	// MARK: - One-shot
 	func test32OneShot() {
 		XCTAssertEqual(xxHash32.digest(""), 0x2cc5d05)
 		XCTAssertEqual(xxHash32.digest("1"), 0xb6ecc8b2)
@@ -54,7 +55,7 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxHash32.digest("123456789ABCDEF1"), 0x82d80129)
 		XCTAssertEqual(xxHash32.digest("123456789ABCDEF12"), 0x4689504)
 	}
-
+	
 	func test32OneShotWithSeed() {
 		XCTAssertEqual(xxHash32.digest("", seed:0), 0x2cc5d05)
 		XCTAssertEqual(xxHash32.digest("", seed:1), 0xb2cb792)
@@ -111,6 +112,86 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxHash32.digest("123456789ABCDEF12", seed:1), 0xa0ef0a1d)
 		XCTAssertEqual(xxHash32.digest("123456789ABCDEF12", seed:0x7fffffff), 0x8676bee4)
 	}
+	
+	func test64OneShot() {
+		XCTAssertEqual(xxHash64.digest(""), 0xef46db3751d8e999)
+		XCTAssertEqual(xxHash64.digest("1"), 0xb7b41276360564d4)
+		XCTAssertEqual(xxHash64.digest("12"), 0x5460f49adbe7aba2)
+		XCTAssertEqual(xxHash64.digest("123"), 0x3c697d223fa7e885)
+		XCTAssertEqual(xxHash64.digest("1234"), 0xd8316e61d84f6ba4)
+		XCTAssertEqual(xxHash64.digest("12345"), 0xc6f2d2dd0ad64fb6)
+		XCTAssertEqual(xxHash64.digest("123456"), 0x2b2dc38aaa53c322)
+		XCTAssertEqual(xxHash64.digest("1234567"), 0xd3a46e9108289359)
+		XCTAssertEqual(xxHash64.digest("12345678"), 0xd2d02f08cf7cfd4a)
+		XCTAssertEqual(xxHash64.digest("123456789"), 0x8cb841db40e6ae83)
+		XCTAssertEqual(xxHash64.digest("123456789A"), 0xd86259788ea6d316)
+		XCTAssertEqual(xxHash64.digest("123456789AB"), 0x1d1615d71699db6b)
+		XCTAssertEqual(xxHash64.digest("123456789ABC"), 0x226a8b511223db6c)
+		XCTAssertEqual(xxHash64.digest("123456789ABCD"), 0x7e32a5bf7d4d75)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDE"), 0x1167004bac2411de)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF"), 0xa66df83f00e9202d)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF1"), 0x2ff14a9841f54cc3)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF12"), 0x880a293145b975a0)
+	}
+
+	func test64OneShotWithSeed() {
+		XCTAssertEqual(xxHash64.digest("", seed:0), 0xef46db3751d8e999)
+		XCTAssertEqual(xxHash64.digest("", seed:1), 0xd5afba1336a3be4b)
+		XCTAssertEqual(xxHash64.digest("", seed:0x7fffffff), 0x2655611cbf9cdb34)
+		XCTAssertEqual(xxHash64.digest("1", seed:0), 0xb7b41276360564d4)
+		XCTAssertEqual(xxHash64.digest("1", seed:1), 0x192aba5fd13fb67d)
+		XCTAssertEqual(xxHash64.digest("1", seed:0x7fffffff), 0xc633803a4aecc9)
+		XCTAssertEqual(xxHash64.digest("12", seed:0), 0x5460f49adbe7aba2)
+		XCTAssertEqual(xxHash64.digest("12", seed:1), 0x75b53fdb7dce12fa)
+		XCTAssertEqual(xxHash64.digest("12", seed:0x7fffffff), 0xb16cec1417b322a0)
+		XCTAssertEqual(xxHash64.digest("123", seed:0), 0x3c697d223fa7e885)
+		XCTAssertEqual(xxHash64.digest("123", seed:1), 0x4b805d862c3b7497)
+		XCTAssertEqual(xxHash64.digest("123", seed:0x7fffffff), 0x19a2f46434bc317a)
+		XCTAssertEqual(xxHash64.digest("1234", seed:0), 0xd8316e61d84f6ba4)
+		XCTAssertEqual(xxHash64.digest("1234", seed:1), 0xe9feb3476d8788cb)
+		XCTAssertEqual(xxHash64.digest("1234", seed:0x7fffffff), 0xf46ec96a022e8572)
+		XCTAssertEqual(xxHash64.digest("12345", seed:0), 0xc6f2d2dd0ad64fb6)
+		XCTAssertEqual(xxHash64.digest("12345", seed:1), 0x8b4dc636e784c7e5)
+		XCTAssertEqual(xxHash64.digest("12345", seed:0x7fffffff), 0xef98a836c0097965)
+		XCTAssertEqual(xxHash64.digest("123456", seed:0), 0x2b2dc38aaa53c322)
+		XCTAssertEqual(xxHash64.digest("123456", seed:1), 0xbaf38605878c2322)
+		XCTAssertEqual(xxHash64.digest("123456", seed:0x7fffffff), 0x4ae897dc1885851d)
+		XCTAssertEqual(xxHash64.digest("1234567", seed:0), 0xd3a46e9108289359)
+		XCTAssertEqual(xxHash64.digest("1234567", seed:1), 0x3a9b3211fb1bcbd2)
+		XCTAssertEqual(xxHash64.digest("1234567", seed:0x7fffffff), 0x743513f8fd9ef9d6)
+		XCTAssertEqual(xxHash64.digest("12345678", seed:0), 0xd2d02f08cf7cfd4a)
+		XCTAssertEqual(xxHash64.digest("12345678", seed:1), 0x339c66ff536000b7)
+		XCTAssertEqual(xxHash64.digest("12345678", seed:0x7fffffff), 0xe19d2db01f7df4ff)
+		XCTAssertEqual(xxHash64.digest("123456789", seed:0), 0x8cb841db40e6ae83)
+		XCTAssertEqual(xxHash64.digest("123456789", seed:1), 0x1a4cc2c9e8079790)
+		XCTAssertEqual(xxHash64.digest("123456789", seed:0x7fffffff), 0x5d3bba73949569e)
+		XCTAssertEqual(xxHash64.digest("123456789A", seed:0), 0xd86259788ea6d316)
+		XCTAssertEqual(xxHash64.digest("123456789A", seed:1), 0x67549dd3d13a19a6)
+		XCTAssertEqual(xxHash64.digest("123456789A", seed:0x7fffffff), 0xd29f40df8a0945ad)
+		XCTAssertEqual(xxHash64.digest("123456789AB", seed:0), 0x1d1615d71699db6b)
+		XCTAssertEqual(xxHash64.digest("123456789AB", seed:1), 0x9dce50837f267a20)
+		XCTAssertEqual(xxHash64.digest("123456789AB", seed:0x7fffffff), 0xcdd1136284934a05)
+		XCTAssertEqual(xxHash64.digest("123456789ABC", seed:0), 0x226a8b511223db6c)
+		XCTAssertEqual(xxHash64.digest("123456789ABC", seed:1), 0x3fe87cbe38e1a2ad)
+		XCTAssertEqual(xxHash64.digest("123456789ABC", seed:0x7fffffff), 0xae28ae51e1e3be34)
+		XCTAssertEqual(xxHash64.digest("123456789ABCD", seed:0), 0x7e32a5bf7d4d75)
+		XCTAssertEqual(xxHash64.digest("123456789ABCD", seed:1), 0x80473dfc05bbd680)
+		XCTAssertEqual(xxHash64.digest("123456789ABCD", seed:0x7fffffff), 0xf7a2dfc5fc75df85)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDE", seed:0), 0x1167004bac2411de)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDE", seed:1), 0x864bb1086f4c841b)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDE", seed:0x7fffffff), 0xe26a852901bc6a8e)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF", seed:0), 0xa66df83f00e9202d)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF", seed:1), 0x907979bf155f0506)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF", seed:0x7fffffff), 0xe8d84202a16e482f)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF1", seed:0), 0x2ff14a9841f54cc3)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF1", seed:1), 0x78440c0674f9217c)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF1", seed:0x7fffffff), 0x512e1dc62a511c58)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF12", seed:0), 0x880a293145b975a0)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF12", seed:1), 0x844b03a36096e2bd)
+		XCTAssertEqual(xxHash64.digest("123456789ABCDEF12", seed:0x7fffffff), 0xbd8f1f044ed860af)
+	}
+
+
 
 	func test32Update() {
 		do {
