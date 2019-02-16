@@ -6,8 +6,11 @@ Pod::Spec.new do |spec|
   spec.summary      = "xxHash framework in Swift."
 
   spec.description  = <<-DESC
-                   This is "xxHash" framework in Swift.
-                   Framework include "xxHash 32/64 bit" functions.
+                   xxHash framework in Swift.
+                   Framework include xxHash 32/64 bit functions.
+ 
+                   Original xxHash algorithm created by Yann Collet.
+                   https://cyan4973.github.io/xxHash/
                    DESC
 
   spec.homepage     = "https://github.com/daisuke-t-jp/xxHash-Swift"
