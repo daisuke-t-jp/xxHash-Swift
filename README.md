@@ -6,10 +6,13 @@
 [![Cocoapods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
 [![Build Status](https://travis-ci.org/daisuke-t-jp/xxHash-Swift.svg?branch=master)](https://travis-ci.org/daisuke-t-jp/xxHash-Swift)
 
-# What is this?
 
-This is **xxHash** framework in Swift.  
-Framework include *xxHash 32/64 bit* functions.  
+# Introduction
+
+This is [xxHash](https://github.com/Cyan4973/xxHash/) framework in Swift.  
+Framework include xxHash 32/64 bit functions.  
   
-  Reference:
+Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
+  
+Reference:
 - [xxHash](https://cyan4973.github.io/xxHash/)
