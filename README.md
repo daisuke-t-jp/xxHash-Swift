@@ -9,13 +9,14 @@
 
 # Introduction
 
-This is [xxHash](https://github.com/Cyan4973/xxHash/) framework in Swift.  
+[xxHash](https://github.com/Cyan4973/xxHash/) framework in Swift.  
 Framework include xxHash 32/64 bit functions.  
   
 Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   
+  
 Reference:
-- [xxHash](https://cyan4973.github.io/xxHash/)
+- [cyan4973.github.io/xxHash](https://cyan4973.github.io/xxHash/)
 
 
 
