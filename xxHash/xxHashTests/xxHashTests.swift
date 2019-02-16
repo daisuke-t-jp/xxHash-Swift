@@ -786,6 +786,7 @@ class xxHashTests: XCTestCase {
 	
 	// MARK: - Reset
 	func test32Reset() {
+		let seed = UInt32(0x7fffffff)
 		let xxh = xxHash32()
 
 		xxh.update("123456789ABCDEF")
@@ -793,11 +794,12 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxh.digest(), xxHash32().digest())
 		
 		xxh.update("123456789ABCDEF")
-		xxh.seed = 0x7fffffff	// Reset when setting seed.
-		XCTAssertEqual(xxh.digest(), xxHash32(0x7fffffff).digest())
+		xxh.seed = seed	// Reset when setting seed.
+		XCTAssertEqual(xxh.digest(), xxHash32(seed).digest())
 	}
 
 	func test64Reset() {
+		let seed = UInt64(0x000000007fffffff)
 		let xxh = xxHash64()
 		
 		xxh.update("123456789ABCDEF")
@@ -805,8 +807,8 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(xxh.digest(), xxHash64().digest())
 		
 		xxh.update("123456789ABCDEF")
-		xxh.seed = 0x7fffffff	// Reset when setting seed.
-		XCTAssertEqual(xxh.digest(), xxHash64(0x7fffffff).digest())
+		xxh.seed = seed	// Reset when setting seed.
+		XCTAssertEqual(xxh.digest(), xxHash64(seed).digest())
 	}
 
 
