@@ -498,6 +498,7 @@ class xxHashTests: XCTestCase {
 
 
 
+	// MARK: - File
 	func test32File() {
 		do {
 			let xxh = xxHash32()
@@ -565,6 +566,76 @@ class xxHashTests: XCTestCase {
 			XCTAssertEqual(xxh.digest(), 0x7d7e2195)
 		}
 	}
+
+	func test64File() {
+		do {
+			let xxh = xxHash64()
+			
+			let bundle = Bundle(for: type(of: self))
+			let path = bundle.path(forResource: "alice29", ofType: "txt")!
+			let data = NSData(contentsOfFile: path)
+			let array = [UInt8](data! as Data)
+			
+			let bufSize = 1024
+			var index = 0
+			var flag = true
+			
+			
+			repeat {
+				var buf = [UInt8]()
+				for _ in 0..<bufSize {
+					buf.append(array[index])
+					index += 1
+					if index >= array.count {
+						flag = false
+						break
+					}
+					
+				}
+				
+				xxh.update(buf)
+				
+			} while(flag)
+			
+			XCTAssertEqual(xxh.digest(), 0x843c2c4ccfbfb749)
+		}
+	}
+	
+	func test64FileWithSeed() {
+		do {
+			let xxh = xxHash64(0x7fffffff)
+			
+			let bundle = Bundle(for: type(of: self))
+			let path = bundle.path(forResource: "alice29", ofType: "txt")!
+			let data = NSData(contentsOfFile: path)
+			let array = [UInt8](data! as Data)
+			
+			let bufSize = 1024
+			var index = 0
+			var flag = true
+			
+			
+			repeat {
+				var buf = [UInt8]()
+				for _ in 0..<bufSize {
+					buf.append(array[index])
+					index += 1
+					if index >= array.count {
+						flag = false
+						break
+					}
+					
+				}
+				
+				xxh.update(buf)
+				
+			} while(flag)
+			
+			XCTAssertEqual(xxh.digest(), 0x3e8df4f6f8de8fff)
+		}
+	}
+	
+	
 	
 	func test32Canonical() {
 		var hash = UInt32(0x12345678)
