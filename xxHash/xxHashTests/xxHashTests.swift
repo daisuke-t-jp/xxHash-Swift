@@ -561,14 +561,14 @@ class xxHashTests: XCTestCase {
 		
 		do {
 			let xxh = xxHash32(0x7fffffff)
-			xxh.update("123456789ABCDEF12")
-			XCTAssertEqual(xxHash32.digest("123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
+			xxh.update("123456789ABCDEF123")
+			XCTAssertEqual(xxHash32.digest("123456789ABCDEF123", seed: 0x7fffffff), xxh.digest())
 		}
 		
 		do {
 			let xxh = xxHash32(0x7fffffff)
-			xxh.update("123456789ABCDEF123456789ABCDEF12")
-			XCTAssertEqual(xxHash32.digest("123456789ABCDEF123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
+			xxh.update("123456789ABCDEF123456789ABCDEF123")
+			XCTAssertEqual(xxHash32.digest("123456789ABCDEF123456789ABCDEF123", seed: 0x7fffffff), xxh.digest())
 		}
 	}
 
