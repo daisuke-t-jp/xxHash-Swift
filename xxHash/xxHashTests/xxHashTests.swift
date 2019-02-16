@@ -21,12 +21,20 @@ class xxHashTests: XCTestCase {
 
 	
 	
+	// MARK: - Overload
 	func test32Overload() {
 		XCTAssertEqual(xxHash32.digest("Hello World!"), xxHash32.digest(Array("Hello World!".utf8)))
 		XCTAssertEqual(xxHash32.digest("Hello World!"), xxHash32.digest("Hello World!".data(using: .utf8)!))
 	}
 
-    func test32OneShot() {
+	func test64Overload() {
+		XCTAssertEqual(xxHash64.digest("Hello World!"), xxHash64.digest(Array("Hello World!".utf8)))
+		XCTAssertEqual(xxHash64.digest("Hello World!"), xxHash64.digest("Hello World!".data(using: .utf8)!))
+	}
+
+	
+	
+	func test32OneShot() {
 		XCTAssertEqual(xxHash32.digest(""), 0x2cc5d05)
 		XCTAssertEqual(xxHash32.digest("1"), 0xb6ecc8b2)
 		XCTAssertEqual(xxHash32.digest("12"), 0xd43589af)
