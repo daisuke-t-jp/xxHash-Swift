@@ -637,18 +637,19 @@ class xxHashTests: XCTestCase {
 	
 	
 	
+	// MARK: - Canonical
 	func test32Canonical() {
-		var hash = UInt32(0x12345678)
+		var hash = UInt32(0x01234567)
 		var canonical = [UInt8]()
 
 		canonical = xxHash32.canonicalFromHash(hash)
-		XCTAssertEqual(canonical[0], 0x12)
-		XCTAssertEqual(canonical[1], 0x34)
-		XCTAssertEqual(canonical[2], 0x56)
-		XCTAssertEqual(canonical[3], 0x78)
+		XCTAssertEqual(canonical[0], 0x01)
+		XCTAssertEqual(canonical[1], 0x23)
+		XCTAssertEqual(canonical[2], 0x45)
+		XCTAssertEqual(canonical[3], 0x67)
 
 		hash = xxHash32.hashFromCanonical(canonical)
-		XCTAssertEqual(hash, 0x12345678)
+		XCTAssertEqual(hash, 0x01234567)
 	}
 	
 	/*
