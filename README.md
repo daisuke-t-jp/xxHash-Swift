@@ -20,14 +20,39 @@ Reference:
 
 
 # Install
-### Carthage
+## Carthage
 `github "daisuke-t-jp/xxHash-Swift"`
 
-### CocoaPods
+## CocoaPods
 ```
 use_frameworks!
 
 target 'target' do
 pod 'xxHash-Swift'
 end
+```
+
+
+# Usage
+## Import framework
+
+```swift
+import xxHash_Swift
+```
+
+## Generate Hash(One-shot)
+### 32bit Version
+```swift
+let hash = xxHash32.digest("Hello World!")
+
+// Using seed.
+let hash = xxHash32.digest("Hello World!", seed: 0x7fffffff)
+```
+
+### 64bit Version
+```swift
+let hash = xxHash64.digest("Hello World!")
+
+// Using seed.
+let hash = xxHash64.digest("Hello World!", seed: 0x000000007fffffff)
 ```
