@@ -8,11 +8,6 @@
 
 import Foundation
 
-// TODO: cocoapods
-// TODO: readme
-
-
-
 class Common {
 
 	// MARK: - Enum, Const
