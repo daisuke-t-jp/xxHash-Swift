@@ -652,6 +652,26 @@ class xxHashTests: XCTestCase {
 		XCTAssertEqual(hash, 0x01234567)
 	}
 	
+	func test64Canonical() {
+		var hash = UInt64(0x0123456789ABCDEF)
+		var canonical = [UInt8]()
+		
+		canonical = xxHash64.canonicalFromHash(hash)
+		XCTAssertEqual(canonical[0], 0x01)
+		XCTAssertEqual(canonical[1], 0x23)
+		XCTAssertEqual(canonical[2], 0x45)
+		XCTAssertEqual(canonical[3], 0x67)
+		XCTAssertEqual(canonical[4], 0x89)
+		XCTAssertEqual(canonical[5], 0xAB)
+		XCTAssertEqual(canonical[6], 0xCD)
+		XCTAssertEqual(canonical[7], 0xEF)
+
+		hash = xxHash64.hashFromCanonical(canonical)
+		XCTAssertEqual(hash, 0x0123456789ABCDEF)
+	}
+	
+	
+	
 	/*
 	func testPerformance() {
         // This is an example of a performance test case.
