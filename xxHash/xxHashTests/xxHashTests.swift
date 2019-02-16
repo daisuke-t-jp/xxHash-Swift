@@ -193,6 +193,7 @@ class xxHashTests: XCTestCase {
 
 
 
+	// MARK: - Update
 	func test32Update() {
 		do {
 			let xxh = xxHash32()
@@ -305,6 +306,117 @@ class xxHashTests: XCTestCase {
 		}
 	}
 
+	func test64Update() {
+		do {
+			let xxh = xxHash64()
+			
+			XCTAssertEqual(xxHash64.digest(""), xxh.digest())
+			xxh.update("1")
+			XCTAssertEqual(xxHash64.digest("1"), xxh.digest())
+			xxh.update("2")
+			XCTAssertEqual(xxHash64.digest("12"), xxh.digest())
+			xxh.update("3")
+			XCTAssertEqual(xxHash64.digest("123"), xxh.digest())
+			xxh.update("4")
+			XCTAssertEqual(xxHash64.digest("1234"), xxh.digest())
+			xxh.update("5")
+			XCTAssertEqual(xxHash64.digest("12345"), xxh.digest())
+			xxh.update("6")
+			XCTAssertEqual(xxHash64.digest("123456"), xxh.digest())
+			xxh.update("7")
+			XCTAssertEqual(xxHash64.digest("1234567"), xxh.digest())
+			xxh.update("8")
+			XCTAssertEqual(xxHash64.digest("12345678"), xxh.digest())
+			xxh.update("9")
+			XCTAssertEqual(xxHash64.digest("123456789"), xxh.digest())
+			xxh.update("A")
+			XCTAssertEqual(xxHash64.digest("123456789A"), xxh.digest())
+			xxh.update("B")
+			XCTAssertEqual(xxHash64.digest("123456789AB"), xxh.digest())
+			xxh.update("C")
+			XCTAssertEqual(xxHash64.digest("123456789ABC"), xxh.digest())
+			xxh.update("D")
+			XCTAssertEqual(xxHash64.digest("123456789ABCD"), xxh.digest())
+			xxh.update("E")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDE"), xxh.digest())
+			xxh.update("F")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF"), xxh.digest())
+			xxh.update("1")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF1"), xxh.digest())
+			xxh.update("2")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF12"), xxh.digest())
+			xxh.update("123456789ABCDEF12")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF12123456789ABCDEF12"), xxh.digest())
+		}
+		
+		do {
+			let xxh = xxHash64()
+			xxh.update("123456789ABCDEF12")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF12"), xxh.digest())
+		}
+		
+		do {
+			let xxh = xxHash64()
+			xxh.update("123456789ABCDEF123456789ABCDEF12")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF123456789ABCDEF12"), xxh.digest())
+		}
+	}
+	
+	func test64UpdateWithSeed() {
+		do {
+			let xxh = xxHash64(0x7fffffff)
+			
+			XCTAssertEqual(xxHash64.digest("", seed: 0x7fffffff), xxh.digest())
+			xxh.update("1")
+			XCTAssertEqual(xxHash64.digest("1", seed: 0x7fffffff), xxh.digest())
+			xxh.update("2")
+			XCTAssertEqual(xxHash64.digest("12", seed: 0x7fffffff), xxh.digest())
+			xxh.update("3")
+			XCTAssertEqual(xxHash64.digest("123", seed: 0x7fffffff), xxh.digest())
+			xxh.update("4")
+			XCTAssertEqual(xxHash64.digest("1234", seed: 0x7fffffff), xxh.digest())
+			xxh.update("5")
+			XCTAssertEqual(xxHash64.digest("12345", seed: 0x7fffffff), xxh.digest())
+			xxh.update("6")
+			XCTAssertEqual(xxHash64.digest("123456", seed: 0x7fffffff), xxh.digest())
+			xxh.update("7")
+			XCTAssertEqual(xxHash64.digest("1234567", seed: 0x7fffffff), xxh.digest())
+			xxh.update("8")
+			XCTAssertEqual(xxHash64.digest("12345678", seed: 0x7fffffff), xxh.digest())
+			xxh.update("9")
+			XCTAssertEqual(xxHash64.digest("123456789", seed: 0x7fffffff), xxh.digest())
+			xxh.update("A")
+			XCTAssertEqual(xxHash64.digest("123456789A", seed: 0x7fffffff), xxh.digest())
+			xxh.update("B")
+			XCTAssertEqual(xxHash64.digest("123456789AB", seed: 0x7fffffff), xxh.digest())
+			xxh.update("C")
+			XCTAssertEqual(xxHash64.digest("123456789ABC", seed: 0x7fffffff), xxh.digest())
+			xxh.update("D")
+			XCTAssertEqual(xxHash64.digest("123456789ABCD", seed: 0x7fffffff), xxh.digest())
+			xxh.update("E")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDE", seed: 0x7fffffff), xxh.digest())
+			xxh.update("F")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF", seed: 0x7fffffff), xxh.digest())
+			xxh.update("1")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF1", seed: 0x7fffffff), xxh.digest())
+			xxh.update("2")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
+			xxh.update("123456789ABCDEF12")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF12123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
+		}
+		
+		do {
+			let xxh = xxHash64(0x7fffffff)
+			xxh.update("123456789ABCDEF12")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
+		}
+		
+		do {
+			let xxh = xxHash64(0x7fffffff)
+			xxh.update("123456789ABCDEF123456789ABCDEF12")
+			XCTAssertEqual(xxHash64.digest("123456789ABCDEF123456789ABCDEF12", seed: 0x7fffffff), xxh.digest())
+		}
+	}
 	func test32Reset() {
 		let xxh = xxHash32()
 
