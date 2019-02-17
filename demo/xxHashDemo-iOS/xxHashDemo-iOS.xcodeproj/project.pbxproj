@@ -13,6 +13,7 @@
 		02F19259221557100090D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F19258221557100090D5EB /* Assets.xcassets */; };
 		02F1925C221557100090D5EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F1925A221557100090D5EB /* LaunchScreen.storyboard */; };
 		02F19267221557100090D5EB /* xxHashDemo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F19266221557100090D5EB /* xxHashDemo_iOSTests.swift */; };
+		7E0D89232219886F0051B7D9 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D89222219886F0051B7D9 /* alice29.txt */; };
 		8F2540CBCF33C7C8CB7F0D9B /* Pods_xxHashDemo_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D792D40D80A8546E4935296 /* Pods_xxHashDemo_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		1519AFC3551A02DE2E1F4CEF /* Pods-xxHashDemo-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-iOS.debug.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-iOS/Pods-xxHashDemo-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		1D792D40D80A8546E4935296 /* Pods_xxHashDemo_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xxHashDemo_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30F4D2863134D0F63DADA6EC /* Pods-xxHashDemo-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-iOS.release.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-iOS/Pods-xxHashDemo-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		7E0D89222219886F0051B7D9 /* alice29.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alice29.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				02F19258221557100090D5EB /* Assets.xcassets */,
 				02F1925A221557100090D5EB /* LaunchScreen.storyboard */,
 				02F1925D221557100090D5EB /* Info.plist */,
+				7E0D89222219886F0051B7D9 /* alice29.txt */,
 			);
 			path = "xxHashDemo-iOS";
 			sourceTree = "<group>";
@@ -117,7 +120,6 @@
 				1519AFC3551A02DE2E1F4CEF /* Pods-xxHashDemo-iOS.debug.xcconfig */,
 				30F4D2863134D0F63DADA6EC /* Pods-xxHashDemo-iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -206,6 +208,7 @@
 			files = (
 				02F1925C221557100090D5EB /* LaunchScreen.storyboard in Resources */,
 				02F19259221557100090D5EB /* Assets.xcassets in Resources */,
+				7E0D89232219886F0051B7D9 /* alice29.txt in Resources */,
 				02F192572215570F0090D5EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
