@@ -13,6 +13,7 @@
 		02F1922D221551E20090D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F1922B221551E20090D5EB /* Main.storyboard */; };
 		02F19239221551E20090D5EB /* xxHashDemo_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F19238221551E20090D5EB /* xxHashDemo_macOSTests.swift */; };
 		5411C225FB9E1E37362A089D /* Pods_xxHashDemo_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D57C9548885683CA3F49C7 /* Pods_xxHashDemo_macOS.framework */; };
+		7E0D891F22197DAC0051B7D9 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D891E22197DAC0051B7D9 /* alice29.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		02F19238221551E20090D5EB /* xxHashDemo_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHashDemo_macOSTests.swift; sourceTree = "<group>"; };
 		02F1923A221551E20090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C411083B140FEFBF4B3851C /* Pods-xxHashDemo-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-macOS.release.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-macOS/Pods-xxHashDemo-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		7E0D891E22197DAC0051B7D9 /* alice29.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alice29.txt; sourceTree = "<group>"; };
 		C5F3F0FC4E7733AAAC56DB9B /* Pods-xxHashDemo-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-macOS.debug.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-macOS/Pods-xxHashDemo-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E2D57C9548885683CA3F49C7 /* Pods_xxHashDemo_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xxHashDemo_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				02F19229221551E20090D5EB /* Assets.xcassets */,
 				02F1922B221551E20090D5EB /* Main.storyboard */,
 				02F1922E221551E20090D5EB /* Info.plist */,
+				7E0D891E22197DAC0051B7D9 /* alice29.txt */,
 				02F1922F221551E20090D5EB /* xxHashDemo_macOS.entitlements */,
 			);
 			path = "xxHashDemo-macOS";
@@ -116,7 +119,6 @@
 				C5F3F0FC4E7733AAAC56DB9B /* Pods-xxHashDemo-macOS.debug.xcconfig */,
 				7C411083B140FEFBF4B3851C /* Pods-xxHashDemo-macOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -204,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F1922A221551E20090D5EB /* Assets.xcassets in Resources */,
+				7E0D891F22197DAC0051B7D9 /* alice29.txt in Resources */,
 				02F1922D221551E20090D5EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
