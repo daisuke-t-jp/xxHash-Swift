@@ -31,7 +31,7 @@ public class xxHash64 {
 
 
 	// MARK: - Life cycle
-	init(_ seed: UInt64 = 0) {
+	public init(_ seed: UInt64 = 0) {
 		self.seed = seed
 		reset()
 	}
