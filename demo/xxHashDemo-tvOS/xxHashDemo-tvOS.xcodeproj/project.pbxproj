@@ -13,6 +13,7 @@
 		02F1928522155A9D0090D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F1928422155A9D0090D5EB /* Assets.xcassets */; };
 		02F1929022155A9D0090D5EB /* xxHashDemo_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1928F22155A9D0090D5EB /* xxHashDemo_tvOSTests.swift */; };
 		44A2E536C86C0C9A509BF9EE /* Pods_xxHashDemo_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C69FBB30E41BD6F5B100B77 /* Pods_xxHashDemo_tvOS.framework */; };
+		7E0D892522198A480051B7D9 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D892422198A480051B7D9 /* alice29.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		02F1929122155A9D0090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2478ABA18152CB43FE4BEE88 /* Pods-xxHashDemo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-tvOS.release.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-tvOS/Pods-xxHashDemo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		34215CDA5C845FD450DC5D50 /* Pods-xxHashDemo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-tvOS/Pods-xxHashDemo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7E0D892422198A480051B7D9 /* alice29.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alice29.txt; sourceTree = "<group>"; };
 		8C69FBB30E41BD6F5B100B77 /* Pods_xxHashDemo_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xxHashDemo_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				02F1928122155A980090D5EB /* Main.storyboard */,
 				02F1928422155A9D0090D5EB /* Assets.xcassets */,
 				02F1928622155A9D0090D5EB /* Info.plist */,
+				7E0D892422198A480051B7D9 /* alice29.txt */,
 			);
 			path = "xxHashDemo-tvOS";
 			sourceTree = "<group>";
@@ -114,7 +117,6 @@
 				34215CDA5C845FD450DC5D50 /* Pods-xxHashDemo-tvOS.debug.xcconfig */,
 				2478ABA18152CB43FE4BEE88 /* Pods-xxHashDemo-tvOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -202,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F1928522155A9D0090D5EB /* Assets.xcassets in Resources */,
+				7E0D892522198A480051B7D9 /* alice29.txt in Resources */,
 				02F1928322155A980090D5EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
