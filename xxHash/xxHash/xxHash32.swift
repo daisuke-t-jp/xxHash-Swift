@@ -218,7 +218,7 @@ public extension xxHash32 {
 	}
 
 
-	/// Generate Hash(One-shot)
+	/// Generate hash(One-shot)
 	///
 	/// - Parameters:
 	///   - array: Source data for hashing.
@@ -347,7 +347,7 @@ public extension xxHash32 {
 	}
 	
 	
-	/// Generate Hash(Streaming)
+	/// Generate hash(Streaming)
 	///
 	/// - Returns: A generated hash from current streaming state.
 	public func digest() -> UInt32 {

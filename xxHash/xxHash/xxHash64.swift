@@ -311,7 +311,7 @@ public extension xxHash64 {
 		return h
 	}
 	
-	/// Generate Hash(One-shot)
+	/// Generate hash(One-shot)
 	///
 	/// - Parameters:
 	///   - array: Source data for hashing.
@@ -438,7 +438,7 @@ public extension xxHash64 {
 	}
 	
 	
-	/// Generate Hash(Streaming)
+	/// Generate hash(Streaming)
 	///
 	/// - Returns: A generated hash from current streaming state.
 	public func digest() -> UInt64 {
