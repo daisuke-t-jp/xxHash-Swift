@@ -373,9 +373,8 @@ public extension xxHash64 {
 		
 		if state.memsize > 0 {
 			// some data left from previous update
-			for i in 0..<32 - state.memsize {
-				state.mem[state.memsize + i] = array[i]
-			}
+			state.mem.replaceSubrange(state.memsize..<state.memsize + (32 - state.memsize),
+									  with: array)
 			
 			state.v1 = xxHash64.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, type: UInt64(0), endian: endian))
 			state.v2 = xxHash64.round(state.v2, input: Common.UInt8ArrayToUInt(state.mem, index: 8, type: UInt64(0), endian: endian))
