@@ -19,7 +19,7 @@ public class xxHash32 {
 
 
 	
-	// MARK: - Member
+	// MARK: - Property
 	private let endian = Common.endian()
 	private var state = Common.State<UInt32>()
 	public var seed = UInt32(0) {
@@ -217,14 +217,23 @@ public extension xxHash32 {
 		return h
 	}
 
+
+	/// Generate Hash(One-shot)
+	///
+	/// - Parameters:
+	///   - array: Source data for hashing.
+	///   - seed: Seed for generate hash. Default is 0.
+	/// - Returns: A generated hash.
 	static public func digest(_ array: [UInt8], seed: UInt32 = 0) -> UInt32 {
 		return digest(array, seed: seed, endian: Common.endian())
 	}
-
+	
+	/// Overload func for "digest(_ array: [UInt8], seed: UInt32 = 0)".
 	static public func digest(_ string: String, seed: UInt32 = 0) -> UInt32 {
 		return digest(Array(string.utf8), seed: seed, endian: Common.endian())
 	}
 	
+	/// Overload func for "digest(_ array: [UInt8], seed: UInt32 = 0)".
 	static public func digest(_ data: Data, seed: UInt32 = 0) -> UInt32 {
 		return digest([UInt8](data), seed: seed, endian: Common.endian())
 	}
@@ -235,10 +244,11 @@ public extension xxHash32 {
 
 // MARK: - Digest(Streaming)
 public extension xxHash32 {
-
+	
+	/// Reset current streaming state to initial.
 	public func reset() {
 		state = Common.State()
-
+		
 		state.v1 = seed &+ xxHash32.prime1 &+ xxHash32.prime2
 		state.v2 = seed &+ xxHash32.prime2
 		state.v3 = seed + 0
@@ -246,6 +256,9 @@ public extension xxHash32 {
 	}
 
 
+	/// Update streaming state.
+	///
+	/// - Parameter array: Source data for hashing.
 	public func update(_ array: [UInt8]) {
 		let len = array.count
 		var index = 0
@@ -323,15 +336,20 @@ public extension xxHash32 {
 
 	}
 
+	/// Overload func for "update(_ array: [UInt8])".
 	public func update(_ string: String) {
 		return update(Array(string.utf8))
 	}
 
+	/// Overload func for "update(_ array: [UInt8])".
 	public func update(_ data: Data) {
 		return update([UInt8](data))
 	}
-
 	
+	
+	/// Generate Hash(Streaming)
+	///
+	/// - Returns: A generated hash from current streaming state.
 	public func digest() -> UInt32 {
 		var h = UInt32(0)
 
@@ -369,6 +387,10 @@ public extension xxHash32 {
 		return Common.UIntToUInt8Array(hash2, endian: endian)
 	}
 
+	/// Get canonical from hash.
+	///
+	/// - Parameter hash: A target hash.
+	/// - Returns: An array of canonical.
 	static public func canonicalFromHash(_ hash: UInt32) -> [UInt8] {
 		return canonicalFromHash(hash, endian: Common.endian())
 	}
@@ -382,7 +404,11 @@ public extension xxHash32 {
 		
 		return hash
 	}
-
+	
+	/// Get hash from canonical.
+	///
+	/// - Parameter canonical: A target canonical.
+	/// - Returns: A hash.
 	static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt32 {
 		return hashFromCanonical(canonical, endian: Common.endian())
 	}
