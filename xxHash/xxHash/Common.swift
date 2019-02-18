@@ -79,7 +79,7 @@ extension Common {
 	}
 	
 	static func swap(_ x: [UInt8]) -> [UInt8] {
-		let x2 = Array(x[x.count-1...0])
+		let x2 = Array(x[x.count - 1...0])
 		return x2
 	}
 

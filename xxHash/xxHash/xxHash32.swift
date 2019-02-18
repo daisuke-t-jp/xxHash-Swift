@@ -273,7 +273,7 @@ public extension xxHash32 {
 		if state.memsize + len < 16 {
 
 			// fill in tmp buffer
-			state.mem.replaceSubrange(state.memsize..<state.memsize+len, with: array)			
+			state.mem.replaceSubrange(state.memsize..<state.memsize + len, with: array)
 			state.memsize += len
 
 			return
@@ -282,10 +282,9 @@ public extension xxHash32 {
 		
 		if state.memsize > 0 {
 			// some data left from previous update
-			for i in 0..<16 - state.memsize {
-				state.mem[state.memsize + i] = array[i]
-			}
-
+			state.mem.replaceSubrange(state.memsize..<state.memsize + (16 - state.memsize),
+									  with: array)
+			
 			state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, type: UInt32(0), endian: endian))
 			state.v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(state.mem, index: 4, type: UInt32(0), endian: endian))
 			state.v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(state.mem, index: 8, type: UInt32(0), endian: endian))
