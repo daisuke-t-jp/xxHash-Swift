@@ -327,10 +327,9 @@ public extension xxHash32 {
 		
 		
 		if index < len {
-			for i in 0..<len - index {
-				state.mem[i] = array[index + i]
-			}
-
+			state.mem.replaceSubrange(0..<len - index,
+									  with: array[index..<index + (len - index)])
+			
 			state.memsize = len - index
 		}
 
