@@ -79,13 +79,8 @@ extension Common {
 	}
 	
 	static func swap(_ x: [UInt8]) -> [UInt8] {
-		var res = [UInt8](repeating: 0, count: x.count)
-		
-		for i in 0..<x.count {
-			res[i] = x[x.count - (i + 1)]
-		}
-		
-		return res
+		let x2 = Array(x[x.count-1...0])
+		return x2
 	}
 
 }
