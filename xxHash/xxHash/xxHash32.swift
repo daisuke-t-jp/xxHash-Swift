@@ -31,6 +31,10 @@ public class xxHash32 {
 
 
 	// MARK: - Life cycle
+	
+	/// Creates a new instance with the seed.
+	///
+	/// - Parameter seed: Seed for generate hash. Default is 0.
 	public init(_ seed: UInt32 = 0) {
 		self.seed = seed
 		reset()
