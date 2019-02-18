@@ -273,10 +273,7 @@ public extension xxHash32 {
 		if state.memsize + len < 16 {
 
 			// fill in tmp buffer
-			for i in 0..<len {
-				state.mem[state.memsize + i] = array[i]
-			}
-			
+			state.mem.replaceSubrange(state.memsize..<state.memsize+len, with: array)			
 			state.memsize += len
 
 			return
