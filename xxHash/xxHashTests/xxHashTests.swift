@@ -868,32 +868,28 @@ class xxHashTests: XCTestCase {
 	func test32File() {
 		do {
 			let xxh = xxHash32()
-
+			
 			let bundle = Bundle(for: type(of: self))
 			let path = bundle.path(forResource: "alice29", ofType: "txt")!
-			let data = NSData(contentsOfFile: path)
-			let array = [UInt8](data! as Data)
-
+			let data = NSData(contentsOfFile: path)! as Data
+			
 			let bufSize = 1024
 			var index = 0
-			var flag = true
-			
 			
 			repeat {
-				var buf = [UInt8]()
-				for _ in 0..<bufSize {
-					buf.append(array[index])
-					index += 1
-					if index >= array.count {
-						flag = false
-						break
-					}
-					
+				var lastIndex = index + bufSize
+				if lastIndex > data.count {
+					lastIndex = index + data.count - index
 				}
 				
-				xxh.update(buf)
+				let data2 = data[index..<lastIndex]
+				xxh.update(data2)
 				
-			} while(flag)
+				index += data2.count
+				if index >= data.count {
+					break
+				}
+			} while(true)
 			
 			XCTAssertEqual(xxh.digest(), 0xafc8e0c2)
 		}
@@ -905,29 +901,25 @@ class xxHashTests: XCTestCase {
 			
 			let bundle = Bundle(for: type(of: self))
 			let path = bundle.path(forResource: "alice29", ofType: "txt")!
-			let data = NSData(contentsOfFile: path)
-			let array = [UInt8](data! as Data)
+			let data = NSData(contentsOfFile: path)! as Data
 			
 			let bufSize = 1024
 			var index = 0
-			var flag = true
-			
 			
 			repeat {
-				var buf = [UInt8]()
-				for _ in 0..<bufSize {
-					buf.append(array[index])
-					index += 1
-					if index >= array.count {
-						flag = false
-						break
-					}
-					
+				var lastIndex = index + bufSize
+				if lastIndex > data.count {
+					lastIndex = index + data.count - index
 				}
 				
-				xxh.update(buf)
+				let data2 = data[index..<lastIndex]
+				xxh.update(data2)
 				
-			} while(flag)
+				index += data2.count
+				if index >= data.count {
+					break
+				}
+			} while(true)
 			
 			XCTAssertEqual(xxh.digest(), 0x7d7e2195)
 		}
@@ -939,29 +931,25 @@ class xxHashTests: XCTestCase {
 			
 			let bundle = Bundle(for: type(of: self))
 			let path = bundle.path(forResource: "alice29", ofType: "txt")!
-			let data = NSData(contentsOfFile: path)
-			let array = [UInt8](data! as Data)
+			let data = NSData(contentsOfFile: path)! as Data
 			
 			let bufSize = 1024
 			var index = 0
-			var flag = true
-			
 			
 			repeat {
-				var buf = [UInt8]()
-				for _ in 0..<bufSize {
-					buf.append(array[index])
-					index += 1
-					if index >= array.count {
-						flag = false
-						break
-					}
-					
+				var lastIndex = index + bufSize
+				if lastIndex > data.count {
+					lastIndex = index + data.count - index
 				}
 				
-				xxh.update(buf)
+				let data2 = data[index..<lastIndex]
+				xxh.update(data2)
 				
-			} while(flag)
+				index += data2.count
+				if index >= data.count {
+					break
+				}
+			} while(true)
 			
 			XCTAssertEqual(xxh.digest(), 0x843c2c4ccfbfb749)
 		}
@@ -973,29 +961,25 @@ class xxHashTests: XCTestCase {
 			
 			let bundle = Bundle(for: type(of: self))
 			let path = bundle.path(forResource: "alice29", ofType: "txt")!
-			let data = NSData(contentsOfFile: path)
-			let array = [UInt8](data! as Data)
+			let data = NSData(contentsOfFile: path)! as Data
 			
 			let bufSize = 1024
 			var index = 0
-			var flag = true
-			
 			
 			repeat {
-				var buf = [UInt8]()
-				for _ in 0..<bufSize {
-					buf.append(array[index])
-					index += 1
-					if index >= array.count {
-						flag = false
-						break
-					}
-					
+				var lastIndex = index + bufSize
+				if lastIndex > data.count {
+					lastIndex = index + data.count - index
 				}
 				
-				xxh.update(buf)
+				let data2 = data[index..<lastIndex]
+				xxh.update(data2)
 				
-			} while(flag)
+				index += data2.count
+				if index >= data.count {
+					break
+				}
+			} while(true)
 			
 			XCTAssertEqual(xxh.digest(), 0x3e8df4f6f8de8fff)
 		}
