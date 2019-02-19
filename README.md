@@ -71,30 +71,25 @@ let xxh = xxHash32() // if using seed, e.g. "xxHash(0x7fffffff)"
 // Get data from file
 let bundle = Bundle(for: type(of: self))
 let path = bundle.path(forResource: "alice29", ofType: "txt")!
-let data = NSData(contentsOfFile: path)
-let array = [UInt8](data! as Data)
+let data = NSData(contentsOfFile: path)! as Data
 
 let bufSize = 1024
 var index = 0
-var flag = true
-
 
 repeat {
-    // Prepare buffer
-    var buf = [UInt8]()
-    for _ in 0..<bufSize {
-        buf.append(array[index])
-        index += 1
-        if index >= array.count {
-            flag = false
-            break
-        }   
-    }
- 
-    // xxHash update
-    xxh.update(buf)
-
-} while(flag)
+   var lastIndex = index + bufSize
+   if lastIndex > data.count {
+      lastIndex = index + data.count - index
+   }
+   
+   let data2 = data[index..<lastIndex]
+   xxh.update(data2) // xxHash update
+   
+   index += data2.count
+   if index >= data.count {
+      break
+   }
+} while(true)
 
 let hash = xxh.digest()
 // hash -> 0xafc8e0c2
@@ -109,29 +104,24 @@ let xxh = xxHash64() // if using seed, e.g. "xxHash(0x0000007fffffff)"
 let bundle = Bundle(for: type(of: self))
 let path = bundle.path(forResource: "alice29", ofType: "txt")!
 let data = NSData(contentsOfFile: path)
-let array = [UInt8](data! as Data)
 
 let bufSize = 1024
 var index = 0
-var flag = true
-
 
 repeat {
-    // Prepare buffer
-    var buf = [UInt8]()
-    for _ in 0..<bufSize {
-        buf.append(array[index])
-        index += 1
-        if index >= array.count {
-            flag = false
-            break
-        }   
-    }
- 
-    // xxHash update
-    xxh.update(buf)
-
-} while(flag)
+   var lastIndex = index + bufSize
+   if lastIndex > data.count {
+      lastIndex = index + data.count - index
+   }
+   
+   let data2 = data[index..<lastIndex]
+   xxh.update(data2) // xxHash update
+   
+   index += data2.count
+   if index >= data.count {
+      break
+   }
+} while(true)
 
 let hash = xxh.digest()
 // hash -> 0x843c2c4ccfbfb749
