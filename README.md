@@ -10,7 +10,7 @@
 # Introduction
 
 [xxHash](https://github.com/Cyan4973/xxHash/) framework in Swift.  
-Framework include xxHash 32/64 bit functions.  
+A framework includes xxHash 32/64 bit functions.  
   
 Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   
