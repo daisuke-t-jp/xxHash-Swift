@@ -1,6 +1,6 @@
 <img src="https://github.com/daisuke-t-jp/xxHash-Swift/blob/master/doc/header.png" width="700"></br>
 ------
-![Platform](https://img.shields.io/badge/Platform-iOS%2010.0+%20%7C%20macOS%2010.12+%20%7C%20tvOS%2012.0+-blue.svg)
+![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS-blue.svg)
 [![Language Swift%204.2](https://img.shields.io/badge/Language-Swift%204.2-orange.svg)](https://developer.apple.com/swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg)](https://github.com/Carthage/Carthage)
 [![Cocoapods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
@@ -18,8 +18,15 @@ Reference:
 - [cyan4973.github.io/xxHash](https://cyan4973.github.io/xxHash/)
 
 
+# Requirements
+- Platforms
+  - iOS 10.0+
+  - macOS 10.12+
+  - tvOS 12.0+
+- Swift 4.2+
 
-# Install
+
+# Installation
 ## Carthage
 `github "daisuke-t-jp/xxHash-Swift"`
 
