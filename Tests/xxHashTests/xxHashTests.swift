@@ -7,7 +7,11 @@
 //
 
 import XCTest
+#if SWIFT_PACKAGE
+@testable import xxHash_Swift
+#else
 @testable import xxHash
+#endif
 
 class xxHashTests: XCTestCase {
 
