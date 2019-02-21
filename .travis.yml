@@ -10,16 +10,16 @@ script:
   - swift --version
 
   # iOS
-  - xcodebuild clean -project "xxHash/xxHash.xcodeproj" 
-  - xcodebuild test -project "xxHash/xxHash.xcodeproj" -scheme "xxHash-iOS" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone X" -configuration Debug
+  - xcodebuild clean -project "xxHash.xcodeproj" 
+  - xcodebuild test -project "xxHash.xcodeproj" -scheme "xxHash-iOS" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone X" -configuration Debug
 
   # macOS
-  - xcodebuild clean -project "xxHash/xxHash.xcodeproj" 
-  - xcodebuild test -project "xxHash/xxHash.xcodeproj" -scheme "xxHash-macOS" -destination "platform=OS X" -configuration Debug
+  - xcodebuild clean -project "xxHash.xcodeproj" 
+  - xcodebuild test -project "xxHash.xcodeproj" -scheme "xxHash-macOS" -destination "platform=OS X" -configuration Debug
 
   # tvOS
-  - xcodebuild clean -project "xxHash/xxHash.xcodeproj" 
-  - xcodebuild test -project "xxHash/xxHash.xcodeproj" -scheme "xxHash-tvOS" -sdk appletvsimulator -destination "OS=12.0,name=Apple TV 4K" -configuration Debug
+  - xcodebuild clean -project "xxHash.xcodeproj" 
+  - xcodebuild test -project "xxHash.xcodeproj" -scheme "xxHash-tvOS" -sdk appletvsimulator -destination "OS=12.0,name=Apple TV 4K" -configuration Debug
 
 branches:
   only: 
