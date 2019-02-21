@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  xxHash-Swift: eb5ffe42895f4cd28866c53048e3a99e7582cefa
+  xxHash-Swift: 7183c5f94cff55e72d406aab28cc1a333cf603a8
 
 PODFILE CHECKSUM: 8df8bf681787e44d7014453beb4c4d55aeab245a
 
