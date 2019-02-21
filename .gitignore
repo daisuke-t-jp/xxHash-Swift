@@ -24,3 +24,7 @@ Pods/
 
 # Carthage
 Carthage/
+
+# SwiftPM
+/.build
+/Packages
