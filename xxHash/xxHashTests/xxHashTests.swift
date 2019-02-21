@@ -866,6 +866,9 @@ class xxHashTests: XCTestCase {
 
 	// MARK: - File
 	func test32File() {
+		#if SWIFT_PACKAGE
+		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		#else
 		let xxh = xxHash32()
 		
 		let bundle = Bundle(for: type(of: self))
@@ -891,9 +894,13 @@ class xxHashTests: XCTestCase {
 		} while(true)
 		
 		XCTAssertEqual(xxh.digest(), 0xafc8e0c2)
+		#endif
 	}
 
 	func test32FileWithSeed() {
+		#if SWIFT_PACKAGE
+		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		#else
 		let xxh = xxHash32(0x7fffffff)
 		
 		let bundle = Bundle(for: type(of: self))
@@ -919,9 +926,13 @@ class xxHashTests: XCTestCase {
 		} while(true)
 		
 		XCTAssertEqual(xxh.digest(), 0x7d7e2195)
+		#endif
 	}
 
 	func test64File() {
+		#if SWIFT_PACKAGE
+		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		#else
 		let xxh = xxHash64()
 		
 		let bundle = Bundle(for: type(of: self))
@@ -947,9 +958,13 @@ class xxHashTests: XCTestCase {
 		} while(true)
 		
 		XCTAssertEqual(xxh.digest(), 0x843c2c4ccfbfb749)
+		#endif
 	}
 	
 	func test64FileWithSeed() {
+		#if SWIFT_PACKAGE
+		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		#else
 		let xxh = xxHash64(0x7fffffff)
 		
 		let bundle = Bundle(for: type(of: self))
@@ -975,6 +990,7 @@ class xxHashTests: XCTestCase {
 		} while(true)
 		
 		XCTAssertEqual(xxh.digest(), 0x3e8df4f6f8de8fff)
+		#endif
 	}
 	
 	
