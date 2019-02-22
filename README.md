@@ -1,6 +1,6 @@
 <img src="https://github.com/daisuke-t-jp/xxHash-Swift/blob/master/doc/header.png" width="700"></br>
 ------
-![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS-blue.svg)
+![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20Linux-blue.svg)
 [![Language Swift%204.2](https://img.shields.io/badge/Language-Swift%204.2-orange.svg)](https://developer.apple.com/swift)
 [![Cocoapods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg)](https://github.com/Carthage/Carthage)
@@ -24,6 +24,7 @@ Reference:
   - iOS 10.0+
   - macOS 10.12+
   - tvOS 12.0+
+  - Linux
 - Swift 4.2+
 
 
@@ -39,7 +40,6 @@ target 'target' do
 pod 'xxHash-Swift'
 end
 ```
-
 
 ## Swift Package Manager
 ```swift
@@ -93,7 +93,7 @@ let hash = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
 ### 32bit Version
 ```swift
 // Create xxHash instance
-let xxh = xxHash32() // if using seed, e.g. "xxHash(0x7fffffff)"
+let xxh = xxHash32() // if using seed, e.g. "xxHash32(0x7fffffff)"
 
 // Get data from file
 let bundle = Bundle(for: type(of: self))
@@ -125,7 +125,7 @@ let hash = xxh.digest()
 ### 64bit Version
 ```swift
 // Create xxHash instance
-let xxh = xxHash64() // if using seed, e.g. "xxHash(0x0000007fffffff)"
+let xxh = xxHash64() // if using seed, e.g. "xxHash64(0x0000007fffffff)"
 
 // Get data from file
 let bundle = Bundle(for: type(of: self))
