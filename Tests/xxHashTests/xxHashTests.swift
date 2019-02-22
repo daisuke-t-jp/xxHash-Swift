@@ -15,7 +15,33 @@ import XCTest
 
 class xxHashTests: XCTestCase {
 
-    override func setUp() {
+	// MARK: - Property
+	static var allTests = [
+		("test32Overload", test32Overload),
+		("test64Overload", test64Overload),
+		("test32OneShot", test32OneShot),
+		("test32OneShotWithSeed", test32OneShotWithSeed),
+		("test64OneShot", test64OneShot),
+		("test64OneShotWithSeed", test64OneShotWithSeed),
+		("test32Update", test32Update),
+		("test32UpdateWithSeed", test32UpdateWithSeed),
+		("test64Update", test64Update),
+		("test64UpdateWithSeed", test64UpdateWithSeed),
+		("test32Reset", test32Reset),
+		("test64Reset", test64Reset),
+		("test32Copy", test32Copy),
+		("test64Copy", test64Copy),
+		("test32File", test32File),
+		("test32FileWithSeed", test32FileWithSeed),
+		("test64File", test64File),
+		("test64FileWithSeed", test64FileWithSeed),
+		("test32Canonical", test32Canonical),
+		("test64Canonical", test64Canonical),
+		]
+	
+	
+	
+	override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -871,7 +897,7 @@ class xxHashTests: XCTestCase {
 	// MARK: - File
 	func test32File() {
 		#if SWIFT_PACKAGE
-		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		print("SwiftPM-Building skipped UnitTest that used resources.")
 		#else
 		let xxh = xxHash32()
 		
@@ -903,7 +929,7 @@ class xxHashTests: XCTestCase {
 
 	func test32FileWithSeed() {
 		#if SWIFT_PACKAGE
-		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		print("SwiftPM-Building skipped UnitTest that used resources.")
 		#else
 		let xxh = xxHash32(0x7fffffff)
 		
@@ -935,7 +961,7 @@ class xxHashTests: XCTestCase {
 
 	func test64File() {
 		#if SWIFT_PACKAGE
-		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		print("SwiftPM-Building skipped UnitTest that used resources.")
 		#else
 		let xxh = xxHash64()
 		
@@ -967,7 +993,7 @@ class xxHashTests: XCTestCase {
 	
 	func test64FileWithSeed() {
 		#if SWIFT_PACKAGE
-		print("\(self.description)SwiftPM-Building skipped UnitTest that used resources.")
+		print("SwiftPM-Building skipped UnitTest that used resources.")
 		#else
 		let xxh = xxHash64(0x7fffffff)
 		
