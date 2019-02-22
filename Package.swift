@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-#if /*os(Linux) || */os(macOS) || os(iOS) || os(tvOS)
+#if os(Linux) || os(macOS) || os(iOS) || os(tvOS)
 let package = Package(
     name: "xxHash-Swift",
     products: [
