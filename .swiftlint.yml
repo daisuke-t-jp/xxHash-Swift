@@ -1,0 +1,21 @@
+included:
+    - Sources
+excluded:
+    - LinuxMain.swift
+    - XCTestManifests.swift
+disabled_rules:
+    - file_length
+    - trailing_comma
+    - trailing_whitespace
+    - trailing_newline
+    - vertical_whitespace
+    - function_body_length
+    - type_body_length
+    - line_length
+    - vertical_parameter_alignment
+identifier_name:
+    min_length: 1
+type_name:
+    excluded:
+        - xxHash32
+        - xxHash64
