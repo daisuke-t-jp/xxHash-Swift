@@ -302,8 +302,7 @@ public extension xxHash64 {
 			h = mergeRound(h, val: v2)
 			h = mergeRound(h, val: v3)
 			h = mergeRound(h, val: v4)
-		}
-		else {
+		} else {
 			h = seed &+ prime5
 		}
 		
@@ -454,8 +453,7 @@ public extension xxHash64 {
 			h = xxHash64.mergeRound(h, val: state.v3)
 			h = xxHash64.mergeRound(h, val: state.v4)
 
-		}
-		else {
+		} else {
 			h = state.v3 /* == seed */ &+ xxHash64.prime5
 		}
 		
@@ -475,7 +473,7 @@ public extension xxHash64 {
 	
 	static private func canonicalFromHash(_ hash: UInt64, endian: Common.Endian) -> [UInt8] {
 		var hash2 = hash
-		if endian == Common.Endian.Little {
+		if endian == Common.Endian.little {
 			hash2 = Common.swap(hash2)
 		}
 
@@ -493,7 +491,7 @@ public extension xxHash64 {
 	
 	static private func hashFromCanonical(_ canonical: [UInt8], endian: Common.Endian) -> UInt64 {
 		var hash = Common.UInt8ArrayToUInt(canonical, index: 0, type: UInt64(0), endian: endian)
-		if endian == Common.Endian.Little {
+		if endian == Common.Endian.little {
 			hash = Common.swap(hash)
 		}
 		

@@ -208,8 +208,7 @@ public extension xxHash32 {
 				Common.rotl(v2, r: 7)  &+
 				Common.rotl(v3, r: 12) &+
 				Common.rotl(v4, r: 18)
-		}
-		else {
+		} else {
 			h = seed &+ prime5
 		}
 		
@@ -358,8 +357,7 @@ public extension xxHash32 {
 				Common.rotl(state.v3, r: 12) &+
 				Common.rotl(state.v4, r: 18)
 
-		}
-		else {
+		} else {
 			h = state.v3 /* == seed */ &+ xxHash32.prime5
 		}
 		
@@ -379,7 +377,7 @@ public extension xxHash32 {
 
 	static private func canonicalFromHash(_ hash: UInt32, endian: Common.Endian) -> [UInt8] {
 		var hash2 = hash
-		if endian == Common.Endian.Little {
+		if endian == Common.Endian.little {
 			hash2 = Common.swap(hash2)
 		}
 
@@ -397,7 +395,7 @@ public extension xxHash32 {
 
 	static private func hashFromCanonical(_ canonical: [UInt8], endian: Common.Endian) -> UInt32 {
 		var hash = Common.UInt8ArrayToUInt(canonical, index: 0, type: UInt32(0), endian: endian)		
-		if endian == Common.Endian.Little {
+		if endian == Common.Endian.little {
 			hash = Common.swap(hash)
 		}
 		
