@@ -13,8 +13,8 @@ class Common {
 
 	// MARK: - Enum, Const
 	enum Endian {
-		case Little
-		case Big
+		case little
+		case big
 	}
 
 
@@ -39,10 +39,10 @@ extension Common {
 
 	static func endian() -> Endian {
 		if CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) {
-			return Endian.Little
+			return Endian.little
 		}
 		
-		return Endian.Big
+		return Endian.big
 	}
 
 	
@@ -104,7 +104,7 @@ extension Common {
 	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, type: T, endian: Common.Endian) -> T {
 		var block = UInt8ArrayToUInt(array, index: index, type: type)
 		
-		if(endian == Common.Endian.Little) {
+		if endian == Common.Endian.little {
 			return block
 		}
 		
@@ -131,7 +131,7 @@ extension Common {
 	static func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: Common.Endian) -> [UInt8] {
 		var array = UIntToUInt8Array(block)
 		
-		if(endian == Common.Endian.Little) {
+		if endian == Common.Endian.little {
 			return array
 		}
 		
