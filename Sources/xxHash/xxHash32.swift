@@ -34,7 +34,7 @@ public class xxHash32 {
 	
 	/// Creates a new instance with the seed.
 	///
-	/// - Parameter seed: Seed for generate hash. Default is 0.
+	/// - Parameter seed: A seed for generate digest. Default is 0.
 	public init(_ seed: UInt32 = 0) {
 		self.seed = seed
 		reset()
@@ -221,12 +221,12 @@ public extension xxHash32 {
 	}
 
 
-	/// Generate hash(One-shot)
+	/// Generate digest(One-shot)
 	///
 	/// - Parameters:
-	///   - array: Source data for hashing.
-	///   - seed: Seed for generate hash. Default is 0.
-	/// - Returns: A generated hash.
+	///   - array: A source data for hash.
+	///   - seed: A seed for generate digest. Default is 0.
+	/// - Returns: A generated digest.
 	static public func digest(_ array: [UInt8], seed: UInt32 = 0) -> UInt32 {
 		return digest(array, seed: seed, endian: Common.endian())
 	}
@@ -261,7 +261,7 @@ public extension xxHash32 {
 
 	/// Update streaming state.
 	///
-	/// - Parameter array: Source data for hashing.
+	/// - Parameter array: A source data for hash.
 	public func update(_ array: [UInt8]) {
 		let len = array.count
 		var index = 0
@@ -345,9 +345,9 @@ public extension xxHash32 {
 	}
 	
 	
-	/// Generate hash(Streaming)
+	/// Generate digest(Streaming)
 	///
-	/// - Returns: A generated hash from current streaming state.
+	/// - Returns: A generated digest from current streaming state.
 	public func digest() -> UInt32 {
 		var h = UInt32(0)
 
@@ -384,9 +384,9 @@ public extension xxHash32 {
 		return Common.UIntToUInt8Array(hash2, endian: endian)
 	}
 
-	/// Get canonical from hash.
+	/// Get canonical from hash value.
 	///
-	/// - Parameter hash: A target hash.
+	/// - Parameter hash: A target hash value.
 	/// - Returns: An array of canonical.
 	static public func canonicalFromHash(_ hash: UInt32) -> [UInt8] {
 		return canonicalFromHash(hash, endian: Common.endian())
@@ -402,10 +402,10 @@ public extension xxHash32 {
 		return hash
 	}
 	
-	/// Get hash from canonical.
+	/// Get hash value from canonical.
 	///
 	/// - Parameter canonical: A target canonical.
-	/// - Returns: A hash.
+	/// - Returns: A hash value.
 	static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt32 {
 		return hashFromCanonical(canonical, endian: Common.endian())
 	}
