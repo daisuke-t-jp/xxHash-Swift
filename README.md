@@ -67,29 +67,29 @@ let package = Package(
 import xxHash_Swift
 ```
 
-## Generate Hash(One-shot)
+## Generate digest(One-shot)
 ### 32bit Version
 ```swift
-let hash = xxHash32.digest("123456789ABCDEF")
-// hash -> 0x576e3cf9
+let digest = xxHash32.digest("123456789ABCDEF")
+// digest -> 0x576e3cf9
 
 // Using seed.
-let hash = xxHash32.digest("123456789ABCDEF", seed: 0x7fffffff)
-// hash -> 0xa7f06f9d
+let digest = xxHash32.digest("123456789ABCDEF", seed: 0x7fffffff)
+// digest -> 0xa7f06f9d
 ```
 
 ### 64bit Version
 ```swift
-let hash = xxHash64.digest("123456789ABCDEF")
-// hash -> 0xa66df83f00e9202d
+let digest = xxHash64.digest("123456789ABCDEF")
+// digest -> 0xa66df83f00e9202d
 
 // Using seed.
-let hash = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
-// hash -> 0xe8d84202a16e482f
+let digest = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
+// digest -> 0xe8d84202a16e482f
 ```
 
 
-## Generate Hash(Streaming)
+## Generate digest(Streaming)
 ### 32bit Version
 ```swift
 // Create xxHash instance
@@ -118,8 +118,8 @@ repeat {
    }
 } while(true)
 
-let hash = xxh.digest()
-// hash -> 0xafc8e0c2
+let digest = xxh.digest()
+// digest -> 0xafc8e0c2
 ```
 
 ### 64bit Version
@@ -150,6 +150,6 @@ repeat {
    }
 } while(true)
 
-let hash = xxh.digest()
-// hash -> 0x843c2c4ccfbfb749
+let digest = xxh.digest()
+// digest -> 0x843c2c4ccfbfb749
 ```
