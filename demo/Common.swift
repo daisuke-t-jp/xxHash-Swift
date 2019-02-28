@@ -6,11 +6,7 @@
 //  Copyright © 2019 xxHashDemo. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
-import UIKit
-#else
-import Cocoa
-#endif
+import Foundation
 
 import xxHash_Swift
 
@@ -24,12 +20,12 @@ class Common {
 	static func oneshot32() {
 		do {
 			let hash = xxHash32.digest("123456789ABCDEF")
-			print("xxHash32 One-shot -> 0x\(String(format: "%02x", hash))")
+			print("xxHash32 One-shot -> 0x\(String(format: "%08x", hash))")
 		}
 
 		do {
 			let hash = xxHash32.digest("123456789ABCDEF", seed: 0x7fffffff)
-			print("xxHash32 One-shot(0x7fffffff) -> 0x\(String(format: "%02x", hash))")
+			print("xxHash32 One-shot(0x7fffffff) -> 0x\(String(format: "%08x", hash))")
 		}
 	}
 	
@@ -41,12 +37,12 @@ class Common {
 	static func oneshot64() {
 		do {
 			let hash = xxHash64.digest("123456789ABCDEF")
-			print("xxHash64 One-shot -> 0x\(String(format: "%02lx", hash))")
+			print("xxHash64 One-shot -> 0x\(String(format: "%016lx", hash))")
 		}
 		
 		do {
 			let hash = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
-			print("xxHash64 One-shot(0x000000007fffffff) -> 0x\(String(format: "%02lx", hash))")
+			print("xxHash64 One-shot(0x000000007fffffff) -> 0x\(String(format: "%016lx", hash))")
 		}
 	}
 	
@@ -84,7 +80,7 @@ class Common {
 		} while(true)
 		
 		let hash = xxh.digest()
-		print("xxHash32 Streaming -> 0x\(String(format: "%02x", hash))")
+		print("xxHash32 Streaming -> 0x\(String(format: "%08x", hash))")
 	}
 
 	/**
@@ -119,7 +115,7 @@ class Common {
 		} while(true)
 		
 		let hash = xxh.digest()
-		print("xxHash64 Streaming -> 0x\(String(format: "%02lx", hash))")
+		print("xxHash64 Streaming -> 0x\(String(format: "%016lx", hash))")
 	}
 	
 }
