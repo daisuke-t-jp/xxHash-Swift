@@ -79,7 +79,7 @@ extension Common {
 		return res
 	}
 	
-	static func swap(_ x: [UInt8]) -> [UInt8] {
+	static private func swap(_ x: [UInt8]) -> [UInt8] {
 		let x2 = Array(x[x.count - 1...0])
 		return x2
 	}
@@ -116,7 +116,7 @@ extension Common {
 	}
 	
 	
-	static func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T) -> [UInt8] {
+	static private func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T) -> [UInt8] {
 		var array = [UInt8](repeating: 0, count: MemoryLayout<T>.size)
 		var mask = T(0xff)
 		
