@@ -79,11 +79,6 @@ extension Common {
 		return res
 	}
 	
-	static private func swap(_ x: [UInt8]) -> [UInt8] {
-		let x2 = Array(x[x.count - 1...0])
-		return x2
-	}
-
 }
 
 
@@ -137,8 +132,8 @@ extension Common {
 		
 		
 		// Big Endian
-		array = swap(array)
-
+		array.reverse()
+		
 		return array
 	}
 
