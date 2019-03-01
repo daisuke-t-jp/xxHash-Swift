@@ -85,7 +85,7 @@ public extension xxHash32 {
 		}
 
 		func process4() {
-			h2 &+= Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian) &* prime3
+			h2 &+= Common.UInt8ArrayToUInt(array, index: index, endian: endian) &* prime3
 			index += 4
 			h2 = Common.rotl(h2, r: 17) &* prime4
 		}
@@ -183,23 +183,23 @@ public extension xxHash32 {
 
 		if len >= 16 {
 			let limit = len - 15
-			var v1 = seed &+ prime1 &+ prime2
-			var v2 = seed &+ prime2
-			var v3 = seed + 0
-			var v4 = seed &- prime1
+			var v1: UInt32 = seed &+ prime1 &+ prime2
+			var v2: UInt32 = seed &+ prime2
+			var v3: UInt32 = seed + 0
+			var v4: UInt32 = seed &- prime1
 
 			repeat {
 
-				v1 = round(v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0)))
+				v1 = round(v1, input: Common.UInt8ArrayToUInt(array, index: index))
 				index += 4
 
-				v2 = round(v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0)))
+				v2 = round(v2, input: Common.UInt8ArrayToUInt(array, index: index))
 				index += 4
 
-				v3 = round(v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0)))
+				v3 = round(v3, input: Common.UInt8ArrayToUInt(array, index: index))
 				index += 4
 
-				v4 = round(v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0)))
+				v4 = round(v4, input: Common.UInt8ArrayToUInt(array, index: index))
 				index += 4
 
 			} while(index < limit)
@@ -284,10 +284,10 @@ public extension xxHash32 {
 			state.mem.replaceSubrange(state.memsize..<state.memsize + (16 - state.memsize),
 									  with: array)
 			
-			state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, type: UInt32(0), endian: endian))
-			state.v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(state.mem, index: 4, type: UInt32(0), endian: endian))
-			state.v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(state.mem, index: 8, type: UInt32(0), endian: endian))
-			state.v4 = xxHash32.round(state.v4, input: Common.UInt8ArrayToUInt(state.mem, index: 12, type: UInt32(0), endian: endian))
+			state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, endian: endian))
+			state.v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(state.mem, index: 4, endian: endian))
+			state.v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(state.mem, index: 8, endian: endian))
+			state.v4 = xxHash32.round(state.v4, input: Common.UInt8ArrayToUInt(state.mem, index: 12, endian: endian))
 			
 			index += 16 - state.memsize
 			state.memsize = 0
@@ -303,16 +303,16 @@ public extension xxHash32 {
 
 			repeat {
 
-				v1 = xxHash32.round(v1, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v1 = xxHash32.round(v1, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
-				v2 = xxHash32.round(v2, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v2 = xxHash32.round(v2, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
-				v3 = xxHash32.round(v3, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v3 = xxHash32.round(v3, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
-				v4 = xxHash32.round(v4, input: Common.UInt8ArrayToUInt(array, index: index, type: UInt32(0), endian: endian))
+				v4 = xxHash32.round(v4, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
 			} while (index <= limit)
@@ -394,7 +394,7 @@ public extension xxHash32 {
 
 
 	static private func hashFromCanonical(_ canonical: [UInt8], endian: Common.Endian) -> UInt32 {
-		var hash = Common.UInt8ArrayToUInt(canonical, index: 0, type: UInt32(0), endian: endian)		
+		var hash: UInt32 = Common.UInt8ArrayToUInt(canonical, index: 0, endian: endian)
 		if endian == Common.Endian.little {
 			hash = Common.swap(hash)
 		}
