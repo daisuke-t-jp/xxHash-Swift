@@ -9,7 +9,7 @@
 import Foundation
 import CoreFoundation
 
-class Common {
+final class Common {
 
 	// MARK: - Enum, Const
 	enum Endian {
