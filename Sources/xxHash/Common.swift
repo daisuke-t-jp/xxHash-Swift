@@ -58,8 +58,8 @@ extension Common {
 extension Common {
 
 	static func swap<T: FixedWidthInteger>(_ x: T) -> T {
-		var res = T(0)
-		var mask = T(0xff)
+		var res: T = 0
+		var mask: T = 0xff
 		var bit = 0
 		
 		bit = (MemoryLayout<T>.size - 1) * 8
@@ -92,7 +92,7 @@ extension Common {
 extension Common {
 	
 	static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int) -> T {
-		var block = T(0)
+		var block: T = 0
 
 		for i in 0..<MemoryLayout<T>.size {
 			block |= T(array[index + i]) << (i * 8)
@@ -118,7 +118,7 @@ extension Common {
 	
 	static private func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T) -> [UInt8] {
 		var array = [UInt8](repeating: 0, count: MemoryLayout<T>.size)
-		var mask = T(0xff)
+		var mask: T = 0xff
 		
 		for i in 0..<MemoryLayout<T>.size {
 			array[i] = UInt8((block & mask) >> (i * 8))

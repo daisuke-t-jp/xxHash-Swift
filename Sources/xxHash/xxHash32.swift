@@ -22,7 +22,7 @@ public class xxHash32 {
 	// MARK: - Property
 	private let endian = Common.endian()
 	private var state = Common.State<UInt32>()
-	public var seed = UInt32(0) {
+	public var seed: UInt32 {
 		didSet {
 			reset()
 		}
@@ -176,9 +176,8 @@ public extension xxHash32 {
 public extension xxHash32 {
 
 	static private func digest(_ array: [UInt8], seed: UInt32, endian: Common.Endian) -> UInt32 {
-
 		let len = array.count
-		var h = UInt32(0)
+		var h: UInt32
 		var index = 0
 
 		if len >= 16 {
@@ -296,32 +295,23 @@ public extension xxHash32 {
 		if index <= len - 16 {
 			
 			let limit = len - 16
-			var v1 = state.v1
-			var v2 = state.v2
-			var v3 = state.v3
-			var v4 = state.v4
-
+			
 			repeat {
 
-				v1 = xxHash32.round(v1, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+				state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
-				v2 = xxHash32.round(v2, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+				state.v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
-				v3 = xxHash32.round(v3, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+				state.v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
-				v4 = xxHash32.round(v4, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+				state.v4 = xxHash32.round(state.v4, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
 				index += 4
 
 			} while (index <= limit)
-
-			state.v1 = v1
-			state.v2 = v2
-			state.v3 = v3
-			state.v4 = v4
-		
+			
 		}
 		
 		
@@ -349,8 +339,8 @@ public extension xxHash32 {
 	///
 	/// - Returns: A generated digest from current streaming state.
 	public func digest() -> UInt32 {
-		var h = UInt32(0)
-
+		var h: UInt32
+		
 		if state.largeLen {
 			h = Common.rotl(state.v1, r: 1)  &+
 				Common.rotl(state.v2, r: 7)  &+
