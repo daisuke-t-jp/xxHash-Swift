@@ -1,5 +1,5 @@
 PODS:
-  - xxHash-Swift (1.0.5)
+  - xxHash-Swift (1.0.7)
 
 DEPENDENCIES:
   - xxHash-Swift (from `../../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  xxHash-Swift: 1444ec4635cbd372c3052d763008c57144396c72
+  xxHash-Swift: a20b40aca0925b8f49b409c72c59bf77b2f3adf3
 
 PODFILE CHECKSUM: 8df8bf681787e44d7014453beb4c4d55aeab245a
 
