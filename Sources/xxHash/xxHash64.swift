@@ -334,6 +334,30 @@ public extension xxHash64 {
 	static public func digest(_ data: Data, seed: UInt64 = 0) -> UInt64 {
 		return digest([UInt8](data), seed: seed, endian: Common.endian())
 	}
+	
+	
+	/// Generate digest's hex string(One-Shot)
+	///
+	/// - Parameters:
+	///   - array: A source data for hash.
+	///   - seed: A seed for generate digest. Default is 0.
+	/// - Returns: A generated digest's hex string.
+	static public func digestHex(_ array: [UInt8], seed: UInt64 = 0) -> String {
+		let h = digest(array, seed: seed)
+		return Common.UInt64ToHex(h)
+	}
+	
+	/// Overload func for "digestHex(_ array: [UInt8], seed: UInt64 = 0)".
+	static public func digestHex(_ string: String, seed: UInt64 = 0) -> String {
+		let h = digest(string, seed: seed)
+		return Common.UInt64ToHex(h)
+	}
+	
+	/// Overload func for "digestHex(_ array: [UInt8], seed: UInt64 = 0)".
+	static public func digestHex(_ data: Data, seed: UInt64 = 0) -> String {
+		let h = digest(data, seed: seed)
+		return Common.UInt64ToHex(h)
+	}
 }
 
 
@@ -361,19 +385,19 @@ public extension xxHash64 {
 		
 		state.totalLen += UInt64(len)
 		
-		if state.memsize + len < 32 {
+		if state.memSize + len < 32 {
 			
 			// fill in tmp buffer
-			state.mem.replaceSubrange(state.memsize..<state.memsize + len, with: array)
-			state.memsize += len
+			state.mem.replaceSubrange(state.memSize..<state.memSize + len, with: array)
+			state.memSize += len
 			
 			return
 		}
 		
 		
-		if state.memsize > 0 {
+		if state.memSize > 0 {
 			// some data left from previous update
-			state.mem.replaceSubrange(state.memsize..<state.memsize + (32 - state.memsize),
+			state.mem.replaceSubrange(state.memSize..<state.memSize + (32 - state.memSize),
 									  with: array)
 			
 			state.v1 = xxHash64.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, endian: endian))
@@ -381,8 +405,8 @@ public extension xxHash64 {
 			state.v3 = xxHash64.round(state.v3, input: Common.UInt8ArrayToUInt(state.mem, index: 16, endian: endian))
 			state.v4 = xxHash64.round(state.v4, input: Common.UInt8ArrayToUInt(state.mem, index: 24, endian: endian))
 			
-			index += 32 - state.memsize
-			state.memsize = 0
+			index += 32 - state.memSize
+			state.memSize = 0
 		}
 
 		if index + 32 <= len {
@@ -412,7 +436,7 @@ public extension xxHash64 {
 			state.mem.replaceSubrange(0..<len - index,
 									  with: array[index..<index + (len - index)])
 			
-			state.memsize = len - index
+			state.memSize = len - index
 		}
 		
 	}
@@ -451,9 +475,18 @@ public extension xxHash64 {
 		
 		h &+= state.totalLen
 		
-		h = xxHash64.finalize(h, array: state.mem, len: state.memsize, endian: endian)
+		h = xxHash64.finalize(h, array: state.mem, len: state.memSize, endian: endian)
 		
 		return h
+	}
+	
+	
+	/// Generate digest's hex string(Streaming)
+	///
+	/// - Returns: A generated digest's hex string from current streaming state.
+	public func digestHex() -> String {
+		let h = digest()
+		return Common.UInt64ToHex(h)
 	}
 	
 }

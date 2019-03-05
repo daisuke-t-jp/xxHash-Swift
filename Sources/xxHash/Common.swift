@@ -26,7 +26,7 @@ final class Common {
 		var v3: T = 0
 		var v4: T = 0
 		var mem = [UInt8](repeating: 0, count: MemoryLayout<T>.size * 4)
-		var memsize: Int = 0
+		var memSize: Int = 0
 		var reserved: T = 0	// never read nor write, might be removed in a future version
 	}
 
@@ -137,4 +137,11 @@ extension Common {
 		return array
 	}
 
+	static func UInt32ToHex(_ val: UInt32) -> String {
+		return String.init(format: "%08x", val)
+	}
+	
+	static func UInt64ToHex(_ val: UInt64) -> String {
+		return String.init(format: "%016lx", val)
+	}
 }

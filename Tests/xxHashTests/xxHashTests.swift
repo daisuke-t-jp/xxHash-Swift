@@ -66,6 +66,8 @@ class xxHashTests: XCTestCase {
 	
 	// MARK: - One-shot
 	func test32OneShot() {
+		XCTAssertEqual(xxHash32.digestHex("").lowercased(), "02cc5d05")
+		
 		XCTAssertEqual(xxHash32.digest(""), 0x2cc5d05)
 		XCTAssertEqual(xxHash32.digest("1"), 0xb6ecc8b2)
 		XCTAssertEqual(xxHash32.digest("12"), 0xd43589af)
@@ -234,6 +236,8 @@ class xxHashTests: XCTestCase {
 	}
 	
 	func test64OneShot() {
+		XCTAssertEqual(xxHash64.digestHex("").lowercased(), "ef46db3751d8e999")
+		
 		XCTAssertEqual(xxHash64.digest(""), 0xef46db3751d8e999)
 		XCTAssertEqual(xxHash64.digest("1"), 0xb7b41276360564d4)
 		XCTAssertEqual(xxHash64.digest("12"), 0x5460f49adbe7aba2)
