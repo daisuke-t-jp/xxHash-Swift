@@ -1,0 +1,6 @@
+min_acl: public
+clean: true
+output: docs
+author: 'Daisuke T'
+github_url: https://github.com/daisuke-t-jp/xxHash-Swift
+module: xxHash
