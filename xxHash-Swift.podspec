@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.name         = "xxHash-Swift"
-  spec.version      = "1.0.7"
+  spec.version      = "1.0.8"
   spec.summary      = "xxHash framework in Swift."
 
   spec.description  = <<-DESC
