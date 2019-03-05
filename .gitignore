@@ -28,3 +28,6 @@ Carthage/
 # SwiftPM
 /.build
 /Packages
+
+# jazzy
+undocumented.json
