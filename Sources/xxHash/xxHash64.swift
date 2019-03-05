@@ -46,7 +46,7 @@ public class xxHash64 {
 
 
 // MARK: - Utility
-public extension xxHash64 {
+extension xxHash64 {
 
 	static private func round(_ acc: UInt64, input: UInt64) -> UInt64 {
 		var acc2 = acc
@@ -80,7 +80,7 @@ public extension xxHash64 {
 
 
 // MARK: - Finalize
-public extension xxHash64 {
+extension xxHash64 {
 	
 	static private func finalize(_ h: UInt64, array: [UInt8], len: Int, endian: Common.Endian) -> UInt64 {
 		var index = 0
@@ -263,7 +263,7 @@ public extension xxHash64 {
 
 
 // MARK: - Digest(One-shot)
-public extension xxHash64 {
+extension xxHash64 {
 	
 	static private func digest(_ array: [UInt8], seed: UInt64, endian: Common.Endian) -> UInt64 {
 		
@@ -337,7 +337,7 @@ public extension xxHash64 {
 	}
 	
 	
-	/// Generate digest's hex string(One-Shot)
+	/// Generate digest's hex string(One-shot)
 	///
 	/// - Parameters:
 	///   - array: A source data for hash.
@@ -364,7 +364,7 @@ public extension xxHash64 {
 
 
 // MARK: - Digest(Streaming)
-public extension xxHash64 {
+extension xxHash64 {
 	
 	/// Reset current streaming state to initial.
 	public func reset() {
@@ -495,7 +495,7 @@ public extension xxHash64 {
 
 
 // MARK: - Canonical
-public extension xxHash64 {
+extension xxHash64 {
 	
 	static private func canonicalFromHash(_ hash: UInt64, endian: Common.Endian) -> [UInt8] {
 		var hash2 = hash
