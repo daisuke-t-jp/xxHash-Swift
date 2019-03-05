@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// xxHash 64 bit class
 public class xxHash64 {
 
 	// MARK: - Enum, Const
