@@ -23,6 +23,8 @@ public class xxHash32 {
 	// MARK: - Property
 	private let endian = Common.endian()
 	private var state = Common.State<UInt32>()
+	
+	/// A seed for generate digest. Default is 0.
 	public var seed: UInt32 {
 		didSet {
 			reset()
