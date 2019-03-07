@@ -129,7 +129,7 @@ let xxh = xxHash64() // if using seed, e.g. "xxHash64(0x0000007fffffff)"
 // Get data from file
 let bundle = Bundle(for: type(of: self))
 let path = bundle.path(forResource: "alice29", ofType: "txt")!
-let data = NSData(contentsOfFile: path)
+let data = NSData(contentsOfFile: path)! as Data
 
 let bufSize = 1024
 var index = 0
