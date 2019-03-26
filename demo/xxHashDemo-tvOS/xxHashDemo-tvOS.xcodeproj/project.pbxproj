@@ -12,20 +12,9 @@
 		02F1928022155A980090D5EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1927F22155A980090D5EB /* ViewController.swift */; };
 		02F1928322155A980090D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F1928122155A980090D5EB /* Main.storyboard */; };
 		02F1928522155A9D0090D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F1928422155A9D0090D5EB /* Assets.xcassets */; };
-		02F1929022155A9D0090D5EB /* xxHashDemo_tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1928F22155A9D0090D5EB /* xxHashDemo_tvOSTests.swift */; };
 		44A2E536C86C0C9A509BF9EE /* Pods_xxHashDemo_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C69FBB30E41BD6F5B100B77 /* Pods_xxHashDemo_tvOS.framework */; };
 		7E0D892522198A480051B7D9 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D892422198A480051B7D9 /* alice29.txt */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		02F1928C22155A9D0090D5EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02F1927222155A980090D5EB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02F1927922155A980090D5EB;
-			remoteInfo = "xxHashDemo-tvOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		026E3435221BE881008A8531 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = ../../Common.swift; sourceTree = "<group>"; };
@@ -35,9 +24,6 @@
 		02F1928222155A980090D5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02F1928422155A9D0090D5EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F1928622155A9D0090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02F1928B22155A9D0090D5EB /* xxHashDemo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xxHashDemo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		02F1928F22155A9D0090D5EB /* xxHashDemo_tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHashDemo_tvOSTests.swift; sourceTree = "<group>"; };
-		02F1929122155A9D0090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2478ABA18152CB43FE4BEE88 /* Pods-xxHashDemo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-tvOS.release.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-tvOS/Pods-xxHashDemo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		34215CDA5C845FD450DC5D50 /* Pods-xxHashDemo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-tvOS/Pods-xxHashDemo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7E0D892422198A480051B7D9 /* alice29.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alice29.txt; sourceTree = "<group>"; };
@@ -53,13 +39,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02F1928822155A9D0090D5EB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,7 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				02F1927C22155A980090D5EB /* xxHashDemo-tvOS */,
-				02F1928E22155A9D0090D5EB /* xxHashDemo-tvOSTests */,
 				02F1927B22155A980090D5EB /* Products */,
 				B601A9D99DB63056B9548B69 /* Pods */,
 				44A7C313F87E9A2E6BEA1032 /* Frameworks */,
@@ -78,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				02F1927A22155A980090D5EB /* xxHashDemo-tvOS.app */,
-				02F1928B22155A9D0090D5EB /* xxHashDemo-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,15 +72,6 @@
 				7E0D892422198A480051B7D9 /* alice29.txt */,
 			);
 			path = "xxHashDemo-tvOS";
-			sourceTree = "<group>";
-		};
-		02F1928E22155A9D0090D5EB /* xxHashDemo-tvOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				02F1928F22155A9D0090D5EB /* xxHashDemo_tvOSTests.swift */,
-				02F1929122155A9D0090D5EB /* Info.plist */,
-			);
-			path = "xxHashDemo-tvOSTests";
 			sourceTree = "<group>";
 		};
 		44A7C313F87E9A2E6BEA1032 /* Frameworks */ = {
@@ -145,24 +113,6 @@
 			productReference = 02F1927A22155A980090D5EB /* xxHashDemo-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		02F1928A22155A9D0090D5EB /* xxHashDemo-tvOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02F1929722155A9D0090D5EB /* Build configuration list for PBXNativeTarget "xxHashDemo-tvOSTests" */;
-			buildPhases = (
-				02F1928722155A9D0090D5EB /* Sources */,
-				02F1928822155A9D0090D5EB /* Frameworks */,
-				02F1928922155A9D0090D5EB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02F1928D22155A9D0090D5EB /* PBXTargetDependency */,
-			);
-			name = "xxHashDemo-tvOSTests";
-			productName = "xxHashDemo-tvOSTests";
-			productReference = 02F1928B22155A9D0090D5EB /* xxHashDemo-tvOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,10 +125,7 @@
 				TargetAttributes = {
 					02F1927922155A980090D5EB = {
 						CreatedOnToolsVersion = 10.1;
-					};
-					02F1928A22155A9D0090D5EB = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = 02F1927922155A980090D5EB;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -196,7 +143,6 @@
 			projectRoot = "";
 			targets = (
 				02F1927922155A980090D5EB /* xxHashDemo-tvOS */,
-				02F1928A22155A9D0090D5EB /* xxHashDemo-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -209,13 +155,6 @@
 				02F1928522155A9D0090D5EB /* Assets.xcassets in Resources */,
 				7E0D892522198A480051B7D9 /* alice29.txt in Resources */,
 				02F1928322155A980090D5EB /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02F1928922155A9D0090D5EB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,23 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02F1928722155A9D0090D5EB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02F1929022155A9D0090D5EB /* xxHashDemo_tvOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		02F1928D22155A9D0090D5EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02F1927922155A980090D5EB /* xxHashDemo-tvOS */;
-			targetProxy = 02F1928C22155A9D0090D5EB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		02F1928122155A980090D5EB /* Main.storyboard */ = {
@@ -437,7 +360,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-tvOS.xxHashDemo-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -456,48 +379,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-tvOS.xxHashDemo-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-			};
-			name = Release;
-		};
-		02F1929822155A9D0090D5EB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "xxHashDemo-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-tvOS.xxHashDemo-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xxHashDemo-tvOS.app/xxHashDemo-tvOS";
-			};
-			name = Debug;
-		};
-		02F1929922155A9D0090D5EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "xxHashDemo-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-tvOS.xxHashDemo-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xxHashDemo-tvOS.app/xxHashDemo-tvOS";
 			};
 			name = Release;
 		};
@@ -518,15 +401,6 @@
 			buildConfigurations = (
 				02F1929522155A9D0090D5EB /* Debug */,
 				02F1929622155A9D0090D5EB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		02F1929722155A9D0090D5EB /* Build configuration list for PBXNativeTarget "xxHashDemo-tvOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02F1929822155A9D0090D5EB /* Debug */,
-				02F1929922155A9D0090D5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

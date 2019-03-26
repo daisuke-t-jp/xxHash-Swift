@@ -319,22 +319,27 @@
 				TargetAttributes = {
 					0288D891221283E2009D61FC = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					0288D89A221283E3009D61FC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					02F191DC22153F970090D5EB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					02F191E422153F980090D5EB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					02F191FB221547330090D5EB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					02F19203221547340090D5EB = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -344,6 +349,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0288D888221283E2009D61FC;
 			productRefGroup = 0288D893221283E2009D61FC /* Products */;
@@ -684,7 +690,7 @@
 				PRODUCT_NAME = xxHash;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -710,7 +716,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHash;
 				PRODUCT_NAME = xxHash;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -728,7 +734,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHashTests;
 				PRODUCT_NAME = xxHashTests;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -746,7 +752,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHashTests;
 				PRODUCT_NAME = xxHashTests;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -771,7 +777,7 @@
 				PRODUCT_NAME = xxHash;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -797,7 +803,7 @@
 				PRODUCT_NAME = xxHash;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -819,7 +825,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHashTests;
 				PRODUCT_NAME = xxHashTests;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -840,7 +846,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHashTests;
 				PRODUCT_NAME = xxHashTests;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -866,7 +872,7 @@
 				PRODUCT_NAME = xxHash;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
@@ -892,7 +898,7 @@
 				PRODUCT_NAME = xxHash;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VALIDATE_PRODUCT = YES;
@@ -913,7 +919,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHashTests;
 				PRODUCT_NAME = xxHashTests;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
@@ -933,7 +939,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xxHash.xxHashTests;
 				PRODUCT_NAME = xxHashTests;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VALIDATE_PRODUCT = YES;

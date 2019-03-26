@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/daisuke-t-jp/xxHash-Swift/master/images/header.png" width="700"></br>
 ------
 ![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20Linux-blue.svg)
-[![Language Swift%204.2](https://img.shields.io/badge/Language-Swift%204.2-orange.svg)](https://developer.apple.com/swift)
+[![Language Swift%204.2,%205.0](https://img.shields.io/badge/Language-Swift%204.2,%205.0-orange.svg)](https://developer.apple.com/swift)
 [![Cocoapods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg)](https://github.com/Carthage/Carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-green.svg)](https://github.com/apple/swift-package-manager)
@@ -24,7 +24,7 @@ Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   - macOS 10.12+
   - tvOS 12.0+
   - Linux
-- Swift 4.2+
+- Swift 4.2, 5.0
 
 
 # Installation
@@ -48,7 +48,11 @@ let package = Package(
     name: "YOUR_PACKAGE_NAME",
     targets: [],
     dependencies: [
-        .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.0")
+        // Swift 4.2
+        .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", .exact("1.0.9"))
+
+        // Swift 5.0
+        .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.10")
     ]
     targets: [
         .target(

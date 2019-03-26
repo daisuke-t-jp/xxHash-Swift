@@ -12,20 +12,9 @@
 		02F19228221551E00090D5EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F19227221551E00090D5EB /* ViewController.swift */; };
 		02F1922A221551E20090D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F19229221551E20090D5EB /* Assets.xcassets */; };
 		02F1922D221551E20090D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F1922B221551E20090D5EB /* Main.storyboard */; };
-		02F19239221551E20090D5EB /* xxHashDemo_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F19238221551E20090D5EB /* xxHashDemo_macOSTests.swift */; };
 		5411C225FB9E1E37362A089D /* Pods_xxHashDemo_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D57C9548885683CA3F49C7 /* Pods_xxHashDemo_macOS.framework */; };
 		7E0D891F22197DAC0051B7D9 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D891E22197DAC0051B7D9 /* alice29.txt */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		02F19235221551E20090D5EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02F1921A221551E00090D5EB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02F19221221551E00090D5EB;
-			remoteInfo = "xxHashDemo-macOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		026E3431221BE4F4008A8531 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = ../../Common.swift; sourceTree = "<group>"; };
@@ -36,9 +25,6 @@
 		02F1922C221551E20090D5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02F1922E221551E20090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02F1922F221551E20090D5EB /* xxHashDemo_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xxHashDemo_macOS.entitlements; sourceTree = "<group>"; };
-		02F19234221551E20090D5EB /* xxHashDemo-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xxHashDemo-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		02F19238221551E20090D5EB /* xxHashDemo_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHashDemo_macOSTests.swift; sourceTree = "<group>"; };
-		02F1923A221551E20090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C411083B140FEFBF4B3851C /* Pods-xxHashDemo-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-macOS.release.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-macOS/Pods-xxHashDemo-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		7E0D891E22197DAC0051B7D9 /* alice29.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alice29.txt; sourceTree = "<group>"; };
 		C5F3F0FC4E7733AAAC56DB9B /* Pods-xxHashDemo-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-macOS.debug.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-macOS/Pods-xxHashDemo-macOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -54,13 +40,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02F19231221551E20090D5EB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -68,7 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				02F19224221551E00090D5EB /* xxHashDemo-macOS */,
-				02F19237221551E20090D5EB /* xxHashDemo-macOSTests */,
 				02F19223221551E00090D5EB /* Products */,
 				C53FBB823DA24F008646C140 /* Pods */,
 				1F182F30F14EF714D55FC812 /* Frameworks */,
@@ -79,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				02F19222221551E00090D5EB /* xxHashDemo-macOS.app */,
-				02F19234221551E20090D5EB /* xxHashDemo-macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,15 +74,6 @@
 				02F1922F221551E20090D5EB /* xxHashDemo_macOS.entitlements */,
 			);
 			path = "xxHashDemo-macOS";
-			sourceTree = "<group>";
-		};
-		02F19237221551E20090D5EB /* xxHashDemo-macOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				02F19238221551E20090D5EB /* xxHashDemo_macOSTests.swift */,
-				02F1923A221551E20090D5EB /* Info.plist */,
-			);
-			path = "xxHashDemo-macOSTests";
 			sourceTree = "<group>";
 		};
 		1F182F30F14EF714D55FC812 /* Frameworks */ = {
@@ -147,24 +115,6 @@
 			productReference = 02F19222221551E00090D5EB /* xxHashDemo-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		02F19233221551E20090D5EB /* xxHashDemo-macOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02F19240221551E20090D5EB /* Build configuration list for PBXNativeTarget "xxHashDemo-macOSTests" */;
-			buildPhases = (
-				02F19230221551E20090D5EB /* Sources */,
-				02F19231221551E20090D5EB /* Frameworks */,
-				02F19232221551E20090D5EB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02F19236221551E20090D5EB /* PBXTargetDependency */,
-			);
-			name = "xxHashDemo-macOSTests";
-			productName = "xxHashDemo-macOSTests";
-			productReference = 02F19234221551E20090D5EB /* xxHashDemo-macOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +127,7 @@
 				TargetAttributes = {
 					02F19221221551E00090D5EB = {
 						CreatedOnToolsVersion = 10.1;
-					};
-					02F19233221551E20090D5EB = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = 02F19221221551E00090D5EB;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -198,7 +145,6 @@
 			projectRoot = "";
 			targets = (
 				02F19221221551E00090D5EB /* xxHashDemo-macOS */,
-				02F19233221551E20090D5EB /* xxHashDemo-macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -211,13 +157,6 @@
 				02F1922A221551E20090D5EB /* Assets.xcassets in Resources */,
 				7E0D891F22197DAC0051B7D9 /* alice29.txt in Resources */,
 				02F1922D221551E20090D5EB /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02F19232221551E20090D5EB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,23 +220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02F19230221551E20090D5EB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02F19239221551E20090D5EB /* xxHashDemo_macOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		02F19236221551E20090D5EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02F19221221551E00090D5EB /* xxHashDemo-macOS */;
-			targetProxy = 02F19235221551E20090D5EB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		02F1922B221551E20090D5EB /* Main.storyboard */ = {
@@ -441,7 +364,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-macOS.xxHashDemo-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -460,47 +383,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-macOS.xxHashDemo-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
-		02F19241221551E20090D5EB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "xxHashDemo-macOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-macOS.xxHashDemo-macOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xxHashDemo-macOS.app/Contents/MacOS/xxHashDemo-macOS";
-			};
-			name = Debug;
-		};
-		02F19242221551E20090D5EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "xxHashDemo-macOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-macOS.xxHashDemo-macOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xxHashDemo-macOS.app/Contents/MacOS/xxHashDemo-macOS";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -521,15 +404,6 @@
 			buildConfigurations = (
 				02F1923E221551E20090D5EB /* Debug */,
 				02F1923F221551E20090D5EB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		02F19240221551E20090D5EB /* Build configuration list for PBXNativeTarget "xxHashDemo-macOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02F19241221551E20090D5EB /* Debug */,
-				02F19242221551E20090D5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

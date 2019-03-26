@@ -13,20 +13,9 @@
 		02F192572215570F0090D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F192552215570F0090D5EB /* Main.storyboard */; };
 		02F19259221557100090D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F19258221557100090D5EB /* Assets.xcassets */; };
 		02F1925C221557100090D5EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F1925A221557100090D5EB /* LaunchScreen.storyboard */; };
-		02F19267221557100090D5EB /* xxHashDemo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F19266221557100090D5EB /* xxHashDemo_iOSTests.swift */; };
 		7E0D89232219886F0051B7D9 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D89222219886F0051B7D9 /* alice29.txt */; };
 		8F2540CBCF33C7C8CB7F0D9B /* Pods_xxHashDemo_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D792D40D80A8546E4935296 /* Pods_xxHashDemo_iOS.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		02F19263221557100090D5EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02F192462215570F0090D5EB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02F1924D2215570F0090D5EB;
-			remoteInfo = "xxHashDemo-iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		026E3433221BE733008A8531 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = ../../Common.swift; sourceTree = "<group>"; };
@@ -37,9 +26,6 @@
 		02F19258221557100090D5EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02F1925B221557100090D5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02F1925D221557100090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02F19262221557100090D5EB /* xxHashDemo-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xxHashDemo-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		02F19266221557100090D5EB /* xxHashDemo_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHashDemo_iOSTests.swift; sourceTree = "<group>"; };
-		02F19268221557100090D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1519AFC3551A02DE2E1F4CEF /* Pods-xxHashDemo-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-iOS.debug.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-iOS/Pods-xxHashDemo-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		1D792D40D80A8546E4935296 /* Pods_xxHashDemo_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xxHashDemo_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30F4D2863134D0F63DADA6EC /* Pods-xxHashDemo-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xxHashDemo-iOS.release.xcconfig"; path = "Target Support Files/Pods-xxHashDemo-iOS/Pods-xxHashDemo-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,13 +41,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02F1925F221557100090D5EB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,7 +48,6 @@
 			isa = PBXGroup;
 			children = (
 				02F192502215570F0090D5EB /* xxHashDemo-iOS */,
-				02F19265221557100090D5EB /* xxHashDemo-iOSTests */,
 				02F1924F2215570F0090D5EB /* Products */,
 				8EBA2474EB21F29192CAAA85 /* Pods */,
 				05EF1F3048C2DB328E38E137 /* Frameworks */,
@@ -80,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				02F1924E2215570F0090D5EB /* xxHashDemo-iOS.app */,
-				02F19262221557100090D5EB /* xxHashDemo-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,15 +75,6 @@
 				7E0D89222219886F0051B7D9 /* alice29.txt */,
 			);
 			path = "xxHashDemo-iOS";
-			sourceTree = "<group>";
-		};
-		02F19265221557100090D5EB /* xxHashDemo-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				02F19266221557100090D5EB /* xxHashDemo_iOSTests.swift */,
-				02F19268221557100090D5EB /* Info.plist */,
-			);
-			path = "xxHashDemo-iOSTests";
 			sourceTree = "<group>";
 		};
 		05EF1F3048C2DB328E38E137 /* Frameworks */ = {
@@ -148,24 +116,6 @@
 			productReference = 02F1924E2215570F0090D5EB /* xxHashDemo-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		02F19261221557100090D5EB /* xxHashDemo-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02F1926E221557100090D5EB /* Build configuration list for PBXNativeTarget "xxHashDemo-iOSTests" */;
-			buildPhases = (
-				02F1925E221557100090D5EB /* Sources */,
-				02F1925F221557100090D5EB /* Frameworks */,
-				02F19260221557100090D5EB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02F19264221557100090D5EB /* PBXTargetDependency */,
-			);
-			name = "xxHashDemo-iOSTests";
-			productName = "xxHashDemo-iOSTests";
-			productReference = 02F19262221557100090D5EB /* xxHashDemo-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -178,10 +128,7 @@
 				TargetAttributes = {
 					02F1924D2215570F0090D5EB = {
 						CreatedOnToolsVersion = 10.1;
-					};
-					02F19261221557100090D5EB = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = 02F1924D2215570F0090D5EB;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -199,7 +146,6 @@
 			projectRoot = "";
 			targets = (
 				02F1924D2215570F0090D5EB /* xxHashDemo-iOS */,
-				02F19261221557100090D5EB /* xxHashDemo-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -213,13 +159,6 @@
 				02F19259221557100090D5EB /* Assets.xcassets in Resources */,
 				7E0D89232219886F0051B7D9 /* alice29.txt in Resources */,
 				02F192572215570F0090D5EB /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02F19260221557100090D5EB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,23 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		02F1925E221557100090D5EB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02F19267221557100090D5EB /* xxHashDemo_iOSTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		02F19264221557100090D5EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02F1924D2215570F0090D5EB /* xxHashDemo-iOS */;
-			targetProxy = 02F19263221557100090D5EB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		02F192552215570F0090D5EB /* Main.storyboard */ = {
@@ -450,7 +373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-iOS.xxHashDemo-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -468,48 +391,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-iOS.xxHashDemo-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		02F1926F221557100090D5EB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "xxHashDemo-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-iOS.xxHashDemo-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xxHashDemo-iOS.app/xxHashDemo-iOS";
-			};
-			name = Debug;
-		};
-		02F19270221557100090D5EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "xxHashDemo-iOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xxHashDemo-iOS.xxHashDemo-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xxHashDemo-iOS.app/xxHashDemo-iOS";
 			};
 			name = Release;
 		};
@@ -530,15 +413,6 @@
 			buildConfigurations = (
 				02F1926C221557100090D5EB /* Debug */,
 				02F1926D221557100090D5EB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		02F1926E221557100090D5EB /* Build configuration list for PBXNativeTarget "xxHashDemo-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02F1926F221557100090D5EB /* Debug */,
-				02F19270221557100090D5EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
