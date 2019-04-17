@@ -2,7 +2,7 @@
 ------
 ![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20Linux-blue.svg)
 [![Language Swift%204.2,%205.0](https://img.shields.io/badge/Language-Swift%204.2,%205.0-orange.svg)](https://developer.apple.com/swift)
-[![Cocoapods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
+[![CocoaPods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg)](https://github.com/Carthage/Carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-green.svg)](https://github.com/apple/swift-package-manager)
 [![Build Status](https://travis-ci.org/daisuke-t-jp/xxHash-Swift.svg?branch=master)](https://travis-ci.org/daisuke-t-jp/xxHash-Swift)
@@ -156,3 +156,13 @@ repeat {
 let digest = xxh.digest()
 // digest -> 0x843c2c4ccfbfb749
 ```
+
+
+# Demo
+
+There are demos.
+
+- [iOS](https://github.com/daisuke-t-jp/xxHash-Swift/tree/master/demo/xxHashDemo-iOS) 
+- [macOS](https://github.com/daisuke-t-jp/xxHash-Swift/tree/master/demo/xxHashDemo-macOS) 
+- [tvOS](https://github.com/daisuke-t-jp/xxHash-Swift/tree/master/demo/xxHashDemo-tvOS) 
+
