@@ -1,9 +1,9 @@
 //
 //  xxHash.h
-//  xxHash
+//  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/02/12.
-//  Copyright © 2019 xxHash. All rights reserved.
+//  Copyright © 2019 xxHash-Swift. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

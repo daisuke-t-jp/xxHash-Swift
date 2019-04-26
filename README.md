@@ -45,20 +45,19 @@ end
 import PackageDescription
 
 let package = Package(
-    name: "YOUR_PACKAGE_NAME",
-    targets: [],
-    dependencies: [
-        // Swift 4.2
-        .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", .exact("1.0.9"))
+  name: "YOUR_PACKAGE_NAME",
+  dependencies: [
+    // Swift 4.2
+    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", .exact("1.0.9"))
 
-        // Swift 5.0
-        .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.10")
-    ]
-    targets: [
-        .target(
-            name: "YOUR_TARGET_NAME",
-            dependencies: ["xxHash-Swift"]),
-    ]
+    // Swift 5.0
+    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.10")
+  ],
+  targets: [
+    .target(
+      name: "YOUR_TARGET_NAME",
+      dependencies: ["xxHash-Swift"]),
+  ]
 )
 ```
 
@@ -107,18 +106,18 @@ let bufSize = 1024
 var index = 0
 
 repeat {
-   var lastIndex = index + bufSize
-   if lastIndex > data.count {
-      lastIndex = index + data.count - index
-   }
-   
-   let data2 = data[index..<lastIndex]
-   xxh.update(data2) // xxHash update
-   
-   index += data2.count
-   if index >= data.count {
-      break
-   }
+  var lastIndex = index + bufSize
+  if lastIndex > data.count {
+    lastIndex = index + data.count - index
+  }
+
+  let data2 = data[index..<lastIndex]
+  xxh.update(data2) // xxHash update
+
+  index += data2.count
+  if index >= data.count {
+    break
+  }
 } while(true)
 
 let digest = xxh.digest()
@@ -139,18 +138,18 @@ let bufSize = 1024
 var index = 0
 
 repeat {
-   var lastIndex = index + bufSize
-   if lastIndex > data.count {
-      lastIndex = index + data.count - index
-   }
-   
-   let data2 = data[index..<lastIndex]
-   xxh.update(data2) // xxHash update
-   
-   index += data2.count
-   if index >= data.count {
-      break
-   }
+  var lastIndex = index + bufSize
+  if lastIndex > data.count {
+    lastIndex = index + data.count - index
+  }
+
+  let data2 = data[index..<lastIndex]
+  xxh.update(data2) // xxHash update
+
+  index += data2.count
+  if index >= data.count {
+    break
+  }
 } while(true)
 
 let digest = xxh.digest()

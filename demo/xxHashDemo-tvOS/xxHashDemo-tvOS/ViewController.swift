@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  xxHashDemo-tvOS
+//  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/02/14.
-//  Copyright © 2019 xxHashDemo-tvOS. All rights reserved.
+//  Copyright © 2019 xxHash-Swift. All rights reserved.
 //
 
 import UIKit
@@ -11,15 +11,15 @@ import UIKit
 import xxHash_Swift
 
 class ViewController: UIViewController {
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		Common.oneshot32()
-		Common.oneshot64()
-		Common.streaming32()
-		Common.streaming64()
-	}
-	
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    Common.oneshot32()
+    Common.oneshot64()
+    Common.streaming32()
+    Common.streaming64()
+  }
+  
 }
 
