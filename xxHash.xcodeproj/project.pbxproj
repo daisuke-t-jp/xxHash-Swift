@@ -28,6 +28,9 @@
 		7E43B82D22159A75005EDFB4 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270EC0A22139597004F89E9 /* Common.swift */; };
 		7E43B82E22159A78005EDFB4 /* xxHash32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* xxHash32.swift */; };
 		7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
+		7E47C81E227EE690001E0FA6 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C81D227EE690001E0FA6 /* xxHash3.swift */; };
+		7E47C81F227EE690001E0FA6 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C81D227EE690001E0FA6 /* xxHash3.swift */; };
+		7E47C820227EE690001E0FA6 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C81D227EE690001E0FA6 /* xxHash3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,7 @@
 		02F191E522153F980090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F191FC221547330090D5EB /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F19204221547340090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E47C81D227EE690001E0FA6 /* xxHash3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xxHash3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 				0288D896221283E3009D61FC /* Info.plist */,
 				0288D895221283E3009D61FC /* xxHash.h */,
 				0270EC0A22139597004F89E9 /* Common.swift */,
+				7E47C81D227EE690001E0FA6 /* xxHash3.swift */,
 				0288D8AC22128443009D61FC /* xxHash32.swift */,
 				02F191BC22151D2A0090D5EB /* xxHash64.swift */,
 			);
@@ -476,6 +481,7 @@
 				0270EC0B22139597004F89E9 /* Common.swift in Sources */,
 				0288D8AD22128443009D61FC /* xxHash32.swift in Sources */,
 				02F191BD22151D2A0090D5EB /* xxHash64.swift in Sources */,
+				7E47C81E227EE690001E0FA6 /* xxHash3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +500,7 @@
 				02F191F4221540090090D5EB /* Common.swift in Sources */,
 				02F191F52215400C0090D5EB /* xxHash32.swift in Sources */,
 				02F191F62215400F0090D5EB /* xxHash64.swift in Sources */,
+				7E47C81F227EE690001E0FA6 /* xxHash3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +519,7 @@
 				7E43B82D22159A75005EDFB4 /* Common.swift in Sources */,
 				7E43B82E22159A78005EDFB4 /* xxHash32.swift in Sources */,
 				7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */,
+				7E47C820227EE690001E0FA6 /* xxHash3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
