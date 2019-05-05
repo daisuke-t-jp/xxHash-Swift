@@ -19,3 +19,4 @@ type_name:
     excluded:
         - xxHash32
         - xxHash64
+        - xxHash3
