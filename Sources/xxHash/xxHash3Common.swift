@@ -50,12 +50,12 @@ extension XXH3Common {
         let h = UInt64(array[i * 2] << 32)
         let l = UInt64(array[i * 2 + 1])
         
-        array2[i] = h + l
+        array2.append(h + l)
       } else {
         let h = UInt64(array[i * 2])
         let l = UInt64(array[i * 2 + 1] << 32)
         
-        array2[i] = h + l
+        array2.append(h + l)
       }
     }
     
