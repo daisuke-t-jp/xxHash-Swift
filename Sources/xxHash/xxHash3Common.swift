@@ -126,7 +126,8 @@ extension XXH3Common {
       let dataVal: UInt64 = Common.UInt8ArrayToUInt(array, index: i * 2, endian: endian)
       let keyVal = UInt64(keySet[i * 2])
       let dataKey = UInt64(keyVal ^ dataVal)
-      acc2[i] = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF), y: UInt32(dataKey >> 32))
+      acc2[i] = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
+                           y: UInt32(dataKey >> 32))
       acc2[i] &+= dataVal
     }
     
@@ -138,8 +139,8 @@ extension XXH3Common {
     
     for i in 0..<nbStripes {
       acc2 = accumulate512(acc2,
-                           array: [UInt8](array[i * stripeLen..<array.count]),
-                           keySet: [UInt32](keySet[i * 2..<keySet.count]),
+                           array: [UInt8](array.dropFirst(i * stripeLen)),
+                           keySet: [UInt32](keySet.dropFirst(i * 2)),
                            endian: endian)
     }
     
@@ -169,28 +170,29 @@ extension XXH3Common {
     
     for i in 0..<nbBlocks {
       acc2 = accumulate(acc2,
-                        array: [UInt8](array[i * blockLen..<array.count]),
+                        array: [UInt8](array.dropFirst(i * blockLen)),
                         keySet: keySet,
                         nbStripes: nbKeys,
                         endian: endian)
       
       acc2 = scrambleAcc(acc2,
-                         keySet: [UInt32](keySet[keySetDefaultSize - stripeElts..<keySet.count]))
+                         keySet: [UInt32](keySet.dropFirst(keySetDefaultSize - stripeElts)))
     }
     
     
     // last partial block
     let nbStripes = (array.count % blockLen) / stripeLen
     acc2 = accumulate(acc2,
-                      array: [UInt8](array[nbBlocks * blockLen..<array.count]),
+                      array: [UInt8](array.dropFirst(nbBlocks * blockLen)),
                       keySet: keySet,
-                      nbStripes: nbStripes, endian: endian)
+                      nbStripes: nbStripes,
+                      endian: endian)
     
     // last stripe
     if array.count & (stripeLen - 1) > 0 {
       acc2 = accumulate512(acc2,
-                           array: [UInt8](array[array.count - stripeLen..<array.count]),
-                           keySet: [UInt32](keySet[nbStripes * 2..<keySet.count]),
+                           array: [UInt8](array.dropFirst(array.count - stripeLen)),
+                           keySet: [UInt32](keySet.dropFirst(nbStripes * 2)),
                            endian: endian)
     }
     
@@ -205,9 +207,12 @@ extension XXH3Common {
     var result: UInt64 = start
     
     result &+= mix2Accs(acc, keySet: keySet)
-    result &+= mix2Accs([UInt64](acc[2..<acc.count]), keySet: [UInt64](keySet[4..<keySet.count]))
-    result &+= mix2Accs([UInt64](acc[4..<acc.count]), keySet: [UInt64](keySet[8..<keySet.count]))
-    result &+= mix2Accs([UInt64](acc[6..<acc.count]), keySet: [UInt64](keySet[12..<keySet.count]))
+    result &+= mix2Accs([UInt64](acc.dropFirst(2)),
+                        keySet: [UInt64](keySet.dropFirst(4)))
+    result &+= mix2Accs([UInt64](acc.dropFirst(4)),
+                        keySet: [UInt64](keySet.dropFirst(8)))
+    result &+= mix2Accs([UInt64](acc.dropFirst(6)),
+                        keySet: [UInt64](keySet.dropFirst(12)))
     
     return avalanche(result)
   }

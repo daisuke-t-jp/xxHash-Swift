@@ -109,7 +109,7 @@ extension xxHash3.Bit128 {
                                              keySet: keySet64,
                                              start: UInt64(array.count) &* xxHash64.prime1)
     let high64: UInt64 = XXH3Common.mergeAccs(acc,
-                                              keySet: [UInt64](keySet64[16..<keySet64.count]),
+                                              keySet: [UInt64](keySet64.dropFirst(16)),
                                               start: UInt64(array.count + 1) &* xxHash64.prime2)
     
     let h128 = [low64, high64]
@@ -141,35 +141,35 @@ extension xxHash3.Bit128 {
             return hashLong(array, seed: seed, endian: endian)
           }
           
-          acc &+= XXH3Common.mix16B([UInt8](array[48..<array.count]),
-                                    keySet: [UInt64](keySet64[96..<keySet64.count]),
+          acc &+= XXH3Common.mix16B([UInt8](array.dropFirst(48)),
+                                    keySet: [UInt64](keySet64.dropFirst(96)),
                                     seed: seed,
                                     endian: endian)
           
-          acc2 &+= XXH3Common.mix16B([UInt8](array[array.count - 64..<array.count]),
-                                     keySet: [UInt64](keySet64[112..<keySet64.count]),
+          acc2 &+= XXH3Common.mix16B([UInt8](array.dropFirst(array.count - 64)),
+                                     keySet: [UInt64](keySet64.dropFirst(112)),
                                      seed: seed,
                                      endian: endian)
         }
         
-        acc &+= XXH3Common.mix16B([UInt8](array[32..<array.count]),
-                                  keySet: [UInt64](keySet64[64..<keySet64.count]),
+        acc &+= XXH3Common.mix16B([UInt8](array.dropFirst(32)),
+                                  keySet: [UInt64](keySet64.dropFirst(64)),
                                   seed: seed,
                                   endian: endian)
         
-        acc2 &+= XXH3Common.mix16B([UInt8](array[array.count - 48..<array.count]),
-                                   keySet: [UInt64](keySet64[80..<keySet64.count]),
+        acc2 &+= XXH3Common.mix16B([UInt8](array.dropFirst(array.count - 48)),
+                                   keySet: [UInt64](keySet64.dropFirst(80)),
                                    seed: seed,
                                    endian: endian)
       }
       
-      acc &+= XXH3Common.mix16B([UInt8](array[16..<array.count]),
-                                keySet: [UInt64](keySet64[32..<keySet64.count]),
+      acc &+= XXH3Common.mix16B([UInt8](array.dropFirst(16)),
+                                keySet: [UInt64](keySet64.dropFirst(32)),
                                 seed: seed,
                                 endian: endian)
       
-      acc2 &+= XXH3Common.mix16B([UInt8](array[array.count - 32..<array.count]),
-                                 keySet: [UInt64](keySet64[48..<keySet64.count]),
+      acc2 &+= XXH3Common.mix16B([UInt8](array.dropFirst(array.count - 32)),
+                                 keySet: [UInt64](keySet64.dropFirst(48)),
                                  seed: seed,
                                  endian: endian)
     }
@@ -179,8 +179,8 @@ extension xxHash3.Bit128 {
                               seed: seed,
                               endian: endian)
     
-    acc2 &+= XXH3Common.mix16B([UInt8](array[array.count - 16..<array.count]),
-                               keySet: [UInt64](keySet64[16..<keySet64.count]),
+    acc2 &+= XXH3Common.mix16B([UInt8](array.dropFirst(array.count - 16)),
+                               keySet: [UInt64](keySet64.dropFirst(16)),
                                seed: seed,
                                endian: endian)
     
