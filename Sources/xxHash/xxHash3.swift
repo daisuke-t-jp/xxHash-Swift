@@ -8,7 +8,8 @@
 
 import Foundation
 
-/// xxHash3 class
+/// XXH3 class
+typealias XXH3 = xxHash3
 public class xxHash3 {
   
   // MARK: - Enum, Const
