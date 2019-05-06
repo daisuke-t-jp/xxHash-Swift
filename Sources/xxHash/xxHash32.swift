@@ -9,6 +9,7 @@
 import Foundation
 
 /// xxHash 32 bit class
+public typealias XXH32 = xxHash32
 public class xxHash32 {
   
   // MARK: - Enum, Const

@@ -9,7 +9,7 @@
 import Foundation
 
 /// xxHash3 class
-typealias XXH3 = xxHash3
+public typealias XXH3 = xxHash3
 public class xxHash3 {
   
 }

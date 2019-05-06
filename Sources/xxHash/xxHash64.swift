@@ -9,6 +9,7 @@
 import Foundation
 
 /// xxHash 64 bit class
+public typealias XXH64 = xxHash64
 public class xxHash64 {
   
   // MARK: - Enum, Const
