@@ -144,4 +144,8 @@ extension Common {
   static func UInt64ToHex(_ val: UInt64) -> String {
     return String.init(format: "%016lx", val)
   }
+  
+  static func UInt128ToHex(_ val: UInt64, val2: UInt64) -> String {
+    return String.init(format: "%016lx%016lx", val, val2)
+  }
 }
