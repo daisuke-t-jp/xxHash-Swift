@@ -62,6 +62,15 @@ class xxHashTests: XCTestCase {
     XCTAssertEqual(xxHash64.digest("Hello World!"), xxHash64.digest("Hello World!".data(using: .utf8)!))
   }
   
+  func test3_64Overload() {
+    XCTAssertEqual(xxHash3.digest64("Hello World!"), xxHash3.digest64(Array("Hello World!".utf8)))
+    XCTAssertEqual(xxHash3.digest64("Hello World!"), xxHash3.digest64("Hello World!".data(using: .utf8)!))
+  }
+  
+  func test3_128Overload() {
+    XCTAssertEqual(xxHash3.digest128("Hello World!"), xxHash3.digest128(Array("Hello World!".utf8)))
+    XCTAssertEqual(xxHash3.digest128("Hello World!"), xxHash3.digest128("Hello World!".data(using: .utf8)!))
+  }
   
   
   // MARK: - One-shot
