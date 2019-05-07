@@ -29,7 +29,21 @@ extension xxHash3 {
   static public func digest64(_ data: Data, seed: UInt64 = 0) -> UInt64 {
     return xxHash3.Bit64.digest([UInt8](data), seed: seed, endian: Common.endian())
   }
-
+  
+  static public func digest64Hex(_ array: [UInt8], seed: UInt64 = 0) -> String {
+    let h = xxHash3.Bit64.digest(array, seed: seed, endian: Common.endian())
+    return Common.UInt64ToHex(h)
+  }
+  
+  static public func digestHex(_ string: String, seed: UInt64 = 0) -> String {
+    let h = xxHash3.Bit64.digest(Array(string.utf8), seed: seed, endian: Common.endian())
+    return Common.UInt64ToHex(h)
+  }
+  
+  static public func digest64Hex(_ data: Data, seed: UInt64 = 0) -> String {
+    let h = xxHash3.Bit64.digest([UInt8](data), seed: seed, endian: Common.endian())
+    return Common.UInt64ToHex(h)
+  }
 }
 
 
