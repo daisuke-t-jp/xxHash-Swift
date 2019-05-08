@@ -38,46 +38,6 @@ class XXH3Common {
 }
 
 
-// MARK: - Convert
-extension XXH3Common {
-  
-  static func UInt32ArrayToUInt64Array(_ array: [UInt32]) -> [UInt64] {
-    var array2 = [UInt64]()
-    let endian = Common.endian()
-    
-    for i in 0..<array.count / 2 {
-      if endian == .little {
-        let h = UInt64(array[i * 2] << 32)
-        let l = UInt64(array[i * 2 + 1])
-        
-        array2.append(h + l)
-      } else {
-        let h = UInt64(array[i * 2])
-        let l = UInt64(array[i * 2 + 1] << 32)
-        
-        array2.append(h + l)
-      }
-    }
-    
-    return array2
-  }
-  
-  static func UInt32ArrayToUInt8Array(_ array: [UInt32]) -> [UInt8] {
-    var array2 = [UInt8]()
-    let endian = Common.endian()
-    
-    for i in 0..<array.count {
-      let arrayU8 = Common.UIntToUInt8Array(array[i], endian: endian)
-      
-      array2 += arrayU8
-    }
-    
-    return array2
-  }
-  
-}
-
-
 // MARK: - Utility
 extension XXH3Common {
   
@@ -123,11 +83,12 @@ extension XXH3Common {
     var acc2 = acc
     
     for i in 0..<accNB {
-      let dataVal: UInt64 = Common.UInt8ArrayToUInt(array, index: i * 2, endian: endian)
-      let keyVal = UInt64(keySet[i * 2])
+      let dataVal: UInt64 = Common.UInt8ArrayToUInt(array, index: i * 8, endian: endian)
+      let keyVal = Common.UInt32ToUInt64(keySet[i * 2], val2: keySet[(i * 2) + 1], endian: endian)
       let dataKey = UInt64(keyVal ^ dataVal)
-      acc2[i] = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
+      let mul = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
                            y: UInt32(dataKey >> 32))
+      acc2[i] &+= mul
       acc2[i] &+= dataVal
     }
     
@@ -199,30 +160,37 @@ extension XXH3Common {
     return acc2
   }
   
-  static private func mix2Accs(_ acc: [UInt64], keySet: [UInt64]) -> UInt64 {
-    return mul128Fold64(ll1: acc[0] ^ keySet[0], ll2: acc[1] ^ keySet[1])
+  static private func mix2Accs(_ acc: [UInt64], keySet: [UInt32], endian: Common.Endian) -> UInt64 {
+    let key = Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
+    let key2 = Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
+    
+    return mul128Fold64(ll1: acc[0] ^ key, ll2: acc[1] ^ key2)
   }
   
-  static func mergeAccs(_ acc: [UInt64], keySet: [UInt64], start: UInt64) -> UInt64 {
+  static func mergeAccs(_ acc: [UInt64], keySet: [UInt32], start: UInt64, endian: Common.Endian) -> UInt64 {
     var result: UInt64 = start
     
-    result &+= mix2Accs(acc, keySet: keySet)
+    result &+= mix2Accs(acc, keySet: keySet, endian: endian)
     result &+= mix2Accs([UInt64](acc.dropFirst(2)),
-                        keySet: [UInt64](keySet.dropFirst(4)))
+                        keySet: [UInt32](keySet.dropFirst(4)),
+                        endian: endian)
     result &+= mix2Accs([UInt64](acc.dropFirst(4)),
-                        keySet: [UInt64](keySet.dropFirst(8)))
+                        keySet: [UInt32](keySet.dropFirst(8)),
+                        endian: endian)
     result &+= mix2Accs([UInt64](acc.dropFirst(6)),
-                        keySet: [UInt64](keySet.dropFirst(12)))
+                        keySet: [UInt32](keySet.dropFirst(12)),
+                        endian: endian)
     
     return avalanche(result)
   }
   
-  static func mix16B(_ array: [UInt8], keySet: [UInt64], seed: UInt64, endian: Common.Endian) -> UInt64 {
+  static func mix16B(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: Common.Endian) -> UInt64 {
     let ll1: UInt64 = Common.UInt8ArrayToUInt(array, index: 0, endian: endian)
     let ll2: UInt64 = Common.UInt8ArrayToUInt(array, index: 8, endian: endian)
+    let key = Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
+    let key2 = Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
     
-    return mul128Fold64(ll1: ll1 ^ keySet[0] &+ seed,
-                        ll2: ll2 ^ keySet[1] &+ seed)
+    return mul128Fold64(ll1: ll1 ^ (key &+ seed), ll2: ll2 ^ (key2 &- seed))
   }
   
 }
