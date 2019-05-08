@@ -35,7 +35,7 @@ extension xxHash3 {
     return Common.UInt64ToHex(h)
   }
   
-  static public func digestHex(_ string: String, seed: UInt64 = 0) -> String {
+  static public func digest64Hex(_ string: String, seed: UInt64 = 0) -> String {
     let h = xxHash3.Bit64.digest(Array(string.utf8), seed: seed, endian: Common.endian())
     return Common.UInt64ToHex(h)
   }
