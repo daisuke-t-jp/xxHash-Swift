@@ -137,6 +137,20 @@ extension Common {
     return array
   }
   
+  static func UInt32ToUInt64(_ val: UInt32, val2: UInt32, endian: Common.Endian) -> UInt64 {
+    if endian == .little {
+      let h = UInt64(UInt64(val2) << 32)
+      let l = UInt64(val)
+      
+      return h &+ l
+    }
+    
+    let h = UInt64(UInt64(val) << 32)
+    let l = UInt64(val2)
+    
+    return h &+ l
+  }
+  
   static func UInt32ToHex(_ val: UInt32) -> String {
     return String.init(format: "%08x", val)
   }
