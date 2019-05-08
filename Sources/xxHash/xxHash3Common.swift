@@ -8,7 +8,16 @@
 
 import Foundation
 
-class XXH3Common {
+extension xxHash3 {
+  
+  /// XXH3 Common class
+  class Common {
+  }
+  
+}
+
+
+extension xxHash3.Common {
   
   // MARK: - Enum, Const
   static let keySetDefaultSize = 48 // minimum 32
@@ -39,7 +48,7 @@ class XXH3Common {
 
 
 // MARK: - Utility
-extension XXH3Common {
+extension xxHash3.Common {
   
   static func avalanche(_ h: UInt64) -> UInt64 {
     var h2 = h
@@ -60,10 +69,10 @@ extension XXH3Common {
     let l1 = UInt32(ll1 & 0x00000000FFFFFFFF)
     let l2 = UInt32(ll2 & 0x00000000FFFFFFFF)
     
-    let llh: UInt64 = mult32To64(h1, y: h2)
-    let llm1: UInt64 = mult32To64(l1, y: h2)
-    let llm2: UInt64 = mult32To64(h1, y: l2)
-    let lll: UInt64 = mult32To64(l1, y: l2)
+    let llh: UInt64 = xxHash3.Common.mult32To64(h1, y: h2)
+    let llm1: UInt64 = xxHash3.Common.mult32To64(l1, y: h2)
+    let llm2: UInt64 = xxHash3.Common.mult32To64(h1, y: l2)
+    let lll: UInt64 = xxHash3.Common.mult32To64(l1, y: l2)
     
     let t = UInt64(lll &+ (llm1 << 32))
     let carry1 = UInt64((t < lll) ? 1 : 0)
@@ -82,7 +91,7 @@ extension XXH3Common {
   static private func accumulate512(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], endian: Common.Endian) -> [UInt64] {
     var acc2 = acc
     
-    for i in 0..<accNB {
+    for i in 0..<xxHash3.Common.accNB {
       let dataVal: UInt64 = Common.UInt8ArrayToUInt(array, index: i * 8, endian: endian)
       let keyVal = Common.UInt32ToUInt64(keySet[i * 2], val2: keySet[(i * 2) + 1], endian: endian)
       let dataKey = UInt64(keyVal ^ dataVal)
