@@ -43,7 +43,7 @@ extension xxHash3.Bit128 {
     let l1: UInt32 = xxHash.Common.UInt8ArrayToUInt(array, index: 0, endian: endian) &+ UInt32(seed) &+ keySet[0]
     let l2: UInt32 = xxHash.Common.UInt8ArrayToUInt(array, index: array.count - 4, endian: endian) &+ UInt32(seed >> 32) &+ keySet[1]
     let acc1: UInt64 = UInt64(array.count) &+ UInt64(l1) &+ (UInt64(l2) << 32) &+ xxHash3.Common.mult32To64(l1, y: l2)
-    let acc2: UInt64 = UInt64(array.count) &* xxHash64.prime1 &+ UInt64(l1) &* xxHash64.prime2 &+ UInt64(l2) &* xxHash64.prime3
+    let acc2: UInt64 = UInt64(array.count) &* XXH64.prime1 &+ UInt64(l1) &* XXH64.prime2 &+ UInt64(l2) &* XXH64.prime3
     
     let h128 = [
       xxHash3.Common.avalanche(acc1),
@@ -54,8 +54,8 @@ extension xxHash3.Bit128 {
   }
   
   static private func len9To16(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
-    var acc1: UInt64 = xxHash64.prime1 &* (UInt64(array.count) &+ seed)
-    var acc2: UInt64 = xxHash64.prime2 &* (UInt64(array.count) &- seed)
+    var acc1: UInt64 = XXH64.prime1 &* (UInt64(array.count) &+ seed)
+    var acc2: UInt64 = XXH64.prime2 &* (UInt64(array.count) &- seed)
     let ll1: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: 0, endian: endian)
     let ll2: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: array.count - 8, endian: endian)
     let key = xxHash.Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
@@ -93,11 +93,11 @@ extension xxHash3.Bit128 {
   static private func hashLong(_ array: [UInt8], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
     var acc: [UInt64] = [
       seed,
-      xxHash64.prime1,
-      xxHash64.prime2,
-      xxHash64.prime3,
-      xxHash64.prime4,
-      xxHash64.prime5,
+      XXH64.prime1,
+      XXH64.prime2,
+      XXH64.prime3,
+      XXH64.prime4,
+      XXH64.prime5,
       UInt64(0 &- seed),
       0
     ]
@@ -108,11 +108,11 @@ extension xxHash3.Bit128 {
     // converge into final hash
     let low64: UInt64 = xxHash3.Common.mergeAccs(acc,
                                                  keySet: xxHash3.Common.keySet,
-                                                 start: UInt64(array.count) &* xxHash64.prime1,
+                                                 start: UInt64(array.count) &* XXH64.prime1,
                                                  endian: endian)
     let high64: UInt64 = xxHash3.Common.mergeAccs(acc,
                                                   keySet: [UInt32](xxHash3.Common.keySet.dropFirst(16)),
-                                                  start: UInt64(array.count + 1) &* xxHash64.prime2,
+                                                  start: UInt64(array.count + 1) &* XXH64.prime2,
                                                   endian: endian)
     
     let h128 = [low64, high64]
@@ -130,7 +130,7 @@ extension xxHash3.Bit128 {
       return len0To16(array, seed: seed, endian: endian)
     }
     
-    var acc: UInt64 = xxHash64.prime1 &* (UInt64(array.count) &+ seed)
+    var acc: UInt64 = XXH64.prime1 &* (UInt64(array.count) &+ seed)
     var acc2: UInt64 = 0
     
     if array.count > 32 {
@@ -187,7 +187,7 @@ extension xxHash3.Bit128 {
                                    endian: endian)
     
     let part1 = acc &+ acc2
-    let part2 = (acc &* xxHash64.prime3) &+ (acc2 &* xxHash64.prime4) &+ (UInt64(UInt64(array.count) &- seed) &* xxHash64.prime2)
+    let part2 = (acc &* XXH64.prime3) &+ (acc2 &* XXH64.prime4) &+ (UInt64(UInt64(array.count) &- seed) &* XXH64.prime2)
     
     let h128 = [
       xxHash3.Common.avalanche(part1),

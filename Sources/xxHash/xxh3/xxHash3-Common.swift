@@ -53,7 +53,7 @@ extension xxHash3.Common {
   static func avalanche(_ h: UInt64) -> UInt64 {
     var h2 = h
     h2 ^= h2 >> 37
-    h2 &*= xxHash64.prime3
+    h2 &*= XXH64.prime3
     h2 ^= h2 >> 32
     
     return h2

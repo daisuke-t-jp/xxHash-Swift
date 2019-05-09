@@ -17,11 +17,11 @@
 		02A3013E221685E000914043 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02A3013D221685E000914043 /* alice29.txt */; };
 		02A3013F221685E000914043 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02A3013D221685E000914043 /* alice29.txt */; };
 		02A30140221685E000914043 /* alice29.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02A3013D221685E000914043 /* alice29.txt */; };
-		02F191BD22151D2A0090D5EB /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
+		02F191BD22151D2A0090D5EB /* XXH64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* XXH64.swift */; };
 		02F191E622153F980090D5EB /* xxHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F191DD22153F970090D5EB /* xxHash.framework */; };
 		02F191F4221540090090D5EB /* xxHash-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270EC0A22139597004F89E9 /* xxHash-Common.swift */; };
 		02F191F52215400C0090D5EB /* XXH32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* XXH32.swift */; };
-		02F191F62215400F0090D5EB /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
+		02F191F62215400F0090D5EB /* XXH64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* XXH64.swift */; };
 		02F19205221547340090D5EB /* xxHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F191FC221547330090D5EB /* xxHash.framework */; };
 		7E037546228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
 		7E037547228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
@@ -39,7 +39,7 @@
 		7E43B82C22159A61005EDFB4 /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E43B82D22159A75005EDFB4 /* xxHash-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270EC0A22139597004F89E9 /* xxHash-Common.swift */; };
 		7E43B82E22159A78005EDFB4 /* XXH32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* XXH32.swift */; };
-		7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
+		7E43B82F22159A79005EDFB4 /* XXH64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* XXH64.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,7 @@
 		0288D8A2221283E3009D61FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0288D8AC22128443009D61FC /* XXH32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XXH32.swift; sourceTree = "<group>"; };
 		02A3013D221685E000914043 /* alice29.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alice29.txt; sourceTree = "<group>"; };
-		02F191BC22151D2A0090D5EB /* xxHash64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xxHash64.swift; sourceTree = "<group>"; };
+		02F191BC22151D2A0090D5EB /* XXH64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XXH64.swift; sourceTree = "<group>"; };
 		02F191DD22153F970090D5EB /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F191E522153F980090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F191FC221547330090D5EB /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +165,7 @@
 				0288D895221283E3009D61FC /* xxHash.h */,
 				0270EC0A22139597004F89E9 /* xxHash-Common.swift */,
 				0288D8AC22128443009D61FC /* XXH32.swift */,
-				02F191BC22151D2A0090D5EB /* xxHash64.swift */,
+				02F191BC22151D2A0090D5EB /* XXH64.swift */,
 				7E037541228425B900452592 /* xxh3 */,
 			);
 			name = xxHash;
@@ -503,7 +503,7 @@
 			files = (
 				0270EC0B22139597004F89E9 /* xxHash-Common.swift in Sources */,
 				0288D8AD22128443009D61FC /* XXH32.swift in Sources */,
-				02F191BD22151D2A0090D5EB /* xxHash64.swift in Sources */,
+				02F191BD22151D2A0090D5EB /* XXH64.swift in Sources */,
 				7E03754C228425B900452592 /* xxHash3-Bit128.swift in Sources */,
 				7E037549228425B900452592 /* xxHash3-Common.swift in Sources */,
 				7E03754F228425B900452592 /* xxHash3.swift in Sources */,
@@ -525,7 +525,7 @@
 			files = (
 				02F191F4221540090090D5EB /* xxHash-Common.swift in Sources */,
 				02F191F52215400C0090D5EB /* XXH32.swift in Sources */,
-				02F191F62215400F0090D5EB /* xxHash64.swift in Sources */,
+				02F191F62215400F0090D5EB /* XXH64.swift in Sources */,
 				7E03754D228425B900452592 /* xxHash3-Bit128.swift in Sources */,
 				7E03754A228425B900452592 /* xxHash3-Common.swift in Sources */,
 				7E037550228425B900452592 /* xxHash3.swift in Sources */,
@@ -547,7 +547,7 @@
 			files = (
 				7E43B82D22159A75005EDFB4 /* xxHash-Common.swift in Sources */,
 				7E43B82E22159A78005EDFB4 /* XXH32.swift in Sources */,
-				7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */,
+				7E43B82F22159A79005EDFB4 /* XXH64.swift in Sources */,
 				7E03754E228425B900452592 /* xxHash3-Bit128.swift in Sources */,
 				7E03754B228425B900452592 /* xxHash3-Common.swift in Sources */,
 				7E037551228425B900452592 /* xxHash3.swift in Sources */,

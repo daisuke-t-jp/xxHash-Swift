@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// xxHash 32 bit class
+/// XXH32 class
 public typealias xxHash32 = XXH32
 public class XXH32 {
   

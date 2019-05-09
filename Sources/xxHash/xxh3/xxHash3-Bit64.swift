@@ -53,7 +53,7 @@ extension xxHash3.Bit64 {
     let in64: UInt64 = UInt64(UInt64(in1) &+ (UInt64(in2) << 32))
     let key = xxHash.Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
     let keyed: UInt64 = in64 ^ (key &+ seed)
-    let mix64: UInt64 = UInt64(array.count) &+ xxHash3.Common.mul128Fold64(ll1: keyed, ll2: xxHash64.prime1)
+    let mix64: UInt64 = UInt64(array.count) &+ xxHash3.Common.mul128Fold64(ll1: keyed, ll2: XXH64.prime1)
     
     return xxHash3.Common.avalanche(mix64)
   }
@@ -83,11 +83,11 @@ extension xxHash3.Bit64 {
   static private func hashLong(_ array: [UInt8], seed: UInt64, endian: xxHash.Common.Endian) -> UInt64 {
     var acc: [UInt64] = [
       seed,
-      xxHash64.prime1,
-      xxHash64.prime2,
-      xxHash64.prime3,
-      xxHash64.prime4,
-      xxHash64.prime5,
+      XXH64.prime1,
+      XXH64.prime2,
+      XXH64.prime3,
+      XXH64.prime4,
+      XXH64.prime5,
       UInt64(0 &- seed),
       0
     ]
@@ -98,7 +98,7 @@ extension xxHash3.Bit64 {
     // converge into final hash
     return xxHash3.Common.mergeAccs(acc,
                                     keySet: keySet,
-                                    start: UInt64(array.count) &* xxHash64.prime1,
+                                    start: UInt64(array.count) &* XXH64.prime1,
                                     endian: endian)
   }
   
@@ -112,7 +112,7 @@ extension xxHash3.Bit64 {
       return len0To16(array, seed: seed, endian: endian)
     }
     
-    var acc = UInt64(UInt64(array.count) &* xxHash64.prime1)
+    var acc = UInt64(UInt64(array.count) &* XXH64.prime1)
     
     if array.count > 32 {
       
