@@ -23,23 +23,23 @@
 		02F191F52215400C0090D5EB /* xxHash32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* xxHash32.swift */; };
 		02F191F62215400F0090D5EB /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
 		02F19205221547340090D5EB /* xxHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F191FC221547330090D5EB /* xxHash.framework */; };
+		7E037546228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
+		7E037547228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
+		7E037548228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
+		7E037549228425B900452592 /* xxHash3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037543228425B900452592 /* xxHash3-Common.swift */; };
+		7E03754A228425B900452592 /* xxHash3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037543228425B900452592 /* xxHash3-Common.swift */; };
+		7E03754B228425B900452592 /* xxHash3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037543228425B900452592 /* xxHash3-Common.swift */; };
+		7E03754C228425B900452592 /* xxHash3-Bit128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037544228425B900452592 /* xxHash3-Bit128.swift */; };
+		7E03754D228425B900452592 /* xxHash3-Bit128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037544228425B900452592 /* xxHash3-Bit128.swift */; };
+		7E03754E228425B900452592 /* xxHash3-Bit128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037544228425B900452592 /* xxHash3-Bit128.swift */; };
+		7E03754F228425B900452592 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037545228425B900452592 /* xxHash3.swift */; };
+		7E037550228425B900452592 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037545228425B900452592 /* xxHash3.swift */; };
+		7E037551228425B900452592 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037545228425B900452592 /* xxHash3.swift */; };
 		7E43B82B22159A4B005EDFB4 /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E43B82C22159A61005EDFB4 /* xxHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 0288D895221283E3009D61FC /* xxHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E43B82D22159A75005EDFB4 /* xxHash-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270EC0A22139597004F89E9 /* xxHash-Common.swift */; };
 		7E43B82E22159A78005EDFB4 /* xxHash32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* xxHash32.swift */; };
 		7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* xxHash64.swift */; };
-		7E47C81E227EE690001E0FA6 /* xxHash3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C81D227EE690001E0FA6 /* xxHash3-Common.swift */; };
-		7E47C81F227EE690001E0FA6 /* xxHash3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C81D227EE690001E0FA6 /* xxHash3-Common.swift */; };
-		7E47C820227EE690001E0FA6 /* xxHash3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C81D227EE690001E0FA6 /* xxHash3-Common.swift */; };
-		7E47C8232280129E001E0FA6 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C8222280129E001E0FA6 /* xxHash3-Bit64.swift */; };
-		7E47C8242280129E001E0FA6 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C8222280129E001E0FA6 /* xxHash3-Bit64.swift */; };
-		7E47C8252280129E001E0FA6 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C8222280129E001E0FA6 /* xxHash3-Bit64.swift */; };
-		7E47C82722801AB6001E0FA6 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C82622801AB6001E0FA6 /* xxHash3.swift */; };
-		7E47C82822801AB6001E0FA6 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C82622801AB6001E0FA6 /* xxHash3.swift */; };
-		7E47C82922801AB6001E0FA6 /* xxHash3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C82622801AB6001E0FA6 /* xxHash3.swift */; };
-		7E47C82B2280490C001E0FA6 /* xxHash3-Bit128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C82A2280490C001E0FA6 /* xxHash3-Bit128.swift */; };
-		7E47C82C2280490C001E0FA6 /* xxHash3-Bit128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C82A2280490C001E0FA6 /* xxHash3-Bit128.swift */; };
-		7E47C82D2280490C001E0FA6 /* xxHash3-Bit128.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C82A2280490C001E0FA6 /* xxHash3-Bit128.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,10 +81,10 @@
 		02F191E522153F980090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F191FC221547330090D5EB /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F19204221547340090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E47C81D227EE690001E0FA6 /* xxHash3-Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Common.swift"; sourceTree = "<group>"; };
-		7E47C8222280129E001E0FA6 /* xxHash3-Bit64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "xxHash3-Bit64.swift"; sourceTree = "<group>"; };
-		7E47C82622801AB6001E0FA6 /* xxHash3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xxHash3.swift; sourceTree = "<group>"; };
-		7E47C82A2280490C001E0FA6 /* xxHash3-Bit128.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Bit128.swift"; sourceTree = "<group>"; };
+		7E037542228425B900452592 /* xxHash3-Bit64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Bit64.swift"; sourceTree = "<group>"; };
+		7E037543228425B900452592 /* xxHash3-Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Common.swift"; sourceTree = "<group>"; };
+		7E037544228425B900452592 /* xxHash3-Bit128.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Bit128.swift"; sourceTree = "<group>"; };
+		7E037545228425B900452592 /* xxHash3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xxHash3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,10 +166,7 @@
 				0270EC0A22139597004F89E9 /* xxHash-Common.swift */,
 				0288D8AC22128443009D61FC /* xxHash32.swift */,
 				02F191BC22151D2A0090D5EB /* xxHash64.swift */,
-				7E47C82622801AB6001E0FA6 /* xxHash3.swift */,
-				7E47C81D227EE690001E0FA6 /* xxHash3-Common.swift */,
-				7E47C8222280129E001E0FA6 /* xxHash3-Bit64.swift */,
-				7E47C82A2280490C001E0FA6 /* xxHash3-Bit128.swift */,
+				7E037541228425B900452592 /* xxh3 */,
 			);
 			name = xxHash;
 			path = Sources/xxHash;
@@ -184,6 +181,17 @@
 			);
 			name = xxHashTests;
 			path = Tests/xxHashTests;
+			sourceTree = "<group>";
+		};
+		7E037541228425B900452592 /* xxh3 */ = {
+			isa = PBXGroup;
+			children = (
+				7E037545228425B900452592 /* xxHash3.swift */,
+				7E037543228425B900452592 /* xxHash3-Common.swift */,
+				7E037542228425B900452592 /* xxHash3-Bit64.swift */,
+				7E037544228425B900452592 /* xxHash3-Bit128.swift */,
+			);
+			path = xxh3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,13 +501,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E47C82B2280490C001E0FA6 /* xxHash3-Bit128.swift in Sources */,
 				0270EC0B22139597004F89E9 /* xxHash-Common.swift in Sources */,
 				0288D8AD22128443009D61FC /* xxHash32.swift in Sources */,
 				02F191BD22151D2A0090D5EB /* xxHash64.swift in Sources */,
-				7E47C82722801AB6001E0FA6 /* xxHash3.swift in Sources */,
-				7E47C81E227EE690001E0FA6 /* xxHash3-Common.swift in Sources */,
-				7E47C8232280129E001E0FA6 /* xxHash3-Bit64.swift in Sources */,
+				7E03754C228425B900452592 /* xxHash3-Bit128.swift in Sources */,
+				7E037549228425B900452592 /* xxHash3-Common.swift in Sources */,
+				7E03754F228425B900452592 /* xxHash3.swift in Sources */,
+				7E037546228425B900452592 /* xxHash3-Bit64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,13 +523,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E47C82C2280490C001E0FA6 /* xxHash3-Bit128.swift in Sources */,
 				02F191F4221540090090D5EB /* xxHash-Common.swift in Sources */,
 				02F191F52215400C0090D5EB /* xxHash32.swift in Sources */,
 				02F191F62215400F0090D5EB /* xxHash64.swift in Sources */,
-				7E47C82822801AB6001E0FA6 /* xxHash3.swift in Sources */,
-				7E47C81F227EE690001E0FA6 /* xxHash3-Common.swift in Sources */,
-				7E47C8242280129E001E0FA6 /* xxHash3-Bit64.swift in Sources */,
+				7E03754D228425B900452592 /* xxHash3-Bit128.swift in Sources */,
+				7E03754A228425B900452592 /* xxHash3-Common.swift in Sources */,
+				7E037550228425B900452592 /* xxHash3.swift in Sources */,
+				7E037547228425B900452592 /* xxHash3-Bit64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,13 +545,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E47C82D2280490C001E0FA6 /* xxHash3-Bit128.swift in Sources */,
 				7E43B82D22159A75005EDFB4 /* xxHash-Common.swift in Sources */,
 				7E43B82E22159A78005EDFB4 /* xxHash32.swift in Sources */,
 				7E43B82F22159A79005EDFB4 /* xxHash64.swift in Sources */,
-				7E47C82922801AB6001E0FA6 /* xxHash3.swift in Sources */,
-				7E47C820227EE690001E0FA6 /* xxHash3-Common.swift in Sources */,
-				7E47C8252280129E001E0FA6 /* xxHash3-Bit64.swift in Sources */,
+				7E03754E228425B900452592 /* xxHash3-Bit128.swift in Sources */,
+				7E03754B228425B900452592 /* xxHash3-Common.swift in Sources */,
+				7E037551228425B900452592 /* xxHash3.swift in Sources */,
+				7E037548228425B900452592 /* xxHash3-Bit64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
