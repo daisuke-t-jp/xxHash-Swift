@@ -1,5 +1,5 @@
 //
-//  xxHash3-64.swift
+//  xxHash3-Bit64.swift
 //  xxHash
 //
 //  Created by Daisuke T on 2019/05/06.

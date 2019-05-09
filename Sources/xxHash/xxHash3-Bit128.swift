@@ -1,5 +1,5 @@
 //
-//  xxHash3-128.swift
+//  xxHash3-Bit128.swift
 //  xxHash
 //
 //  Created by Daisuke T on 2019/05/06.

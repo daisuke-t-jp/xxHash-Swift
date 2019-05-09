@@ -1,5 +1,5 @@
 //
-//  xxHashCommon.swift
+//  xxHash-Common.swift
 //  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/02/13.

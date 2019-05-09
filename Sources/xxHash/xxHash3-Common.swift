@@ -1,5 +1,5 @@
 //
-//  xxHash3Common.swift
+//  xxHash3-Common.swift
 //  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/05/05.
