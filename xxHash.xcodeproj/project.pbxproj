@@ -23,9 +23,9 @@
 		02F191F52215400C0090D5EB /* XXH32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0288D8AC22128443009D61FC /* XXH32.swift */; };
 		02F191F62215400F0090D5EB /* XXH64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F191BC22151D2A0090D5EB /* XXH64.swift */; };
 		02F19205221547340090D5EB /* xxHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F191FC221547330090D5EB /* xxHash.framework */; };
-		7E037546228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
-		7E037547228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
-		7E037548228425B900452592 /* xxHash3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* xxHash3-Bit64.swift */; };
+		7E037546228425B900452592 /* XXH3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* XXH3-Bit64.swift */; };
+		7E037547228425B900452592 /* XXH3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* XXH3-Bit64.swift */; };
+		7E037548228425B900452592 /* XXH3-Bit64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037542228425B900452592 /* XXH3-Bit64.swift */; };
 		7E037549228425B900452592 /* XXH3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037543228425B900452592 /* XXH3-Common.swift */; };
 		7E03754A228425B900452592 /* XXH3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037543228425B900452592 /* XXH3-Common.swift */; };
 		7E03754B228425B900452592 /* XXH3-Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E037543228425B900452592 /* XXH3-Common.swift */; };
@@ -81,7 +81,7 @@
 		02F191E522153F980090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F191FC221547330090D5EB /* xxHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xxHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F19204221547340090D5EB /* xxHashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xxHashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E037542228425B900452592 /* xxHash3-Bit64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Bit64.swift"; sourceTree = "<group>"; };
+		7E037542228425B900452592 /* XXH3-Bit64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XXH3-Bit64.swift"; sourceTree = "<group>"; };
 		7E037543228425B900452592 /* XXH3-Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XXH3-Common.swift"; sourceTree = "<group>"; };
 		7E037544228425B900452592 /* xxHash3-Bit128.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "xxHash3-Bit128.swift"; sourceTree = "<group>"; };
 		7E037545228425B900452592 /* XXH3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XXH3.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 			children = (
 				7E037545228425B900452592 /* XXH3.swift */,
 				7E037543228425B900452592 /* XXH3-Common.swift */,
-				7E037542228425B900452592 /* xxHash3-Bit64.swift */,
+				7E037542228425B900452592 /* XXH3-Bit64.swift */,
 				7E037544228425B900452592 /* xxHash3-Bit128.swift */,
 			);
 			path = xxh3;
@@ -507,7 +507,7 @@
 				7E03754C228425B900452592 /* xxHash3-Bit128.swift in Sources */,
 				7E037549228425B900452592 /* XXH3-Common.swift in Sources */,
 				7E03754F228425B900452592 /* XXH3.swift in Sources */,
-				7E037546228425B900452592 /* xxHash3-Bit64.swift in Sources */,
+				7E037546228425B900452592 /* XXH3-Bit64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +529,7 @@
 				7E03754D228425B900452592 /* xxHash3-Bit128.swift in Sources */,
 				7E03754A228425B900452592 /* XXH3-Common.swift in Sources */,
 				7E037550228425B900452592 /* XXH3.swift in Sources */,
-				7E037547228425B900452592 /* xxHash3-Bit64.swift in Sources */,
+				7E037547228425B900452592 /* XXH3-Bit64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +551,7 @@
 				7E03754E228425B900452592 /* xxHash3-Bit128.swift in Sources */,
 				7E03754B228425B900452592 /* XXH3-Common.swift in Sources */,
 				7E037551228425B900452592 /* XXH3.swift in Sources */,
-				7E037548228425B900452592 /* xxHash3-Bit64.swift in Sources */,
+				7E037548228425B900452592 /* XXH3-Bit64.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
