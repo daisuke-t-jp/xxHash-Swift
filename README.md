@@ -11,7 +11,7 @@
 # Introduction
 
 [**xxHash**](https://cyan4973.github.io/xxHash/) framework in Swift.  
-A framework includes xxHash 32/64 bit functions.  
+A framework includes xxHash32/xxHash64/xxHash3-64/xxHash3-128 functions.  
   
 Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   
@@ -90,6 +90,27 @@ let digest = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
 // digest -> 0xe8d84202a16e482f
 ```
 
+### xxHash3 64bit Version
+```swift
+let digest = xxHash3.digest64("123456789ABCDEF")
+// digest -> 0xfb28db77f56706e8
+
+// Using seed.
+let digest = xxHash3.digest64("123456789ABCDEF", seed: 0x000000007fffffff)
+// digest -> 0xced1ef1da8aa95ae
+```
+
+### xxHash3 128bit Version
+```swift
+let digest = xxHash3.digest128("123456789ABCDEF")
+// digest[0] -> 0x208cfe2ef00d2aaa
+// digest[1] -> 0x9b72015eec4abbf3
+
+// Using seed.
+let digest = xxHash3.digest128("123456789ABCDEF", seed: 0x000000007fffffff)
+// digest[0] -> 0x50554db504518e64
+// digest[1] -> c8fb00b18f99658c
+```
 
 ## Generate digest(Streaming)
 ### 32bit Version
