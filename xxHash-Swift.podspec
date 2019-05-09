@@ -36,7 +36,7 @@ Pod::Spec.new do |spec|
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source_files  = "Sources/xxHash/*.{swift}"
+  spec.source_files  = "Sources/xxHash/*.{swift}", "Sources/xxHash/xxh3/*.{swift}"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
