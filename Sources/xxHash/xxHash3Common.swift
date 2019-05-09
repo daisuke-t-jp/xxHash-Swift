@@ -88,12 +88,12 @@ extension xxHash3.Common {
     return llhigh ^ lllow
   }
   
-  static private func accumulate512(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], endian: Common.Endian) -> [UInt64] {
+  static private func accumulate512(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], endian: xxHash.Common.Endian) -> [UInt64] {
     var acc2 = acc
     
     for i in 0..<xxHash3.Common.accNB {
-      let dataVal: UInt64 = Common.UInt8ArrayToUInt(array, index: i * 8, endian: endian)
-      let keyVal = Common.UInt32ToUInt64(keySet[i * 2], val2: keySet[(i * 2) + 1], endian: endian)
+      let dataVal: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: i * 8, endian: endian)
+      let keyVal = xxHash.Common.UInt32ToUInt64(keySet[i * 2], val2: keySet[(i * 2) + 1], endian: endian)
       let dataKey = UInt64(keyVal ^ dataVal)
       let mul = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
                            y: UInt32(dataKey >> 32))
@@ -104,7 +104,7 @@ extension xxHash3.Common {
     return acc2
   }
   
-  static private func accumulate(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], nbStripes: Int, endian: Common.Endian) -> [UInt64] {
+  static private func accumulate(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], nbStripes: Int, endian: xxHash.Common.Endian) -> [UInt64] {
     var acc2 = acc
     
     for i in 0..<nbStripes {
@@ -132,7 +132,7 @@ extension xxHash3.Common {
     return acc2
   }
   
-  static func hashLong(_ acc: [UInt64], array: [UInt8], endian: Common.Endian) -> [UInt64] {
+  static func hashLong(_ acc: [UInt64], array: [UInt8], endian: xxHash.Common.Endian) -> [UInt64] {
     let nbKeys = (keySetDefaultSize - stripeLen) / 2
     let blockLen = stripeLen * nbKeys
     let nbBlocks = array.count / blockLen
@@ -169,14 +169,14 @@ extension xxHash3.Common {
     return acc2
   }
   
-  static private func mix2Accs(_ acc: [UInt64], keySet: [UInt32], endian: Common.Endian) -> UInt64 {
-    let key = Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
-    let key2 = Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
+  static private func mix2Accs(_ acc: [UInt64], keySet: [UInt32], endian: xxHash.Common.Endian) -> UInt64 {
+    let key = xxHash.Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
+    let key2 = xxHash.Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
     
     return mul128Fold64(ll1: acc[0] ^ key, ll2: acc[1] ^ key2)
   }
   
-  static func mergeAccs(_ acc: [UInt64], keySet: [UInt32], start: UInt64, endian: Common.Endian) -> UInt64 {
+  static func mergeAccs(_ acc: [UInt64], keySet: [UInt32], start: UInt64, endian: xxHash.Common.Endian) -> UInt64 {
     var result: UInt64 = start
     
     result &+= mix2Accs(acc, keySet: keySet, endian: endian)
@@ -193,11 +193,11 @@ extension xxHash3.Common {
     return avalanche(result)
   }
   
-  static func mix16B(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: Common.Endian) -> UInt64 {
-    let ll1: UInt64 = Common.UInt8ArrayToUInt(array, index: 0, endian: endian)
-    let ll2: UInt64 = Common.UInt8ArrayToUInt(array, index: 8, endian: endian)
-    let key = Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
-    let key2 = Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
+  static func mix16B(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: xxHash.Common.Endian) -> UInt64 {
+    let ll1: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: 0, endian: endian)
+    let ll2: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: 8, endian: endian)
+    let key = xxHash.Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
+    let key2 = xxHash.Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
     
     return mul128Fold64(ll1: ll1 ^ (key &+ seed), ll2: ll2 ^ (key2 &- seed))
   }

@@ -1,5 +1,5 @@
 //
-//  Common.swift
+//  xxHashCommon.swift
 //  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/02/13.
@@ -9,7 +9,17 @@
 import Foundation
 import CoreFoundation
 
-final class Common {
+final class xxHash {
+  
+  /// xxHash Common class
+  class Common {
+    
+  }
+  
+}
+
+
+extension xxHash.Common {
   
   // MARK: - Enum, Const
   enum Endian {
@@ -33,9 +43,8 @@ final class Common {
 }
 
 
-
 // MARK: - Utility
-extension Common {
+extension xxHash.Common {
   
   static func endian() -> Endian {
     if CFByteOrderGetCurrent() == Int(CFByteOrderLittleEndian.rawValue) {
@@ -53,9 +62,8 @@ extension Common {
 }
 
 
-
 // MARK: - Utility(Swap)
-extension Common {
+extension xxHash.Common {
   
   static func swap<T: FixedWidthInteger>(_ x: T) -> T {
     var res: T = 0
@@ -82,9 +90,8 @@ extension Common {
 }
 
 
-
 // MARK: - Utility(Convert)
-extension Common {
+extension xxHash.Common {
   
   static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int) -> T {
     var block: T = 0
@@ -96,10 +103,10 @@ extension Common {
     return block
   }
   
-  static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, endian: Common.Endian) -> T {
+  static func UInt8ArrayToUInt<T: FixedWidthInteger>(_ array: [UInt8], index: Int, endian: xxHash.Common.Endian) -> T {
     var block: T = UInt8ArrayToUInt(array, index: index)
     
-    if endian == Common.Endian.little {
+    if endian == xxHash.Common.Endian.little {
       return block
     }
     
@@ -123,10 +130,10 @@ extension Common {
     return array
   }
   
-  static func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: Common.Endian) -> [UInt8] {
+  static func UIntToUInt8Array<T: FixedWidthInteger>(_ block: T, endian: xxHash.Common.Endian) -> [UInt8] {
     var array = UIntToUInt8Array(block)
     
-    if endian == Common.Endian.little {
+    if endian == xxHash.Common.Endian.little {
       return array
     }
     
@@ -137,7 +144,7 @@ extension Common {
     return array
   }
   
-  static func UInt32ToUInt64(_ val: UInt32, val2: UInt32, endian: Common.Endian) -> UInt64 {
+  static func UInt32ToUInt64(_ val: UInt32, val2: UInt32, endian: xxHash.Common.Endian) -> UInt64 {
     if endian == .little {
       let h = UInt64(UInt64(val2) << 32)
       let l = UInt64(val)

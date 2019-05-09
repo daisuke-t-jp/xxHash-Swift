@@ -22,8 +22,8 @@ public class xxHash32 {
   
   
   // MARK: - Property
-  private let endian = Common.endian()
-  private var state = Common.State<UInt32>()
+  private let endian = xxHash.Common.endian()
+  private var state = xxHash.Common.State<UInt32>()
   
   /// A seed for generate digest. Default is 0.
   public var seed: UInt32 {
@@ -54,7 +54,7 @@ extension xxHash32 {
   static private func round(_ seed: UInt32, input: UInt32) -> UInt32 {
     var seed2 = seed
     seed2 &+= input &* prime2
-    seed2 = Common.rotl(seed2, r: 13)
+    seed2 = xxHash.Common.rotl(seed2, r: 13)
     seed2 &*= prime1
     
     return seed2
@@ -78,20 +78,20 @@ extension xxHash32 {
 // MARK: - Finalize
 extension xxHash32 {
   
-  static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: Common.Endian) -> UInt32 {
+  static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: xxHash.Common.Endian) -> UInt32 {
     var index = 0
     var h2 = h
     
     func process1() {
       h2 &+= UInt32(array[index]) &* prime5
       index += 1
-      h2 = Common.rotl(h2, r: 11) &* prime1
+      h2 = xxHash.Common.rotl(h2, r: 11) &* prime1
     }
     
     func process4() {
-      h2 &+= Common.UInt8ArrayToUInt(array, index: index, endian: endian) &* prime3
+      h2 &+= xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian) &* prime3
       index += 4
-      h2 = Common.rotl(h2, r: 17) &* prime4
+      h2 = xxHash.Common.rotl(h2, r: 17) &* prime4
     }
     
     
@@ -179,7 +179,7 @@ extension xxHash32 {
 // MARK: - Digest(One-shot)
 extension xxHash32 {
   
-  static private func digest(_ array: [UInt8], seed: UInt32, endian: Common.Endian) -> UInt32 {
+  static private func digest(_ array: [UInt8], seed: UInt32, endian: xxHash.Common.Endian) -> UInt32 {
     let len = array.count
     var h: UInt32
     var index = 0
@@ -193,24 +193,24 @@ extension xxHash32 {
       
       repeat {
         
-        v1 = round(v1, input: Common.UInt8ArrayToUInt(array, index: index))
+        v1 = round(v1, input: xxHash.Common.UInt8ArrayToUInt(array, index: index))
         index += 4
         
-        v2 = round(v2, input: Common.UInt8ArrayToUInt(array, index: index))
+        v2 = round(v2, input: xxHash.Common.UInt8ArrayToUInt(array, index: index))
         index += 4
         
-        v3 = round(v3, input: Common.UInt8ArrayToUInt(array, index: index))
+        v3 = round(v3, input: xxHash.Common.UInt8ArrayToUInt(array, index: index))
         index += 4
         
-        v4 = round(v4, input: Common.UInt8ArrayToUInt(array, index: index))
+        v4 = round(v4, input: xxHash.Common.UInt8ArrayToUInt(array, index: index))
         index += 4
         
       } while(index < limit)
       
-      h = Common.rotl(v1, r: 1)  &+
-        Common.rotl(v2, r: 7)  &+
-        Common.rotl(v3, r: 12) &+
-        Common.rotl(v4, r: 18)
+      h = xxHash.Common.rotl(v1, r: 1)  &+
+        xxHash.Common.rotl(v2, r: 7)  &+
+        xxHash.Common.rotl(v3, r: 12) &+
+        xxHash.Common.rotl(v4, r: 18)
     } else {
       h = seed &+ prime5
     }
@@ -231,17 +231,17 @@ extension xxHash32 {
   ///   - seed: A seed for generate digest. Default is 0.
   /// - Returns: A generated digest.
   static public func digest(_ array: [UInt8], seed: UInt32 = 0) -> UInt32 {
-    return digest(array, seed: seed, endian: Common.endian())
+    return digest(array, seed: seed, endian: xxHash.Common.endian())
   }
   
   /// Overload func for "digest(_ array: [UInt8], seed: UInt32 = 0)".
   static public func digest(_ string: String, seed: UInt32 = 0) -> UInt32 {
-    return digest(Array(string.utf8), seed: seed, endian: Common.endian())
+    return digest(Array(string.utf8), seed: seed, endian: xxHash.Common.endian())
   }
   
   /// Overload func for "digest(_ array: [UInt8], seed: UInt32 = 0)".
   static public func digest(_ data: Data, seed: UInt32 = 0) -> UInt32 {
-    return digest([UInt8](data), seed: seed, endian: Common.endian())
+    return digest([UInt8](data), seed: seed, endian: xxHash.Common.endian())
   }
   
   
@@ -253,19 +253,19 @@ extension xxHash32 {
   /// - Returns: A generated digest's hex string.
   static public func digestHex(_ array: [UInt8], seed: UInt32 = 0) -> String {
     let h = digest(array, seed: seed)
-    return Common.UInt32ToHex(h)
+    return xxHash.Common.UInt32ToHex(h)
   }
   
   /// Overload func for "digestHex(_ array: [UInt8], seed: UInt32 = 0)".
   static public func digestHex(_ string: String, seed: UInt32 = 0) -> String {
     let h = digest(string, seed: seed)
-    return Common.UInt32ToHex(h)
+    return xxHash.Common.UInt32ToHex(h)
   }
   
   /// Overload func for "digestHex(_ array: [UInt8], seed: UInt32 = 0)".
   static public func digestHex(_ data: Data, seed: UInt32 = 0) -> String {
     let h = digest(data, seed: seed)
-    return Common.UInt32ToHex(h)
+    return xxHash.Common.UInt32ToHex(h)
   }
 }
 
@@ -276,7 +276,7 @@ extension xxHash32 {
   
   /// Reset current streaming state to initial.
   public func reset() {
-    state = Common.State()
+    state = xxHash.Common.State()
     
     state.v1 = seed &+ xxHash32.prime1 &+ xxHash32.prime2
     state.v2 = seed &+ xxHash32.prime2
@@ -310,10 +310,10 @@ extension xxHash32 {
       state.mem.replaceSubrange(state.memSize..<state.memSize + (16 - state.memSize),
                                 with: array)
       
-      state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(state.mem, index: 0, endian: endian))
-      state.v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(state.mem, index: 4, endian: endian))
-      state.v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(state.mem, index: 8, endian: endian))
-      state.v4 = xxHash32.round(state.v4, input: Common.UInt8ArrayToUInt(state.mem, index: 12, endian: endian))
+      state.v1 = xxHash32.round(state.v1, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 0, endian: endian))
+      state.v2 = xxHash32.round(state.v2, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 4, endian: endian))
+      state.v3 = xxHash32.round(state.v3, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 8, endian: endian))
+      state.v4 = xxHash32.round(state.v4, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 12, endian: endian))
       
       index += 16 - state.memSize
       state.memSize = 0
@@ -325,16 +325,16 @@ extension xxHash32 {
       
       repeat {
         
-        state.v1 = xxHash32.round(state.v1, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v1 = xxHash32.round(state.v1, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
-        state.v2 = xxHash32.round(state.v2, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v2 = xxHash32.round(state.v2, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
-        state.v3 = xxHash32.round(state.v3, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v3 = xxHash32.round(state.v3, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
-        state.v4 = xxHash32.round(state.v4, input: Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v4 = xxHash32.round(state.v4, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
       } while (index <= limit)
@@ -369,10 +369,10 @@ extension xxHash32 {
     var h: UInt32
     
     if state.largeLen {
-      h = Common.rotl(state.v1, r: 1)  &+
-        Common.rotl(state.v2, r: 7)  &+
-        Common.rotl(state.v3, r: 12) &+
-        Common.rotl(state.v4, r: 18)
+      h = xxHash.Common.rotl(state.v1, r: 1)  &+
+        xxHash.Common.rotl(state.v2, r: 7)  &+
+        xxHash.Common.rotl(state.v3, r: 12) &+
+        xxHash.Common.rotl(state.v4, r: 18)
       
     } else {
       h = state.v3 /* == seed */ &+ xxHash32.prime5
@@ -391,7 +391,7 @@ extension xxHash32 {
   /// - Returns: A generated digest's hex string from current streaming state.
   public func digestHex() -> String {
     let h = digest()
-    return Common.UInt32ToHex(h)
+    return xxHash.Common.UInt32ToHex(h)
   }
   
 }
@@ -401,13 +401,13 @@ extension xxHash32 {
 // MARK: - Canonical
 extension xxHash32 {
   
-  static private func canonicalFromHash(_ hash: UInt32, endian: Common.Endian) -> [UInt8] {
+  static private func canonicalFromHash(_ hash: UInt32, endian: xxHash.Common.Endian) -> [UInt8] {
     var hash2 = hash
-    if endian == Common.Endian.little {
-      hash2 = Common.swap(hash2)
+    if endian == xxHash.Common.Endian.little {
+      hash2 = xxHash.Common.swap(hash2)
     }
     
-    return Common.UIntToUInt8Array(hash2, endian: endian)
+    return xxHash.Common.UIntToUInt8Array(hash2, endian: endian)
   }
   
   /// Get canonical from hash value.
@@ -415,14 +415,14 @@ extension xxHash32 {
   /// - Parameter hash: A target hash value.
   /// - Returns: An array of canonical.
   static public func canonicalFromHash(_ hash: UInt32) -> [UInt8] {
-    return canonicalFromHash(hash, endian: Common.endian())
+    return canonicalFromHash(hash, endian: xxHash.Common.endian())
   }
   
   
-  static private func hashFromCanonical(_ canonical: [UInt8], endian: Common.Endian) -> UInt32 {
-    var hash: UInt32 = Common.UInt8ArrayToUInt(canonical, index: 0, endian: endian)
-    if endian == Common.Endian.little {
-      hash = Common.swap(hash)
+  static private func hashFromCanonical(_ canonical: [UInt8], endian: xxHash.Common.Endian) -> UInt32 {
+    var hash: UInt32 = xxHash.Common.UInt8ArrayToUInt(canonical, index: 0, endian: endian)
+    if endian == xxHash.Common.Endian.little {
+      hash = xxHash.Common.swap(hash)
     }
     
     return hash
@@ -433,7 +433,7 @@ extension xxHash32 {
   /// - Parameter canonical: A target canonical.
   /// - Returns: A hash value.
   static public func hashFromCanonical(_ canonical: [UInt8]) -> UInt32 {
-    return hashFromCanonical(canonical, endian: Common.endian())
+    return hashFromCanonical(canonical, endian: xxHash.Common.endian())
   }
   
 }

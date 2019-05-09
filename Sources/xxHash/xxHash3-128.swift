@@ -39,9 +39,9 @@ extension xxHash3.Bit128 {
     return h128
   }
   
-  static private func len4To8(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: Common.Endian) -> [UInt64] {
-    let l1: UInt32 = Common.UInt8ArrayToUInt(array, index: 0, endian: endian) &+ UInt32(seed) &+ keySet[0]
-    let l2: UInt32 = Common.UInt8ArrayToUInt(array, index: array.count - 4, endian: endian) &+ UInt32(seed >> 32) &+ keySet[1]
+  static private func len4To8(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
+    let l1: UInt32 = xxHash.Common.UInt8ArrayToUInt(array, index: 0, endian: endian) &+ UInt32(seed) &+ keySet[0]
+    let l2: UInt32 = xxHash.Common.UInt8ArrayToUInt(array, index: array.count - 4, endian: endian) &+ UInt32(seed >> 32) &+ keySet[1]
     let acc1: UInt64 = UInt64(array.count) &+ UInt64(l1) &+ (UInt64(l2) << 32) &+ xxHash3.Common.mult32To64(l1, y: l2)
     let acc2: UInt64 = UInt64(array.count) &* xxHash64.prime1 &+ UInt64(l1) &* xxHash64.prime2 &+ UInt64(l2) &* xxHash64.prime3
     
@@ -53,15 +53,15 @@ extension xxHash3.Bit128 {
     return h128
   }
   
-  static private func len9To16(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: Common.Endian) -> [UInt64] {
+  static private func len9To16(_ array: [UInt8], keySet: [UInt32], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
     var acc1: UInt64 = xxHash64.prime1 &* (UInt64(array.count) &+ seed)
     var acc2: UInt64 = xxHash64.prime2 &* (UInt64(array.count) &- seed)
-    let ll1: UInt64 = Common.UInt8ArrayToUInt(array, index: 0, endian: endian)
-    let ll2: UInt64 = Common.UInt8ArrayToUInt(array, index: array.count - 8, endian: endian)
-    let key = Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
-    let key2 = Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
-    let key3 = Common.UInt32ToUInt64(keySet[4], val2: keySet[5], endian: endian)
-    let key4 = Common.UInt32ToUInt64(keySet[6], val2: keySet[7], endian: endian)
+    let ll1: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: 0, endian: endian)
+    let ll2: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: array.count - 8, endian: endian)
+    let key = xxHash.Common.UInt32ToUInt64(keySet[0], val2: keySet[1], endian: endian)
+    let key2 = xxHash.Common.UInt32ToUInt64(keySet[2], val2: keySet[3], endian: endian)
+    let key3 = xxHash.Common.UInt32ToUInt64(keySet[4], val2: keySet[5], endian: endian)
+    let key4 = xxHash.Common.UInt32ToUInt64(keySet[6], val2: keySet[7], endian: endian)
     acc1 &+= xxHash3.Common.mul128Fold64(ll1: ll1 &+ key, ll2: ll2 &+ key2)
     acc2 &+= xxHash3.Common.mul128Fold64(ll1: ll1 &+ key3, ll2: ll2 &+ key4)
     
@@ -73,7 +73,7 @@ extension xxHash3.Bit128 {
     return h128
   }
   
-  static private func len0To16(_ array: [UInt8], seed: UInt64, endian: Common.Endian) -> [UInt64] {
+  static private func len0To16(_ array: [UInt8], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
     if array.count > 8 {
       return len9To16(array, keySet: xxHash3.Common.keySet, seed: seed, endian: endian)
     } else if array.count >= 4 {
@@ -90,7 +90,7 @@ extension xxHash3.Bit128 {
     return h128
   }
   
-  static private func hashLong(_ array: [UInt8], seed: UInt64, endian: Common.Endian) -> [UInt64] {
+  static private func hashLong(_ array: [UInt8], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
     var acc: [UInt64] = [
       seed,
       xxHash64.prime1,
@@ -125,7 +125,7 @@ extension xxHash3.Bit128 {
 
 extension xxHash3.Bit128 {
   
-  static func digest(_ array: [UInt8], seed: UInt64, endian: Common.Endian) -> [UInt64] {
+  static func digest(_ array: [UInt8], seed: UInt64, endian: xxHash.Common.Endian) -> [UInt64] {
     if array.count <= 16 {
       return len0To16(array, seed: seed, endian: endian)
     }
