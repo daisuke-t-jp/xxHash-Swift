@@ -343,7 +343,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = xxHash;
+				ORGANIZATIONNAME = "xxHash-Swift";
 				TargetAttributes = {
 					0288D891221283E2009D61FC = {
 						CreatedOnToolsVersion = 10.1;

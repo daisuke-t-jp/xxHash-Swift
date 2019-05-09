@@ -3,7 +3,7 @@
 //  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/05/06.
-//  Copyright © 2019 xxHash. All rights reserved.
+//  Copyright © 2019 xxHash-Swift. All rights reserved.
 //
 
 import Foundation
