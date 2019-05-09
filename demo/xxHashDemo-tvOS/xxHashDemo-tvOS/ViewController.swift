@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     Common.oneshot32()
     Common.oneshot64()
+    Common.oneshot3_64()
+    Common.oneshot3_128()
     Common.streaming32()
     Common.streaming64()
   }

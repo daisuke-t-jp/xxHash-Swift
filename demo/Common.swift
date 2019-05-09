@@ -46,6 +46,39 @@ class Common {
     }
   }
   
+  /**
+   * Generate Hash(One-shot)
+   *
+   * XXH3 64bit Version
+   */
+  static func oneshot3_64() {
+    do {
+      let hash = xxHash3.digest64("123456789ABCDEF")
+      print("xxHash3-64 One-shot -> 0x\(String(format: "%016lx", hash))")
+    }
+    
+    do {
+      let hash = xxHash3.digest64("123456789ABCDEF", seed: 0x000000007fffffff)
+      print("xxHash3-64 One-shot(0x000000007fffffff) -> 0x\(String(format: "%016lx", hash))")
+    }
+  }
+  
+  /**
+   * Generate Hash(One-shot)
+   *
+   * XXH3 128bit Version
+   */
+  static func oneshot3_128() {
+    do {
+      let hash = xxHash3.digest128("123456789ABCDEF")
+      print("xxHash3-128 One-shot -> 0x\(String(format: "%016lx%016lx", hash[0], hash[1]))")
+    }
+    
+    do {
+      let hash = xxHash3.digest128("123456789ABCDEF", seed: 0x000000007fffffff)
+      print("xxHash3-128 One-shot(0x000000007fffffff) -> 0x\(String(format: "%016lx%016lx", hash[0], hash[1]))")
+    }
+  }
   
   
   /**
