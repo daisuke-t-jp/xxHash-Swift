@@ -125,7 +125,7 @@ extension xxHash3.Common {
       var acc64 = acc[i]
       acc64 ^= acc64 >> 47
       acc64 ^= key64
-      acc64 &*= UInt64(xxHash32.prime1)
+      acc64 &*= UInt64(XXH32.prime1)
       acc2[i] = acc64
     }
     

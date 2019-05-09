@@ -1,5 +1,5 @@
 //
-//  xxHash32.swift
+//  XXH32.swift
 //  xxHash-Swift
 //
 //  Created by Daisuke T on 2019/02/12.
@@ -9,8 +9,8 @@
 import Foundation
 
 /// xxHash 32 bit class
-public typealias XXH32 = xxHash32
-public class xxHash32 {
+public typealias xxHash32 = XXH32
+public class XXH32 {
   
   // MARK: - Enum, Const
   static let prime1: UInt32 = 2654435761	// 0b10011110001101110111100110110001
@@ -49,7 +49,7 @@ public class xxHash32 {
 
 
 // MARK: - Utility
-extension xxHash32 {
+extension XXH32 {
   
   static private func round(_ seed: UInt32, input: UInt32) -> UInt32 {
     var seed2 = seed
@@ -76,7 +76,7 @@ extension xxHash32 {
 
 
 // MARK: - Finalize
-extension xxHash32 {
+extension XXH32 {
   
   static private func finalize(_ h: UInt32, array: [UInt8], len: Int, endian: xxHash.Common.Endian) -> UInt32 {
     var index = 0
@@ -177,7 +177,7 @@ extension xxHash32 {
 
 
 // MARK: - Digest(One-shot)
-extension xxHash32 {
+extension XXH32 {
   
   static private func digest(_ array: [UInt8], seed: UInt32, endian: xxHash.Common.Endian) -> UInt32 {
     let len = array.count
@@ -272,16 +272,16 @@ extension xxHash32 {
 
 
 // MARK: - Digest(Streaming)
-extension xxHash32 {
+extension XXH32 {
   
   /// Reset current streaming state to initial.
   public func reset() {
     state = xxHash.Common.State()
     
-    state.v1 = seed &+ xxHash32.prime1 &+ xxHash32.prime2
-    state.v2 = seed &+ xxHash32.prime2
+    state.v1 = seed &+ XXH32.prime1 &+ XXH32.prime2
+    state.v2 = seed &+ XXH32.prime2
     state.v3 = seed + 0
-    state.v4 = seed &- xxHash32.prime1
+    state.v4 = seed &- XXH32.prime1
   }
   
   
@@ -310,10 +310,10 @@ extension xxHash32 {
       state.mem.replaceSubrange(state.memSize..<state.memSize + (16 - state.memSize),
                                 with: array)
       
-      state.v1 = xxHash32.round(state.v1, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 0, endian: endian))
-      state.v2 = xxHash32.round(state.v2, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 4, endian: endian))
-      state.v3 = xxHash32.round(state.v3, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 8, endian: endian))
-      state.v4 = xxHash32.round(state.v4, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 12, endian: endian))
+      state.v1 = XXH32.round(state.v1, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 0, endian: endian))
+      state.v2 = XXH32.round(state.v2, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 4, endian: endian))
+      state.v3 = XXH32.round(state.v3, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 8, endian: endian))
+      state.v4 = XXH32.round(state.v4, input: xxHash.Common.UInt8ArrayToUInt(state.mem, index: 12, endian: endian))
       
       index += 16 - state.memSize
       state.memSize = 0
@@ -325,16 +325,16 @@ extension xxHash32 {
       
       repeat {
         
-        state.v1 = xxHash32.round(state.v1, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v1 = XXH32.round(state.v1, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
-        state.v2 = xxHash32.round(state.v2, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v2 = XXH32.round(state.v2, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
-        state.v3 = xxHash32.round(state.v3, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v3 = XXH32.round(state.v3, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
-        state.v4 = xxHash32.round(state.v4, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
+        state.v4 = XXH32.round(state.v4, input: xxHash.Common.UInt8ArrayToUInt(array, index: index, endian: endian))
         index += 4
         
       } while (index <= limit)
@@ -375,12 +375,12 @@ extension xxHash32 {
         xxHash.Common.rotl(state.v4, r: 18)
       
     } else {
-      h = state.v3 /* == seed */ &+ xxHash32.prime5
+      h = state.v3 /* == seed */ &+ XXH32.prime5
     }
     
     h &+= state.totalLen
     
-    h = xxHash32.finalize(h, array: state.mem, len: state.memSize, endian: endian)
+    h = XXH32.finalize(h, array: state.mem, len: state.memSize, endian: endian)
     
     return h
   }
@@ -399,7 +399,7 @@ extension xxHash32 {
 
 
 // MARK: - Canonical
-extension xxHash32 {
+extension XXH32 {
   
   static private func canonicalFromHash(_ hash: UInt32, endian: xxHash.Common.Endian) -> [UInt8] {
     var hash2 = hash
