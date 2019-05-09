@@ -27,9 +27,9 @@ extension XXH3.Bit128 {
     let l1 = UInt32(c1 &+ (c2 << 8))
     let l2 = UInt32(UInt32(array.count) &+ (c3 << 2))
     let ll11 = XXH3.Common.mult32To64(l1 &+ UInt32(seed) &+ keySet[0],
-                                         y: l2 &+ keySet[1])
+                                      y: l2 &+ keySet[1])
     let ll12 = XXH3.Common.mult32To64(l1 &+ keySet[2],
-                                         y: l2 &- UInt32(seed) &+ keySet[3])
+                                      y: l2 &- UInt32(seed) &+ keySet[3])
     
     let h128 = [
       XXH3.Common.avalanche(ll11),
@@ -107,13 +107,13 @@ extension XXH3.Bit128 {
     
     // converge into final hash
     let low64: UInt64 = XXH3.Common.mergeAccs(acc,
-                                                 keySet: XXH3.Common.keySet,
-                                                 start: UInt64(array.count) &* XXH64.prime1,
-                                                 endian: endian)
+                                              keySet: XXH3.Common.keySet,
+                                              start: UInt64(array.count) &* XXH64.prime1,
+                                              endian: endian)
     let high64: UInt64 = XXH3.Common.mergeAccs(acc,
-                                                  keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
-                                                  start: UInt64(array.count + 1) &* XXH64.prime2,
-                                                  endian: endian)
+                                               keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
+                                               start: UInt64(array.count + 1) &* XXH64.prime2,
+                                               endian: endian)
     
     let h128 = [low64, high64]
     
@@ -144,47 +144,47 @@ extension XXH3.Bit128 {
           }
           
           acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(48)),
-                                        keySet: [UInt32](XXH3.Common.keySet.dropFirst(24)),
-                                        seed: seed,
-                                        endian: endian)
+                                     keySet: [UInt32](XXH3.Common.keySet.dropFirst(24)),
+                                     seed: seed,
+                                     endian: endian)
           
           acc2 &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 64)),
-                                         keySet: [UInt32](XXH3.Common.keySet.dropFirst(28)),
-                                         seed: seed,
-                                         endian: endian)
+                                      keySet: [UInt32](XXH3.Common.keySet.dropFirst(28)),
+                                      seed: seed,
+                                      endian: endian)
         }
         
         acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(32)),
-                                      keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
-                                      seed: seed,
-                                      endian: endian)
+                                   keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
+                                   seed: seed,
+                                   endian: endian)
         
         acc2 &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 48)),
-                                       keySet: [UInt32](XXH3.Common.keySet.dropFirst(20)),
-                                       seed: seed,
-                                       endian: endian)
+                                    keySet: [UInt32](XXH3.Common.keySet.dropFirst(20)),
+                                    seed: seed,
+                                    endian: endian)
       }
       
       acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(16)),
-                                    keySet: [UInt32](XXH3.Common.keySet.dropFirst(8)),
-                                    seed: seed,
-                                    endian: endian)
+                                 keySet: [UInt32](XXH3.Common.keySet.dropFirst(8)),
+                                 seed: seed,
+                                 endian: endian)
       
       acc2 &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 32)),
-                                     keySet: [UInt32](XXH3.Common.keySet.dropFirst(12)),
-                                     seed: seed,
-                                     endian: endian)
+                                  keySet: [UInt32](XXH3.Common.keySet.dropFirst(12)),
+                                  seed: seed,
+                                  endian: endian)
     }
     
     acc &+= XXH3.Common.mix16B(array,
-                                  keySet: XXH3.Common.keySet,
-                                  seed: seed,
-                                  endian: endian)
+                               keySet: XXH3.Common.keySet,
+                               seed: seed,
+                               endian: endian)
     
     acc2 &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 16)),
-                                   keySet: [UInt32](XXH3.Common.keySet.dropFirst(4)),
-                                   seed: seed,
-                                   endian: endian)
+                                keySet: [UInt32](XXH3.Common.keySet.dropFirst(4)),
+                                seed: seed,
+                                endian: endian)
     
     let part1 = acc &+ acc2
     let part2 = (acc &* XXH64.prime3) &+ (acc2 &* XXH64.prime4) &+ (UInt64(UInt64(array.count) &- seed) &* XXH64.prime2)

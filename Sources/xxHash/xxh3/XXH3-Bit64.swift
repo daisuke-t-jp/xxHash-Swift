@@ -42,7 +42,7 @@ extension XXH3.Bit64 {
     let l1 = UInt32(c1 &+ (c2 << 8))
     let l2 = UInt32(UInt32(array.count) &+ (c3 << 2))
     let ll11: UInt64 =  XXH3.Common.mult32To64(l1 &+ UInt32(seed) &+ keySet[0],
-                                                  y: l2 &+ UInt32(seed >> 32) &+ keySet[1])
+                                               y: l2 &+ UInt32(seed >> 32) &+ keySet[1])
     
     return  XXH3.Common.avalanche(ll11)
   }
@@ -97,9 +97,9 @@ extension XXH3.Bit64 {
     
     // converge into final hash
     return XXH3.Common.mergeAccs(acc,
-                                    keySet: keySet,
-                                    start: UInt64(array.count) &* XXH64.prime1,
-                                    endian: endian)
+                                 keySet: keySet,
+                                 start: UInt64(array.count) &* XXH64.prime1,
+                                 endian: endian)
   }
   
 }
@@ -125,47 +125,47 @@ extension XXH3.Bit64 {
           }
           
           acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(48)),
-                                        keySet: [UInt32](XXH3.Common.keySet.dropFirst(24)),
-                                        seed: seed,
-                                        endian: endian)
+                                     keySet: [UInt32](XXH3.Common.keySet.dropFirst(24)),
+                                     seed: seed,
+                                     endian: endian)
           
           acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 64)),
-                                        keySet: [UInt32](XXH3.Common.keySet.dropFirst(28)),
-                                        seed: seed,
-                                        endian: endian)
+                                     keySet: [UInt32](XXH3.Common.keySet.dropFirst(28)),
+                                     seed: seed,
+                                     endian: endian)
         }
         
         acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(32)),
-                                      keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
-                                      seed: seed,
-                                      endian: endian)
+                                   keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
+                                   seed: seed,
+                                   endian: endian)
         
         acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 48)),
-                                      keySet: [UInt32](XXH3.Common.keySet.dropFirst(20)),
-                                      seed: seed,
-                                      endian: endian)
+                                   keySet: [UInt32](XXH3.Common.keySet.dropFirst(20)),
+                                   seed: seed,
+                                   endian: endian)
       }
       
       acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(16)),
-                                    keySet: [UInt32](XXH3.Common.keySet.dropFirst(8)),
-                                    seed: seed,
-                                    endian: endian)
+                                 keySet: [UInt32](XXH3.Common.keySet.dropFirst(8)),
+                                 seed: seed,
+                                 endian: endian)
       
       acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 32)),
-                                    keySet: [UInt32](XXH3.Common.keySet.dropFirst(12)),
-                                    seed: seed,
-                                    endian: endian)
+                                 keySet: [UInt32](XXH3.Common.keySet.dropFirst(12)),
+                                 seed: seed,
+                                 endian: endian)
     }
     
     acc &+= XXH3.Common.mix16B(array,
-                                  keySet: XXH3.Common.keySet,
-                                  seed: seed,
-                                  endian: endian)
+                               keySet: XXH3.Common.keySet,
+                               seed: seed,
+                               endian: endian)
     
     acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 16)),
-                                  keySet: [UInt32](XXH3.Common.keySet.dropFirst(4)),
-                                  seed: seed,
-                                  endian: endian)
+                               keySet: [UInt32](XXH3.Common.keySet.dropFirst(4)),
+                               seed: seed,
+                               endian: endian)
     
     return XXH3.Common.avalanche(acc)
   }
