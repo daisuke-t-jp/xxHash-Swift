@@ -17,6 +17,7 @@ identifier_name:
     min_length: 1
 type_name:
     excluded:
+        - xxHash
         - xxHash32
         - xxHash64
         - xxHash3
