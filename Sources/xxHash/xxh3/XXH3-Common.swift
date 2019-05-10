@@ -69,10 +69,10 @@ extension XXH3.Common {
     let l1 = UInt32(ll1 & 0x00000000FFFFFFFF)
     let l2 = UInt32(ll2 & 0x00000000FFFFFFFF)
     
-    let llh: UInt64 = XXH3.Common.mult32To64(h1, y: h2)
-    let llm1: UInt64 = XXH3.Common.mult32To64(l1, y: h2)
-    let llm2: UInt64 = XXH3.Common.mult32To64(h1, y: l2)
-    let lll: UInt64 = XXH3.Common.mult32To64(l1, y: l2)
+    let llh: UInt64 = mult32To64(h1, y: h2)
+    let llm1: UInt64 = mult32To64(l1, y: h2)
+    let llm2: UInt64 = mult32To64(h1, y: l2)
+    let lll: UInt64 = mult32To64(l1, y: l2)
     
     let t = UInt64(lll &+ (llm1 << 32))
     let carry1 = UInt64((t < lll) ? 1 : 0)
@@ -91,9 +91,9 @@ extension XXH3.Common {
   static private func accumulate512(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], endian: xxHash.Common.Endian) -> [UInt64] {
     var acc2 = acc
     
+    for i in 0..<accNB {
       let dataVal: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: i * 8, endian: endian)
       let keyVal = xxHash.Common.UInt32ToUInt64(keySet[i * 2], val2: keySet[(i * 2) + 1], endian: endian)
-    for i in 0..<accNB {
       let dataKey = UInt64(keyVal ^ dataVal)
       let mul = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
                            y: UInt32(dataKey >> 32))
