@@ -12,7 +12,7 @@ import CoreFoundation
 final class xxHash {
   
   /// xxHash Common class
-  class Common {
+  final class Common {
     
   }
   

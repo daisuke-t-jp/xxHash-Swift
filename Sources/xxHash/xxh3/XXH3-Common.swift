@@ -11,7 +11,7 @@ import Foundation
 extension XXH3 {
   
   /// XXH3 Common class
-  class Common {
+  final class Common {
   }
   
 }
