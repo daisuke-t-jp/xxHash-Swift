@@ -91,9 +91,9 @@ extension XXH3.Common {
   static private func accumulate512(_ acc: [UInt64], array: [UInt8], keySet: [UInt32], endian: xxHash.Common.Endian) -> [UInt64] {
     var acc2 = acc
     
-    for i in 0..<XXH3.Common.accNB {
       let dataVal: UInt64 = xxHash.Common.UInt8ArrayToUInt(array, index: i * 8, endian: endian)
       let keyVal = xxHash.Common.UInt32ToUInt64(keySet[i * 2], val2: keySet[(i * 2) + 1], endian: endian)
+    for i in 0..<accNB {
       let dataKey = UInt64(keyVal ^ dataVal)
       let mul = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
                            y: UInt32(dataKey >> 32))
@@ -133,7 +133,7 @@ extension XXH3.Common {
   }
   
   static func hashLong(_ acc: [UInt64], array: [UInt8], endian: xxHash.Common.Endian) -> [UInt64] {
-    let nbKeys = (keySetDefaultSize - stripeLen) / 2
+    let nbKeys = (keySetDefaultSize - stripeElts) / 2
     let blockLen = stripeLen * nbKeys
     let nbBlocks = array.count / blockLen
     var acc2 = acc
@@ -159,7 +159,7 @@ extension XXH3.Common {
                       endian: endian)
     
     // last stripe
-    if array.count & (stripeLen - 1) > 0 {
+    if (array.count & (stripeLen - 1)) > 0 {
       acc2 = accumulate512(acc2,
                            array: [UInt8](array.dropFirst(array.count - stripeLen)),
                            keySet: [UInt32](keySet.dropFirst(nbStripes * 2)),
