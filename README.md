@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/daisuke-t-jp/xxHash-Swift/master/images/header.png" width="700"></br>
 ------
 ![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20Linux-blue.svg)
-[![Language Swift%204.2,%205.0](https://img.shields.io/badge/Language-Swift%204.2,%205.0-orange.svg)](https://developer.apple.com/swift)
+[![Language Swift%205.0](https://img.shields.io/badge/Language-Swift%205.0-orange.svg)](https://developer.apple.com/swift)
 [![CocoaPods](https://img.shields.io/cocoapods/v/xxHash-Swift.svg)](https://cocoapods.org/pods/xxHash-Swift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg)](https://github.com/Carthage/Carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-green.svg)](https://github.com/apple/swift-package-manager)
@@ -11,7 +11,7 @@
 # Introduction
 
 [**xxHash**](https://cyan4973.github.io/xxHash/) framework in Swift.  
-A framework includes xxHash32/xxHash64/xxHash3-64/xxHash3-128 functions.  
+A framework includes XXH32/XXH64/XXH3-64/XXH3-128 functions.  
   
 Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   
@@ -24,7 +24,7 @@ Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
   - macOS 10.12+
   - tvOS 12.0+
   - Linux
-- Swift 4.2, 5.0
+- Swift 5.0
 
 
 # Installation
@@ -47,11 +47,7 @@ import PackageDescription
 let package = Package(
   name: "YOUR_PACKAGE_NAME",
   dependencies: [
-    // Swift 4.2
-    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", .exact("1.0.9"))
-
-    // Swift 5.0
-    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.10")
+    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.11")
   ],
   targets: [
     .target(
@@ -69,54 +65,22 @@ let package = Package(
 import xxHash_Swift
 ```
 
-## Generate digest(One-shot)
-### 32bit Version
+
+## XXH32
+### Generate digest(One-shot)
 ```swift
-let digest = xxHash32.digest("123456789ABCDEF")
+let digest = XXH32.digest("123456789ABCDEF")
 // digest -> 0x576e3cf9
 
 // Using seed.
-let digest = xxHash32.digest("123456789ABCDEF", seed: 0x7fffffff)
+let digest = XXH32.digest("123456789ABCDEF", seed: 0x7fffffff)
 // digest -> 0xa7f06f9d
 ```
 
-### 64bit Version
-```swift
-let digest = xxHash64.digest("123456789ABCDEF")
-// digest -> 0xa66df83f00e9202d
-
-// Using seed.
-let digest = xxHash64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
-// digest -> 0xe8d84202a16e482f
-```
-
-### xxHash3 64bit Version
-```swift
-let digest = xxHash3.digest64("123456789ABCDEF")
-// digest -> 0xfb28db77f56706e8
-
-// Using seed.
-let digest = xxHash3.digest64("123456789ABCDEF", seed: 0x000000007fffffff)
-// digest -> 0xced1ef1da8aa95ae
-```
-
-### xxHash3 128bit Version
-```swift
-let digest = xxHash3.digest128("123456789ABCDEF")
-// digest[0] -> 0x208cfe2ef00d2aaa
-// digest[1] -> 0x9b72015eec4abbf3
-
-// Using seed.
-let digest = xxHash3.digest128("123456789ABCDEF", seed: 0x000000007fffffff)
-// digest[0] -> 0x50554db504518e64
-// digest[1] -> c8fb00b18f99658c
-```
-
-## Generate digest(Streaming)
-### 32bit Version
+### Generate digest(Streaming)
 ```swift
 // Create xxHash instance
-let xxh = xxHash32() // if using seed, e.g. "xxHash32(0x7fffffff)"
+let xxh = XXH32() // if using seed, e.g. "XXH32(0x7fffffff)"
 
 // Get data from file
 let bundle = Bundle(for: type(of: self))
@@ -145,10 +109,22 @@ let digest = xxh.digest()
 // digest -> 0xafc8e0c2
 ```
 
-### 64bit Version
+
+## XXH64
+### Generate digest(One-shot)
+```swift
+let digest = XXH64.digest("123456789ABCDEF")
+// digest -> 0xa66df83f00e9202d
+
+// Using seed.
+let digest = XXH64.digest("123456789ABCDEF", seed: 0x000000007fffffff)
+// digest -> 0xe8d84202a16e482f
+```
+
+### Generate digest(Streaming)
 ```swift
 // Create xxHash instance
-let xxh = xxHash64() // if using seed, e.g. "xxHash64(0x0000007fffffff)"
+let xxh = XXH64() // if using seed, e.g. "XXH64(0x000000007fffffff)"
 
 // Get data from file
 let bundle = Bundle(for: type(of: self))
@@ -175,6 +151,31 @@ repeat {
 
 let digest = xxh.digest()
 // digest -> 0x843c2c4ccfbfb749
+```
+
+
+## XXH3-64
+### Generate digest(One-shot)
+```swift
+let digest = XXH3.digest64("123456789ABCDEF")
+// digest -> 0xfb28db77f56706e8
+
+// Using seed.
+let digest = XXH3.digest64("123456789ABCDEF", seed: 0x000000007fffffff)
+// digest -> 0xced1ef1da8aa95ae
+```
+
+## XXH3-128
+### Generate digest(One-shot)
+```swift
+let digest = XXH3.digest128("123456789ABCDEF")
+// digest[0] -> 0x208cfe2ef00d2aaa
+// digest[1] -> 0x9b72015eec4abbf3
+
+// Using seed.
+let digest = XXH3.digest128("123456789ABCDEF", seed: 0x000000007fffffff)
+// digest[0] -> 0x50554db504518e64
+// digest[1] -> 0xc8fb00b18f99658c
 ```
 
 
