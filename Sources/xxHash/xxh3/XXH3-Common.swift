@@ -138,12 +138,14 @@ extension XXH3.Common {
     return acc2
   }
   
-  static private func scrambleAcc(_ acc: [UInt64], keySet: [UInt32], keySetIndex: Int) -> [UInt64] {
+  static private func scrambleAcc(_ acc: [UInt64], keySet: [UInt32], keySetIndex: Int, endian: xxHash.Common.Endian) -> [UInt64] {
     var acc2 = acc
     
     for i in 0..<accNB {
-      let key64 = UInt64(keySet[keySetIndex + (i * 2)])
-      var acc64 = acc[i]
+      let key64 = xxHash.Common.UInt32ToUInt64(keySet[keySetIndex + (i * 2)],
+                                               val2: keySet[keySetIndex + (i * 2) + 1],
+                                               endian: endian)
+      var acc64 = acc2[i]
       acc64 ^= acc64 >> 47
       acc64 ^= key64
       acc64 &*= UInt64(XXH32.prime1)
@@ -170,7 +172,8 @@ extension XXH3.Common {
       
       acc2 = scrambleAcc(acc2,
                          keySet: keySet,
-                         keySetIndex: keySetDefaultSize - stripeElts)
+                         keySetIndex: keySetDefaultSize - stripeElts,
+                         endian: endian)
     }
     
     
