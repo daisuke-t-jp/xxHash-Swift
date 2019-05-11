@@ -102,7 +102,7 @@ extension XXH3.Common {
       let dataVal: UInt64 = xxHash.Common.UInt8ArrayToUInt(array,
                                                            index: arrayIndex + (i * 8),
                                                            endian: endian)
-      let keyVal = xxHash.Common.UInt32ToUInt64(keySet[i * 2],
+      let keyVal = xxHash.Common.UInt32ToUInt64(keySet[keySetIndex + (i * 2)],
                                                 val2: keySet[keySetIndex + (i * 2) + 1],
                                                 endian: endian)
       let dataKey = UInt64(keyVal ^ dataVal)
