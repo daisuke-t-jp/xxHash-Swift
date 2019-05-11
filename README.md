@@ -47,7 +47,7 @@ import PackageDescription
 let package = Package(
   name: "YOUR_PACKAGE_NAME",
   dependencies: [
-    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.11")
+    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.12")
   ],
   targets: [
     .target(
