@@ -13,7 +13,7 @@
     <a title="xxHash  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">xxHash Docs</a> (100% documented)</p>
+        <p><a href="index.html">xxHash Docs</a> (60% documented)</p>
         <p class="header-right"><a href="https://github.com/daisuke-t-jp/xxHash-Swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -31,10 +31,27 @@
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/xxHash32.html">xxHash32</a>
+                <a href="Classes/XXH3.html">XXH3</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/xxHash64.html">xxHash64</a>
+                <a href="Classes/XXH32.html">XXH32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/XXH64.html">XXH64</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6xxHash0A5Hash3a">xxHash3</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6xxHash0A6Hash32a">xxHash32</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6xxHash0A6Hash64a">xxHash64</a>
               </li>
             </ul>
           </li>
@@ -47,15 +64,15 @@
             <h2 id='img-src-https-raw-githubusercontent-com-daisuke-t-jp-xxhash-swift-master-images-header-png-width-700-br' class='heading'><img src="https://raw.githubusercontent.com/daisuke-t-jp/xxHash-Swift/master/images/header.png" width="700"></br></h2>
 
 <p><img src="https://img.shields.io/badge/Platform-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20Linux-blue.svg" alt="Platform">
-<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Language-Swift%204.2-orange.svg" alt="Language Swift%204.2"></a>
-<a href="https://cocoapods.org/pods/xxHash-Swift"><img src="https://img.shields.io/cocoapods/v/xxHash-Swift.svg" alt="Cocoapods"></a>
+<a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Language-Swift%205.0-orange.svg" alt="Language Swift%205.0"></a>
+<a href="https://cocoapods.org/pods/xxHash-Swift"><img src="https://img.shields.io/cocoapods/v/xxHash-Swift.svg" alt="CocoaPods"></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-green.svg" alt="Carthage compatible"></a>
 <a href="https://github.com/apple/swift-package-manager"><img src="https://img.shields.io/badge/SwiftPM-compatible-green.svg" alt="SwiftPM compatible"></a>
 <a href="https://travis-ci.org/daisuke-t-jp/xxHash-Swift"><img src="https://travis-ci.org/daisuke-t-jp/xxHash-Swift.svg?branch=master" alt="Build Status"></a></p>
 <h1 id='introduction' class='heading'>Introduction</h1>
 
 <p><a href="https://cyan4973.github.io/xxHash/"><strong>xxHash</strong></a> framework in Swift.<br>
-A framework includes xxHash 32/64 bit functions.  </p>
+A framework includes XXH32/XXH64/XXH3-64/XXH3-128 functions.  </p>
 
 <p>Original xxHash algorithm created by <a href="https://github.com/Cyan4973">Yann Collet</a>.</p>
 
@@ -71,7 +88,7 @@ A framework includes xxHash 32/64 bit functions.  </p>
 <li>tvOS 12.0+</li>
 <li>Linux</li>
 </ul></li>
-<li>Swift 4.2+</li>
+<li>Swift 5.0</li>
 </ul>
 <h1 id='installation' class='heading'>Installation</h1>
 <h2 id='carthage' class='heading'>Carthage</h2>
@@ -88,43 +105,33 @@ end
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">PackageDescription</span>
 
 <span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
-    <span class="nv">name</span><span class="p">:</span> <span class="s">"YOUR_PACKAGE_NAME"</span><span class="p">,</span>
-    <span class="nv">targets</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/daisuke-t-jp/xxHash-Swift.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.0.0"</span><span class="p">)</span>
-    <span class="p">]</span>
-    <span class="nv">targets</span><span class="p">:</span> <span class="p">[</span>
-        <span class="o">.</span><span class="nf">target</span><span class="p">(</span>
-            <span class="nv">name</span><span class="p">:</span> <span class="s">"YOUR_TARGET_NAME"</span><span class="p">,</span>
-            <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">"xxHash-Swift"</span><span class="p">]),</span>
-    <span class="p">]</span>
+  <span class="nv">name</span><span class="p">:</span> <span class="s">"YOUR_PACKAGE_NAME"</span><span class="p">,</span>
+  <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/daisuke-t-jp/xxHash-Swift.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.0.12"</span><span class="p">)</span>
+  <span class="p">],</span>
+  <span class="nv">targets</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">target</span><span class="p">(</span>
+      <span class="nv">name</span><span class="p">:</span> <span class="s">"YOUR_TARGET_NAME"</span><span class="p">,</span>
+      <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span><span class="s">"xxHash-Swift"</span><span class="p">]),</span>
+  <span class="p">]</span>
 <span class="p">)</span>
 </code></pre>
 <h1 id='usage' class='heading'>Usage</h1>
 <h2 id='import-framework' class='heading'>Import framework</h2>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="n">xxHash_Swift</span>
 </code></pre>
-<h2 id='generate-digest-one-shot' class='heading'>Generate digest(One-shot)</h2>
-<h3 id='32bit-version' class='heading'>32bit Version</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="n">xxHash32</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">)</span>
+<h2 id='xxh32' class='heading'>XXH32</h2>
+<h3 id='generate-digest-one-shot' class='heading'>Generate digest(One-shot)</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH32</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">)</span>
 <span class="c1">// digest -&gt; 0x576e3cf9</span>
 
 <span class="c1">// Using seed.</span>
-<span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="n">xxHash32</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">,</span> <span class="nv">seed</span><span class="p">:</span> <span class="mh">0x7fffffff</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH32</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">,</span> <span class="nv">seed</span><span class="p">:</span> <span class="mh">0x7fffffff</span><span class="p">)</span>
 <span class="c1">// digest -&gt; 0xa7f06f9d</span>
 </code></pre>
-<h3 id='64bit-version' class='heading'>64bit Version</h3>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="n">xxHash64</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">)</span>
-<span class="c1">// digest -&gt; 0xa66df83f00e9202d</span>
-
-<span class="c1">// Using seed.</span>
-<span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="n">xxHash64</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">,</span> <span class="nv">seed</span><span class="p">:</span> <span class="mh">0x000000007fffffff</span><span class="p">)</span>
-<span class="c1">// digest -&gt; 0xe8d84202a16e482f</span>
-</code></pre>
-<h2 id='generate-digest-streaming' class='heading'>Generate digest(Streaming)</h2>
-<h3 id='32bit-version' class='heading'>32bit Version</h3>
+<h3 id='generate-digest-streaming' class='heading'>Generate digest(Streaming)</h3>
 <pre class="highlight swift"><code><span class="c1">// Create xxHash instance</span>
-<span class="k">let</span> <span class="nv">xxh</span> <span class="o">=</span> <span class="nf">xxHash32</span><span class="p">()</span> <span class="c1">// if using seed, e.g. "xxHash32(0x7fffffff)"</span>
+<span class="k">let</span> <span class="nv">xxh</span> <span class="o">=</span> <span class="kt">XXH32</span><span class="p">()</span> <span class="c1">// if using seed, e.g. "XXH32(0x7fffffff)"</span>
 
 <span class="c1">// Get data from file</span>
 <span class="k">let</span> <span class="nv">bundle</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="k">self</span><span class="p">))</span>
@@ -135,26 +142,35 @@ end
 <span class="k">var</span> <span class="nv">index</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">repeat</span> <span class="p">{</span>
-   <span class="k">var</span> <span class="nv">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">bufSize</span>
-   <span class="k">if</span> <span class="n">lastIndex</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
-      <span class="n">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="o">-</span> <span class="n">index</span>
-   <span class="p">}</span>
+  <span class="k">var</span> <span class="nv">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">bufSize</span>
+  <span class="k">if</span> <span class="n">lastIndex</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+    <span class="n">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="o">-</span> <span class="n">index</span>
+  <span class="p">}</span>
 
-   <span class="k">let</span> <span class="nv">data2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="o">..&lt;</span><span class="n">lastIndex</span><span class="p">]</span>
-   <span class="n">xxh</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="c1">// xxHash update</span>
+  <span class="k">let</span> <span class="nv">data2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="o">..&lt;</span><span class="n">lastIndex</span><span class="p">]</span>
+  <span class="n">xxh</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="c1">// xxHash update</span>
 
-   <span class="n">index</span> <span class="o">+=</span> <span class="n">data2</span><span class="o">.</span><span class="n">count</span>
-   <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
-      <span class="k">break</span>
-   <span class="p">}</span>
+  <span class="n">index</span> <span class="o">+=</span> <span class="n">data2</span><span class="o">.</span><span class="n">count</span>
+  <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+    <span class="k">break</span>
+  <span class="p">}</span>
 <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 
 <span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="n">xxh</span><span class="o">.</span><span class="nf">digest</span><span class="p">()</span>
 <span class="c1">// digest -&gt; 0xafc8e0c2</span>
 </code></pre>
-<h3 id='64bit-version' class='heading'>64bit Version</h3>
+<h2 id='xxh64' class='heading'>XXH64</h2>
+<h3 id='generate-digest-one-shot' class='heading'>Generate digest(One-shot)</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH64</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">)</span>
+<span class="c1">// digest -&gt; 0xa66df83f00e9202d</span>
+
+<span class="c1">// Using seed.</span>
+<span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH64</span><span class="o">.</span><span class="nf">digest</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">,</span> <span class="nv">seed</span><span class="p">:</span> <span class="mh">0x000000007fffffff</span><span class="p">)</span>
+<span class="c1">// digest -&gt; 0xe8d84202a16e482f</span>
+</code></pre>
+<h3 id='generate-digest-streaming' class='heading'>Generate digest(Streaming)</h3>
 <pre class="highlight swift"><code><span class="c1">// Create xxHash instance</span>
-<span class="k">let</span> <span class="nv">xxh</span> <span class="o">=</span> <span class="nf">xxHash64</span><span class="p">()</span> <span class="c1">// if using seed, e.g. "xxHash64(0x0000007fffffff)"</span>
+<span class="k">let</span> <span class="nv">xxh</span> <span class="o">=</span> <span class="kt">XXH64</span><span class="p">()</span> <span class="c1">// if using seed, e.g. "XXH64(0x000000007fffffff)"</span>
 
 <span class="c1">// Get data from file</span>
 <span class="k">let</span> <span class="nv">bundle</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="k">self</span><span class="p">))</span>
@@ -165,28 +181,57 @@ end
 <span class="k">var</span> <span class="nv">index</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">repeat</span> <span class="p">{</span>
-   <span class="k">var</span> <span class="nv">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">bufSize</span>
-   <span class="k">if</span> <span class="n">lastIndex</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
-      <span class="n">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="o">-</span> <span class="n">index</span>
-   <span class="p">}</span>
+  <span class="k">var</span> <span class="nv">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">bufSize</span>
+  <span class="k">if</span> <span class="n">lastIndex</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+    <span class="n">lastIndex</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="o">-</span> <span class="n">index</span>
+  <span class="p">}</span>
 
-   <span class="k">let</span> <span class="nv">data2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="o">..&lt;</span><span class="n">lastIndex</span><span class="p">]</span>
-   <span class="n">xxh</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="c1">// xxHash update</span>
+  <span class="k">let</span> <span class="nv">data2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="o">..&lt;</span><span class="n">lastIndex</span><span class="p">]</span>
+  <span class="n">xxh</span><span class="o">.</span><span class="nf">update</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="c1">// xxHash update</span>
 
-   <span class="n">index</span> <span class="o">+=</span> <span class="n">data2</span><span class="o">.</span><span class="n">count</span>
-   <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
-      <span class="k">break</span>
-   <span class="p">}</span>
+  <span class="n">index</span> <span class="o">+=</span> <span class="n">data2</span><span class="o">.</span><span class="n">count</span>
+  <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span> <span class="p">{</span>
+    <span class="k">break</span>
+  <span class="p">}</span>
 <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
 
 <span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="n">xxh</span><span class="o">.</span><span class="nf">digest</span><span class="p">()</span>
 <span class="c1">// digest -&gt; 0x843c2c4ccfbfb749</span>
 </code></pre>
+<h2 id='xxh3-64' class='heading'>XXH3-64</h2>
+<h3 id='generate-digest-one-shot' class='heading'>Generate digest(One-shot)</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH3</span><span class="o">.</span><span class="nf">digest64</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">)</span>
+<span class="c1">// digest -&gt; 0xfb28db77f56706e8</span>
+
+<span class="c1">// Using seed.</span>
+<span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH3</span><span class="o">.</span><span class="nf">digest64</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">,</span> <span class="nv">seed</span><span class="p">:</span> <span class="mh">0x000000007fffffff</span><span class="p">)</span>
+<span class="c1">// digest -&gt; 0xced1ef1da8aa95ae</span>
+</code></pre>
+<h2 id='xxh3-128' class='heading'>XXH3-128</h2>
+<h3 id='generate-digest-one-shot' class='heading'>Generate digest(One-shot)</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH3</span><span class="o">.</span><span class="nf">digest128</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">)</span>
+<span class="c1">// digest[0] -&gt; 0x208cfe2ef00d2aaa</span>
+<span class="c1">// digest[1] -&gt; 0x9b72015eec4abbf3</span>
+
+<span class="c1">// Using seed.</span>
+<span class="k">let</span> <span class="nv">digest</span> <span class="o">=</span> <span class="kt">XXH3</span><span class="o">.</span><span class="nf">digest128</span><span class="p">(</span><span class="s">"123456789ABCDEF"</span><span class="p">,</span> <span class="nv">seed</span><span class="p">:</span> <span class="mh">0x000000007fffffff</span><span class="p">)</span>
+<span class="c1">// digest[0] -&gt; 0x50554db504518e64</span>
+<span class="c1">// digest[1] -&gt; 0xc8fb00b18f99658c</span>
+</code></pre>
+<h1 id='demo' class='heading'>Demo</h1>
+
+<p>There are demos.</p>
+
+<ul>
+<li><a href="https://github.com/daisuke-t-jp/xxHash-Swift/tree/master/demo/xxHashDemo-iOS">iOS</a></li>
+<li><a href="https://github.com/daisuke-t-jp/xxHash-Swift/tree/master/demo/xxHashDemo-macOS">macOS</a></li>
+<li><a href="https://github.com/daisuke-t-jp/xxHash-Swift/tree/master/demo/xxHashDemo-tvOS">tvOS</a></li>
+</ul>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/daisuke-t-jp/xxHash-Swift" target="_blank" rel="external">Daisuke T</a>. All rights reserved. (Last updated: 2019-03-09)</p>
+          <p>&copy; 2019 <a class="link" href="https://github.com/daisuke-t-jp/xxHash-Swift" target="_blank" rel="external">Daisuke T</a>. All rights reserved. (Last updated: 2019-05-11)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
