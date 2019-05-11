@@ -7,8 +7,8 @@ Pod::Spec.new do |spec|
 
   spec.description  = <<-DESC
                    xxHash framework in Swift.
-                   A framework includes xxHash 32/64 bit functions.
- 
+                   A framework includes XXH32/XXH64/XXH3-64/XXH3-128 functions.
+
                    Original xxHash algorithm created by Yann Collet.
                    https://cyan4973.github.io/xxHash/
                    DESC
