@@ -295,7 +295,7 @@ extension XXH64 {
         v4 = round(v4, input: xxHash.Common.UInt8ArrayToUInt(array, index: index))
         index += 8
         
-      } while(index < limit)
+      } while(index <= limit)
       
       h = xxHash.Common.rotl(v1, r: 1)  &+
         xxHash.Common.rotl(v2, r: 7)  &+
