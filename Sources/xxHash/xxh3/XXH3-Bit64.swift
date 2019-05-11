@@ -98,6 +98,7 @@ extension XXH3.Bit64 {
     // converge into final hash
     return XXH3.Common.mergeAccs(acc,
                                  keySet: keySet,
+                                 keySetIndex: 0,
                                  start: UInt64(array.count) &* XXH64.prime1,
                                  endian: endian)
   }
@@ -124,46 +125,62 @@ extension XXH3.Bit64 {
             return hashLong(array, seed: seed, endian: endian)
           }
           
-          acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(48)),
-                                     keySet: [UInt32](XXH3.Common.keySet.dropFirst(24)),
+          acc &+= XXH3.Common.mix16B(array,
+                                     arrayIndex: 48,
+                                     keySet: XXH3.Common.keySet,
+                                     keySetIndex: 24,
                                      seed: seed,
                                      endian: endian)
           
-          acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 64)),
-                                     keySet: [UInt32](XXH3.Common.keySet.dropFirst(28)),
+          acc &+= XXH3.Common.mix16B(array,
+                                     arrayIndex: array.count - 64,
+                                     keySet: XXH3.Common.keySet,
+                                     keySetIndex: 28,
                                      seed: seed,
                                      endian: endian)
         }
         
-        acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(32)),
-                                   keySet: [UInt32](XXH3.Common.keySet.dropFirst(16)),
+        acc &+= XXH3.Common.mix16B(array,
+                                   arrayIndex: 32,
+                                   keySet: XXH3.Common.keySet,
+                                   keySetIndex: 16,
                                    seed: seed,
                                    endian: endian)
         
-        acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 48)),
-                                   keySet: [UInt32](XXH3.Common.keySet.dropFirst(20)),
+        acc &+= XXH3.Common.mix16B(array,
+                                   arrayIndex: array.count - 48,
+                                   keySet: XXH3.Common.keySet,
+                                   keySetIndex: 20,
                                    seed: seed,
                                    endian: endian)
       }
       
-      acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(16)),
-                                 keySet: [UInt32](XXH3.Common.keySet.dropFirst(8)),
+      acc &+= XXH3.Common.mix16B(array,
+                                 arrayIndex: 16,
+                                 keySet: XXH3.Common.keySet,
+                                 keySetIndex: 8,
                                  seed: seed,
                                  endian: endian)
       
-      acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 32)),
-                                 keySet: [UInt32](XXH3.Common.keySet.dropFirst(12)),
+      acc &+= XXH3.Common.mix16B(array,
+                                 arrayIndex: array.count - 32,
+                                 keySet: XXH3.Common.keySet,
+                                 keySetIndex: 12,
                                  seed: seed,
                                  endian: endian)
     }
     
     acc &+= XXH3.Common.mix16B(array,
+                               arrayIndex: 0,
                                keySet: XXH3.Common.keySet,
+                               keySetIndex: 0,
                                seed: seed,
                                endian: endian)
     
-    acc &+= XXH3.Common.mix16B([UInt8](array.dropFirst(array.count - 16)),
-                               keySet: [UInt32](XXH3.Common.keySet.dropFirst(4)),
+    acc &+= XXH3.Common.mix16B(array,
+                               arrayIndex: array.count - 16,
+                               keySet: XXH3.Common.keySet,
+                               keySetIndex: 4,
                                seed: seed,
                                endian: endian)
     
