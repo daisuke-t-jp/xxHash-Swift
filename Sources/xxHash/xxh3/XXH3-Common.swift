@@ -83,7 +83,7 @@ extension XXH3.Common {
     let llm1l = UInt64(llm1 >> 32)
     let llm2l = UInt64(llm2 >> 32)
     
-    let llhigh = UInt64(llh &+ llm1l &+ llm2l &+ carry1 &+ carry2)
+    let llhigh = UInt64(llh &+ (llm1l + llm2l + carry1 + carry2))
     
     return llhigh ^ lllow
   }
