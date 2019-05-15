@@ -149,13 +149,13 @@ extension xxHash.Common {
       let h = UInt64(UInt64(val2) << 32)
       let l = UInt64(val)
       
-      return h &+ l
+      return h + l
     }
     
     let h = UInt64(UInt64(val) << 32)
     let l = UInt64(val2)
     
-    return h &+ l
+    return h + l
   }
   
   static func UInt32ToHex(_ val: UInt32) -> String {
