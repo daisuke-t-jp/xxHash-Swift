@@ -40,9 +40,9 @@ extension XXH3.Common {
   ]
   // swiftlint:enable comma
   
-  static let stripeLen = 64
-  static let stripeElts = stripeLen / MemoryLayout<UInt32>.size
-  static let accNB = stripeLen / MemoryLayout<UInt64>.size
+  private static let stripeLen = 64
+  private static let stripeElts = stripeLen / MemoryLayout<UInt32>.size
+  private static let accNB = stripeLen / MemoryLayout<UInt64>.size
   
 }
 
