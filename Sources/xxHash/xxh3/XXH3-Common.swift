@@ -60,7 +60,7 @@ extension XXH3.Common {
   }
   
   static func mult32To64(_ x: UInt32, y: UInt32) -> UInt64 {
-    return UInt64(x) &* UInt64(y)
+    return UInt64(x) * UInt64(y)
   }
   
   static func mul128Fold64(ll1: UInt64, ll2: UInt64) -> UInt64 {
