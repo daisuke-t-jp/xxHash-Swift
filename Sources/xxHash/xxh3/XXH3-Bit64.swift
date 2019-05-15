@@ -11,7 +11,7 @@ import Foundation
 extension XXH3 {
   
   /// XXH3 64bit class
-  class Bit64 {
+  final class Bit64 {
   }
   
 }

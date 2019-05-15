@@ -11,7 +11,7 @@ import Foundation
 extension XXH3 {
   
   /// XXH3 128bit class
-  class Bit128 {
+  final class Bit128 {
   }
   
 }
