@@ -40,9 +40,9 @@ extension XXH3.Common {
   ]
   // swiftlint:enable comma
   
-  static let stripeLen = 64
-  static let stripeElts = stripeLen / MemoryLayout<UInt32>.size
-  static let accNB = stripeLen / MemoryLayout<UInt64>.size
+  private static let stripeLen = 64
+  private static let stripeElts = stripeLen / MemoryLayout<UInt32>.size
+  private static let accNB = stripeLen / MemoryLayout<UInt64>.size
   
 }
 
@@ -60,7 +60,7 @@ extension XXH3.Common {
   }
   
   static func mult32To64(_ x: UInt32, y: UInt32) -> UInt64 {
-    return UInt64(UInt64(x) &* UInt64(y))
+    return UInt64(x) * UInt64(y)
   }
   
   static func mul128Fold64(ll1: UInt64, ll2: UInt64) -> UInt64 {
@@ -83,21 +83,19 @@ extension XXH3.Common {
     let llm1l = UInt64(llm1 >> 32)
     let llm2l = UInt64(llm2 >> 32)
     
-    let llhigh = UInt64(llh &+ llm1l &+ llm2l &+ carry1 &+ carry2)
+    let llhigh = UInt64(llh &+ (llm1l + llm2l + carry1 + carry2))
     
     return llhigh ^ lllow
   }
   
   // swiftlint:disable function_parameter_count
-  static private func accumulate512(_ acc: [UInt64],
+  static private func accumulate512(_ acc: inout [UInt64],
                                     array: [UInt8],
                                     arrayIndex: Int,
                                     keySet: [UInt32],
                                     keySetIndex: Int,
-                                    endian: xxHash.Common.Endian) -> [UInt64] {
+                                    endian: xxHash.Common.Endian) {
     // swiftlint:enable function_parameter_count
-    var acc2 = acc
-    
     for i in 0..<accNB {
       let dataVal: UInt64 = xxHash.Common.UInt8ArrayToUInt(array,
                                                            index: arrayIndex + (i * 8),
@@ -108,96 +106,89 @@ extension XXH3.Common {
       let dataKey = UInt64(keyVal ^ dataVal)
       let mul = mult32To64(UInt32(dataKey & 0x00000000FFFFFFFF),
                            y: UInt32(dataKey >> 32))
-      acc2[i] &+= mul
-      acc2[i] &+= dataVal
+      acc[i] &+= mul
+      acc[i] &+= dataVal
     }
-    
-    return acc2
   }
   
   // swiftlint:disable function_parameter_count
-  static private func accumulate(_ acc: [UInt64],
+  static private func accumulate(_ acc: inout [UInt64],
                                  array: [UInt8],
                                  arrayIndex: Int,
                                  keySet: [UInt32],
                                  keySetIndex: Int,
                                  nbStripes: Int,
-                                 endian: xxHash.Common.Endian) -> [UInt64] {
+                                 endian: xxHash.Common.Endian) {
     // swiftlint:enable function_parameter_count
-    var acc2 = acc
-    
     for i in 0..<nbStripes {
-      acc2 = accumulate512(acc2,
-                           array: array,
-                           arrayIndex: arrayIndex + (i * stripeLen),
-                           keySet: keySet,
-                           keySetIndex: keySetIndex + (i * 2),
-                           endian: endian)
+      accumulate512(&acc,
+                    array: array,
+                    arrayIndex: arrayIndex + (i * stripeLen),
+                    keySet: keySet,
+                    keySetIndex: keySetIndex + (i * 2),
+                    endian: endian)
     }
-    
-    return acc2
   }
   
-  static private func scrambleAcc(_ acc: [UInt64], keySet: [UInt32], keySetIndex: Int, endian: xxHash.Common.Endian) -> [UInt64] {
-    var acc2 = acc
-    
+  static private func scrambleAcc(_ acc: inout [UInt64],
+                                  keySet: [UInt32],
+                                  keySetIndex: Int,
+                                  endian: xxHash.Common.Endian) {
     for i in 0..<accNB {
       let key64 = xxHash.Common.UInt32ToUInt64(keySet[keySetIndex + (i * 2)],
                                                val2: keySet[keySetIndex + (i * 2) + 1],
                                                endian: endian)
-      var acc64 = acc2[i]
+      var acc64 = acc[i]
       acc64 ^= acc64 >> 47
       acc64 ^= key64
       acc64 &*= UInt64(XXH32.prime1)
-      acc2[i] = acc64
+      acc[i] = acc64
     }
-    
-    return acc2
   }
   
   static func hashLong(_ acc: [UInt64], array: [UInt8], endian: xxHash.Common.Endian) -> [UInt64] {
     let nbKeys = (keySetDefaultSize - stripeElts) / 2
     let blockLen = stripeLen * nbKeys
     let nbBlocks = array.count / blockLen
-    var acc2 = acc
+    var acc = acc
     
     for i in 0..<nbBlocks {
-      acc2 = accumulate(acc2,
-                        array: array,
-                        arrayIndex: i * blockLen,
-                        keySet: keySet,
-                        keySetIndex: 0,
-                        nbStripes: nbKeys,
-                        endian: endian)
+      accumulate(&acc,
+                 array: array,
+                 arrayIndex: i * blockLen,
+                 keySet: keySet,
+                 keySetIndex: 0,
+                 nbStripes: nbKeys,
+                 endian: endian)
       
-      acc2 = scrambleAcc(acc2,
-                         keySet: keySet,
-                         keySetIndex: keySetDefaultSize - stripeElts,
-                         endian: endian)
+      scrambleAcc(&acc,
+                  keySet: keySet,
+                  keySetIndex: keySetDefaultSize - stripeElts,
+                  endian: endian)
     }
     
     
     // last partial block
     let nbStripes = (array.count % blockLen) / stripeLen
-    acc2 = accumulate(acc2,
-                      array: array,
-                      arrayIndex: nbBlocks * blockLen,
-                      keySet: keySet,
-                      keySetIndex: 0,
-                      nbStripes: nbStripes,
-                      endian: endian)
+    accumulate(&acc,
+               array: array,
+               arrayIndex: nbBlocks * blockLen,
+               keySet: keySet,
+               keySetIndex: 0,
+               nbStripes: nbStripes,
+               endian: endian)
     
     // last stripe
     if (array.count & (stripeLen - 1)) > 0 {
-      acc2 = accumulate512(acc2,
-                           array: array,
-                           arrayIndex: array.count - stripeLen,
-                           keySet: keySet,
-                           keySetIndex: nbStripes * 2,
-                           endian: endian)
+      accumulate512(&acc,
+                    array: array,
+                    arrayIndex: array.count - stripeLen,
+                    keySet: keySet,
+                    keySetIndex: nbStripes * 2,
+                    endian: endian)
     }
     
-    return acc2
+    return acc
   }
   
   static private func mix2Accs(_ acc: [UInt64],
