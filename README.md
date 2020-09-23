@@ -14,8 +14,6 @@
 A framework includes XXH32/XXH64/XXH3-64/XXH3-128 functions.  
   
 Original xxHash algorithm created by [Yann Collet](https://github.com/Cyan4973).
-  
-[Documentation](https://daisuke-t-jp.github.io/xxHash-Swift/)
 
 
 # Requirements
@@ -38,23 +36,6 @@ use_frameworks!
 target 'target' do
 pod 'xxHash-Swift'
 end
-```
-
-## Swift Package Manager
-```swift
-import PackageDescription
-
-let package = Package(
-  name: "YOUR_PACKAGE_NAME",
-  dependencies: [
-    .package(url: "https://github.com/daisuke-t-jp/xxHash-Swift.git", from: "1.0.12")
-  ],
-  targets: [
-    .target(
-      name: "YOUR_TARGET_NAME",
-      dependencies: ["xxHash-Swift"]),
-  ]
-)
 ```
 
 
