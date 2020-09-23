@@ -72,18 +72,18 @@ let bufSize = 1024
 var index = 0
 
 repeat {
-  var lastIndex = index + bufSize
-  if lastIndex > data.count {
-    lastIndex = index + data.count - index
-  }
+    var lastIndex = index + bufSize
+    if lastIndex > data.count {
+        lastIndex = index + data.count - index
+    }
 
-  let data2 = data[index..<lastIndex]
-  xxh.update(data2) // xxHash update
+    let data2 = data[index..<lastIndex]
+    xxh.update(data2) // xxHash update
 
-  index += data2.count
-  if index >= data.count {
-    break
-  }
+    index += data2.count
+    if index >= data.count {
+        break
+    }
 } while(true)
 
 let digest = xxh.digest()
@@ -116,18 +116,18 @@ let bufSize = 1024
 var index = 0
 
 repeat {
-  var lastIndex = index + bufSize
-  if lastIndex > data.count {
-    lastIndex = index + data.count - index
-  }
+    var lastIndex = index + bufSize
+    if lastIndex > data.count {
+        lastIndex = index + data.count - index
+    }
 
-  let data2 = data[index..<lastIndex]
-  xxh.update(data2) // xxHash update
+    let data2 = data[index..<lastIndex]
+    xxh.update(data2) // xxHash update
 
-  index += data2.count
-  if index >= data.count {
-    break
-  }
+    index += data2.count
+    if index >= data.count {
+        break
+    }
 } while(true)
 
 let digest = xxh.digest()
