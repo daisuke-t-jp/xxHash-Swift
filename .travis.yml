@@ -6,11 +6,11 @@ matrix:
   include:
     - os: osx
       language: swift
-      osx_image: xcode10.2
+      osx_image: xcode12
       script:
         # iOS
         - xcodebuild clean -project "xxHash.xcodeproj" 
-        - xcodebuild test -project "xxHash.xcodeproj" -scheme "xxHash-iOS" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone X" -configuration Debug
+        - xcodebuild test -project "xxHash.xcodeproj" -scheme "xxHash-iOS" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11 Pro Max" -configuration Debug
         
         # macOS
         - xcodebuild clean -project "xxHash.xcodeproj" 
@@ -54,8 +54,8 @@ matrix:
             - tzdata
             - rsync
       script:
-        - wget https://swift.org/builds/swift-5.0-release/ubuntu1604/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu16.04.tar.gz
-        - tar xvfz swift-5.0-RELEASE-ubuntu16.04.tar.gz
-        - export PATH=$(pwd)/swift-5.0-RELEASE-ubuntu16.04/usr/bin:"${PATH}"
+        - wget https://swift.org/builds/swift-5.3-release/ubuntu1604/swift-5.3-RELEASE/swift-5.3-RELEASE-ubuntu16.04.tar.gz
+        - tar xvfz swift-5.3-RELEASE-ubuntu16.04.tar.gz
+        - export PATH=$(pwd)/swift-5.3-RELEASE-ubuntu16.04/usr/bin:"${PATH}"
         - swift build
         - swift test

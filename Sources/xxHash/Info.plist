@@ -15,10 +15,10 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.13</string>
+	<string>1.1.0</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2019 xxHash. All rights reserved.</string>
+	<string>Copyright © 2019 Daisuke TONOSAKI. All rights reserved.</string>
 </dict>
 </plist>
