@@ -22,8 +22,7 @@ let package = Package(
         .target(
             name: "xxHash_Swift",
             dependencies: [],
-            path: "Sources/xxHash/",
-            exclude: ["xxHash.xcodeproj", "README.md", "Sources/xxHash/Info.plist", "Sources/xxHash/xxHash.h"]),
+            path: "Sources/xxHash/"),
         .testTarget(
             name: "xxHashTests",
             dependencies: ["xxHash_Swift"]),
